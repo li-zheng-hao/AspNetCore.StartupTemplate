@@ -1,3 +1,4 @@
+using AspNetCore.CacheOutput;
 using AspNetCore.StartUpTemplate.Auth;
 using AspNetCore.StartUpTemplate.IRepository;
 using AspNetCore.StartUpTemplate.Repository;
@@ -26,10 +27,10 @@ public class UserController : ControllerBase
         _mapper = mapper;
         _userRepository = up;
     }
-
+    [CacheOutput(ClientTimeSpan = 100,ServerTimeSpan = 100)]
     [NeedAuth]
     [HttpGet("get")]
-    public IEnumerable<WeatherForecast> Get()
+    public IEnumerable<WeatherForecast> Get(string id)
     {
         return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
@@ -37,9 +38,10 @@ public class UserController : ControllerBase
                 TemperatureC = Random.Shared.Next(-20, 55),
                 Summary = Summaries[Random.Shared.Next(Summaries.Length)]
             })
+            .Where(it=>it.Summary.Contains(id))
             .ToArray();
     }
-
+    [InvalidateCacheOutput("*")] // 清除所有本Controller下的缓存
     [HttpGet("tokentest")]
     public string TokenTest()
     {

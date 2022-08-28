@@ -1,3 +1,4 @@
+using AspNetCore.CacheOutput.Redis.Extensions;
 using AspNetCore.StartUpTemplate.Auth;
 using AspNetCore.StartUpTemplate.Configuration;
 using AspNetCore.StartUpTemplate.Core;
@@ -130,6 +131,8 @@ builder.Services.AddCors(options =>
 builder.Services.AddAutoMapper(typeof(AutoMapperConfig));
 
 #endregion
+
+builder.Services.AddRedisCacheOutput(AppSettingsConstVars.RedisConn);
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

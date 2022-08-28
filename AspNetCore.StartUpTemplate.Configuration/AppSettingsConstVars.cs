@@ -20,6 +20,7 @@ public class AppSettingsConstVars
     /// 获取数据库连接字符串
     /// </summary>
     public static readonly string DbConnection = AppSettingsHelper.GetContent("Mysql", "ConnectionString");
+    public static readonly string RedisConn = AppSettingsHelper.GetContent("RedisConn");
    
     #endregion
 
