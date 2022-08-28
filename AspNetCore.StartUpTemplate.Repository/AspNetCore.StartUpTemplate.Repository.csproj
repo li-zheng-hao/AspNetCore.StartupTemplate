@@ -10,4 +10,16 @@
       <PackageReference Include="SqlSugarCore" Version="5.1.2.3" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\AspNetCore.StartUpTemplate.Configuration\AspNetCore.StartUpTemplate.Configuration.csproj" />
+      <ProjectReference Include="..\AspNetCore.StartUpTemplate.IRepository\AspNetCore.StartUpTemplate.IRepository.csproj" />
+      <ProjectReference Include="..\AspNetCore.StartUpTemplate.Model\AspNetCore.StartUpTemplate.Model.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="Microsoft.Extensions.Logging.Abstractions">
+        <HintPath>C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\6.0.6\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
 </Project>
