@@ -1,4 +1,5 @@
 using AspNetCore.StartUpTemplate.Auth;
+using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,10 +15,12 @@ public class WeatherForecastController : ControllerBase
     };
 
     private readonly ILogger<WeatherForecastController> _logger;
+    private readonly IMapper _mapper;
 
-    public WeatherForecastController(ILogger<WeatherForecastController> logger)
+    public WeatherForecastController(ILogger<WeatherForecastController> logger,IMapper mapper)
     {
         _logger = logger;
+        _mapper = mapper;
     }
     [NeedAuth]
     [HttpGet("get")]

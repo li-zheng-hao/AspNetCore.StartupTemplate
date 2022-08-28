@@ -2,6 +2,7 @@ using AspNetCore.StartUpTemplate.Auth;
 using AspNetCore.StartUpTemplate.Configuration;
 using AspNetCore.StartUpTemplate.Core;
 using AspNetCore.StartUpTemplate.Filter;
+using AspNetCore.StartUpTemplate.Mapping;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Mvc;
@@ -123,6 +124,11 @@ builder.Services.AddCors(options =>
 });
 #endregion
 
+#region AutoMapper配置===========
+
+builder.Services.AddAutoMapper(typeof(AutoMapperConfig));
+
+#endregion
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
