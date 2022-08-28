@@ -34,6 +34,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Webapi", "Webapi", "{E1AC9C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore.StartUpTemplate.Contract", "AspNetCore.StartUpTemplate.Contract\AspNetCore.StartUpTemplate.Contract.csproj", "{A8890829-5708-4F19-B1A0-85643B956B01}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore.StartUpTemplate.Auth", "AspNetCore.StartUpTemplate.Auth\AspNetCore.StartUpTemplate.Auth.csproj", "{6A2C4D47-6E8A-47A7-A68A-97EA86E9DA19}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -88,6 +90,10 @@ Global
 		{A8890829-5708-4F19-B1A0-85643B956B01}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A8890829-5708-4F19-B1A0-85643B956B01}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A8890829-5708-4F19-B1A0-85643B956B01}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A2C4D47-6E8A-47A7-A68A-97EA86E9DA19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A2C4D47-6E8A-47A7-A68A-97EA86E9DA19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A2C4D47-6E8A-47A7-A68A-97EA86E9DA19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A2C4D47-6E8A-47A7-A68A-97EA86E9DA19}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{0D71708E-C037-4B05-A12F-A6CF2DA2B98F} = {8BB20A97-2C3A-4E85-B74A-7BDB2BB70B46}
@@ -102,5 +108,6 @@ Global
 		{2E39D547-730C-4FA3-A53F-ADBE4CCFED8C} = {CE6C0D3C-FE43-4009-9C17-EEADE54822EC}
 		{AFA36BA0-54FE-4DD8-B62A-1B7EFEC83989} = {E1AC9CC0-74D5-4DBB-A399-1AF51EB45DCE}
 		{A8890829-5708-4F19-B1A0-85643B956B01} = {9B7E4906-8690-44D7-8B88-78158FBC84AC}
+		{6A2C4D47-6E8A-47A7-A68A-97EA86E9DA19} = {CE6C0D3C-FE43-4009-9C17-EEADE54822EC}
 	EndGlobalSection
 EndGlobal

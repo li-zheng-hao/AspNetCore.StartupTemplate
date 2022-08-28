@@ -21,6 +21,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\AspNetCore.StartUpTemplate.Auth\AspNetCore.StartUpTemplate.Auth.csproj" />
       <ProjectReference Include="..\AspNetCore.StartUpTemplate.Configuration\AspNetCore.StartUpTemplate.Configuration.csproj" />
       <ProjectReference Include="..\AspNetCore.StartUpTemplate.Core\AspNetCore.StartUpTemplate.Core.csproj" />
       <ProjectReference Include="..\AspNetCore.StartUpTemplate.Filter\AspNetCore.StartUpTemplate.Filter.csproj" />

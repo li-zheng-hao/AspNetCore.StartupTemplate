@@ -42,3 +42,4 @@ public class AppSettingsConstVars
     #endregion
 
 }
+

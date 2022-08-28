@@ -1,3 +1,4 @@
+using AspNetCore.StartUpTemplate.Auth;
 using AspNetCore.StartUpTemplate.Configuration;
 using AspNetCore.StartUpTemplate.Core;
 using AspNetCore.StartUpTemplate.Filter;
@@ -30,7 +31,7 @@ builder.Services.AddEndpointsApiExplorer();
 #region 添加自定义过滤器======================
 
 builder.Services.AddMvc(options =>
-{ 
+{
     //实体验证
     options.Filters.Add<ModelValidator>(); 
     //异常处理
@@ -113,7 +114,12 @@ builder.Services.Replace(ServiceDescriptor.Transient<IControllerActivator, Servi
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(
-        policy => { policy.AllowAnyOrigin(); });
+        policy =>
+        {
+            policy.AllowAnyOrigin();
+            policy.AllowAnyHeader();
+            policy.AllowAnyMethod();
+        });
 });
 #endregion
 

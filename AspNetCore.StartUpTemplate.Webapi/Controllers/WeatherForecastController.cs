@@ -1,3 +1,5 @@
+using AspNetCore.StartUpTemplate.Auth;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AspNetCore.StartUpTemplate.Webapi.Controllers;
@@ -17,8 +19,8 @@ public class WeatherForecastController : ControllerBase
     {
         _logger = logger;
     }
-
-    [HttpGet(Name = "GetWeatherForecast")]
+    [NeedAuth]
+    [HttpGet("get")]
     public IEnumerable<WeatherForecast> Get()
     {
         return Enumerable.Range(1, 5).Select(index => new WeatherForecast
@@ -28,5 +30,14 @@ public class WeatherForecastController : ControllerBase
                 Summary = Summaries[Random.Shared.Next(Summaries.Length)]
             })
             .ToArray();
+    }
+
+    [HttpGet("tokentest")]
+    public string TokenTest()
+    {
+       var tm= new UserData() { Id = "123", UserName = "lizhenghao" };
+       var token=TokenHelper.CreateToken(tm);
+       var res=TokenHelper.ResolveToken(token);
+       return token;
     }
 }
