@@ -10,4 +10,8 @@
       <PackageReference Include="SqlSugarCore" Version="5.1.2.3" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\AspNetCore.StartUpTemplate.Model\AspNetCore.StartUpTemplate.Model.csproj" />
+    </ItemGroup>
+
 </Project>

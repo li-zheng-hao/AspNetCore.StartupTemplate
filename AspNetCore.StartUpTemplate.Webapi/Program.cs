@@ -97,6 +97,7 @@ builder.Services.AddSwaggerGen(c =>
 #region IOC配置============================
 
 builder.Services.AddSingleton(new AppSettingsHelper(builder.Configuration));
+builder.Services.AddSqlSugarSetup();
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory()).ConfigureContainer<ContainerBuilder>((c) =>
 {
     var controllersTypesInAssembly = typeof(Program).Assembly
