@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using AspNetCore.StartUpTemplate.Configuration;
 using AspNetCore.StartUpTemplate.Contract;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
@@ -25,7 +26,7 @@ public class ModelValidator : ResultFilterAttribute
             var baseResult = new ResponseResult()
             {
                 Status = false,
-                Code = 408,
+                Code = ResponseCode.PARAM_ERROR,
                 Msg = "请提交必要的参数",
             };
             List<string> errors = new List<string>();

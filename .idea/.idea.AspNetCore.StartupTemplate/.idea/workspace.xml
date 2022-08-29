@@ -7,63 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d36a8aa1-8807-4bcc-adac-67d12e68e40c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Webapi/AspNetCore.StartupTemplate.Webapi.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.AspNetCore.StartUpTemplate/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.AspNetCore.StartUpTemplate/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AspNetCore.StartUpTemplate.Auth/AspNetCore.StartUpTemplate.Auth.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Auth/AspNetCore.StartupTemplate.Auth.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AspNetCore.StartUpTemplate.Auth/NeedAuthAttribute.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Auth/NeedAuthAttribute.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AspNetCore.StartUpTemplate.Auth/TokenHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Auth/TokenHelper.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AspNetCore.StartUpTemplate.Auth/TokenModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Auth/TokenModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AspNetCore.StartUpTemplate.Configuration/AppSettingsConstVars.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Configuration/AppSettingsConstVars.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AspNetCore.StartUpTemplate.Configuration/AppSettingsHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Configuration/AppSettingsHelper.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AspNetCore.StartUpTemplate.Configuration/AspNetCore.StartUpTemplate.Configuration.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Configuration/AspNetCore.StartupTemplate.Configuration.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AspNetCore.StartUpTemplate.Configuration/ResponseCode.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Configuration/ResponseCode.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AspNetCore.StartUpTemplate.Contract/AspNetCore.StartUpTemplate.Contract.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Contract/AspNetCore.StartupTemplate.Contract.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AspNetCore.StartUpTemplate.Contract/Class1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Contract/Class1.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AspNetCore.StartUpTemplate.Core/AspNetCore.StartUpTemplate.Core.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Core/AspNetCore.StartupTemplate.Core.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AspNetCore.StartUpTemplate.Core/AutofacModuleRegister.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Core/AutofacModuleRegister.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AspNetCore.StartUpTemplate.Core/SqlSugarSetup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Core/SqlSugarSetup.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AspNetCore.StartUpTemplate.CoreGeneratorConsole/AspNetCore.StartUpTemplate.CoreGeneratorConsole.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.CoreGeneratorConsole/AspNetCore.StartupTemplate.CoreGeneratorConsole.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AspNetCore.StartUpTemplate.CoreGeneratorConsole/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.CoreGeneratorConsole/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AspNetCore.StartUpTemplate.Filter/AspNetCore.StartUpTemplate.Filter.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Filter/AspNetCore.StartupTemplate.Filter.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AspNetCore.StartUpTemplate.Filter/FileUploadFilter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Filter/FileUploadFilter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AspNetCore.StartUpTemplate.Filter/GlobalExceptionsFilter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Filter/GlobalExceptionsFilter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AspNetCore.StartUpTemplate.Filter/ModelValidator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Filter/ModelValidator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AspNetCore.StartUpTemplate.IRepository/AspNetCore.StartUpTemplate.IRepository.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.IRepository/AspNetCore.StartupTemplate.IRepository.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AspNetCore.StartUpTemplate.IRepository/IBaseRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.IRepository/IBaseRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AspNetCore.StartUpTemplate.IRepository/UnitOfWork/IUnitOfWork.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.IRepository/UnitOfWork/IUnitOfWork.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AspNetCore.StartUpTemplate.IRepository/UserRepository/IUserRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.IRepository/UserRepository/IUserRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AspNetCore.StartUpTemplate.IServices/AspNetCore.StartUpTemplate.IServices.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.IServices/AspNetCore.StartupTemplate.IServices.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AspNetCore.StartUpTemplate.IServices/Class1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.IServices/Class1.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AspNetCore.StartUpTemplate.Mapping/AspNetCore.StartUpTemplate.Mapping.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Mapping/AspNetCore.StartupTemplate.Mapping.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AspNetCore.StartUpTemplate.Mapping/AutoMapperConfig.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Mapping/AutoMapperConfig.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AspNetCore.StartUpTemplate.Mapping/Class1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Mapping/Class1.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AspNetCore.StartUpTemplate.Model/AspNetCore.StartUpTemplate.Model.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Model/AspNetCore.StartupTemplate.Model.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AspNetCore.StartUpTemplate.Model/Class1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Model/Class1.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AspNetCore.StartUpTemplate.Model/Users.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Model/Users.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AspNetCore.StartUpTemplate.Repository/AspNetCore.StartUpTemplate.Repository.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Repository/AspNetCore.StartupTemplate.Repository.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AspNetCore.StartUpTemplate.Repository/BaseRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Repository/BaseRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AspNetCore.StartUpTemplate.Repository/UnitOfWork/UnitOfWork.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Repository/UnitOfWork/UnitOfWork.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AspNetCore.StartUpTemplate.Repository/UserRepository/UserRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Repository/UserRepository/UserRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AspNetCore.StartUpTemplate.Services/AspNetCore.StartUpTemplate.Services.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Services/AspNetCore.StartupTemplate.Services.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AspNetCore.StartUpTemplate.Services/Class1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Services/Class1.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AspNetCore.StartUpTemplate.Utility/AspNetCore.StartUpTemplate.Utility.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Utility/AspNetCore.StartupTemplate.Utility.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AspNetCore.StartUpTemplate.Utility/Class1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Utility/Class1.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AspNetCore.StartUpTemplate.Utility/Extensions/ConvertObjectExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Utility/Extensions/ConvertObjectExtensions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AspNetCore.StartUpTemplate.Utility/Extensions/LogExtension.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Utility/Extensions/LogExtension.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AspNetCore.StartUpTemplate.Utility/Extensions/MarkerAttributeExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Utility/Extensions/MarkerAttributeExtensions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AspNetCore.StartUpTemplate.Utility/NetworkHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Utility/NetworkHelper.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AspNetCore.StartUpTemplate.Webapi/.dockerignore" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Webapi/.dockerignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AspNetCore.StartUpTemplate.Webapi/AspNetCore.StartUpTemplate.Webapi.csproj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AspNetCore.StartUpTemplate.Webapi/Controllers/UserController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Webapi/Controllers/UserController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AspNetCore.StartUpTemplate.Webapi/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Webapi/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AspNetCore.StartUpTemplate.Webapi/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Webapi/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AspNetCore.StartUpTemplate.Webapi/Properties/launchSettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Webapi/Properties/launchSettings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AspNetCore.StartUpTemplate.Webapi/WeatherForecast.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Webapi/WeatherForecast.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AspNetCore.StartUpTemplate.Webapi/appsettings.Development.json" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Webapi/appsettings.Development.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AspNetCore.StartUpTemplate.Webapi/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Webapi/appsettings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AspNetCore.StartUpTemplate.Webapi/nlog.config" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Webapi/nlog.config" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AspNetCore.StartUpTemplate.sln" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.sln" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.AspNetCore.StartupTemplate/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.AspNetCore.StartupTemplate/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -147,7 +91,8 @@
       <option name="presentableId" value="Default" />
       <updated>1661735309204</updated>
       <workItem from="1661735331815" duration="122000" />
-      <workItem from="1661735476938" duration="305000" />
+      <workItem from="1661735476938" duration="911000" />
+      <workItem from="1661736581679" duration="1192000" />
     </task>
     <servers />
   </component>
