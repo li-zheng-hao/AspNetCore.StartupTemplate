@@ -8,6 +8,10 @@
         <RootNamespace>AspNetCore.StartUpTemplate.Webapi</RootNamespace>
     </PropertyGroup>
 
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+      <DocumentationFile>bin\Debug\AspNetCore.StartupTemplate.Webapi.xml</DocumentationFile>
+    </PropertyGroup>
+
     <ItemGroup>
         <PackageReference Include="AspNetCore.CacheOutput" Version="2.1.0" />
         <PackageReference Include="AspNetCore.CacheOutput.Redis" Version="2.1.0" />

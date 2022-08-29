@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using AspNetCore.CacheOutput;
 using AspNetCore.StartUpTemplate.Auth;
 using AspNetCore.StartUpTemplate.IRepository;
@@ -25,6 +26,12 @@ public class UserController : ControllerBase
         _mapper = mapper;
         _userService = us;
     }
+    /// <summary>
+    /// 缓存+权限验证示例
+    /// </summary>
+    /// <param name="id">随机传入的ID</param>
+    /// <returns></returns>
+    [Description("缓存+权限验证示例")]
     [CacheOutput(ClientTimeSpan = 100,ServerTimeSpan = 100)]
     [NeedAuth]
     [HttpGet("get")]
@@ -39,7 +46,8 @@ public class UserController : ControllerBase
             .Where(it=>it.Summary.Contains(id))
             .ToArray();
     }
-    [InvalidateCacheOutput("*")] // 清除所有本Controller下的缓存
+    [Description("清除所有缓存示例")]
+    [InvalidateCacheOutput("*")] 
     [HttpGet("tokentest")]
     public string TokenTest()
     {
@@ -48,6 +56,7 @@ public class UserController : ControllerBase
         var res = TokenHelper.ResolveToken(token);
         return token;
     }
+    [Description("注解事务示例")]
     [HttpGet("tokentest2")]
     public void TokenTest2()
     {

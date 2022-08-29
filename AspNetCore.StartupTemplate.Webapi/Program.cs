@@ -1,3 +1,4 @@
+using System.Reflection;
 using AspNetCore.CacheOutput.Redis.Extensions;
 using AspNetCore.StartUpTemplate.Auth;
 using AspNetCore.StartUpTemplate.Configuration;
@@ -79,7 +80,11 @@ builder.Services.AddSwaggerGen(c =>
         Type = SecuritySchemeType.Http,
         BearerFormat = "JWT"
     });
-
+    // 接口文档抓取
+    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+    //... and tell Swagger to use those XML comments.
+    c.IncludeXmlComments(xmlPath);
     c.AddSecurityRequirement(new OpenApiSecurityRequirement
     {
         {
