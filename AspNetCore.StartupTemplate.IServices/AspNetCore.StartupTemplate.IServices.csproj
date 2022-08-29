@@ -8,11 +8,12 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="SqlSugarCore" Version="5.1.2.1" />
+      <PackageReference Include="SqlSugarCore" Version="5.1.2.3" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\AspNetCore.StartupTemplate.Contract\AspNetCore.StartupTemplate.Contract.csproj" />
+      <ProjectReference Include="..\AspNetCore.StartupTemplate.Model\AspNetCore.StartupTemplate.Model.csproj" />
     </ItemGroup>
 
 </Project>

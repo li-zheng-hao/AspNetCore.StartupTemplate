@@ -7,9 +7,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d36a8aa1-8807-4bcc-adac-67d12e68e40c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/AspNetCore.StartUpTemplate.Aop/AspNetCore.StartUpTemplate.Aop.csproj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AspNetCore.StartUpTemplate.Aop/UseTransactionAttribute.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.IServices/IUserService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Services/UserService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.AspNetCore.StartupTemplate/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.AspNetCore.StartupTemplate/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AspNetCore.StartupTemplate.CoreGeneratorConsole/GeneratorCodeHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.CoreGeneratorConsole/GeneratorCodeHelper.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AspNetCore.StartupTemplate.CoreGeneratorConsole/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.CoreGeneratorConsole/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Core/AspNetCore.StartupTemplate.Core.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Core/AspNetCore.StartupTemplate.Core.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Core/AutofacModuleRegister.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Core/AutofacModuleRegister.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AspNetCore.StartupTemplate.IServices/AspNetCore.StartupTemplate.IServices.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.IServices/AspNetCore.StartupTemplate.IServices.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AspNetCore.StartupTemplate.sln" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.sln" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,6 +28,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/f993f26659c444a198a8f8ebecebe9f61eda00/7e/acfa2a35/ISimpleClient`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/f993f26659c444a198a8f8ebecebe9f61eda00/ff/a5062141/ISugarRepository.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f3b9684f72bc2cc435eb694f7cc86eca8c240d2d1cefa1e8697a61f1f2f27f/SafeFileHandle.Windows.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/AspNetCore.StartUpTemplate.Aop/TransactionInterceptor.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -41,7 +48,7 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected=".NET Project.AspNetCore.StartUpTemplate.CoreGeneratorConsole">
+  <component name="RunManager" selected=".NET Launch Settings Profile.AspNetCore.StartUpTemplate.Webapi">
     <configuration name="AspNetCore.StartUpTemplate.CoreGeneratorConsole" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="" />
       <option name="PROGRAM_PARAMETERS" value="" />
@@ -101,7 +108,7 @@
       <updated>1661735309204</updated>
       <workItem from="1661735331815" duration="122000" />
       <workItem from="1661735476938" duration="911000" />
-      <workItem from="1661736581679" duration="10984000" />
+      <workItem from="1661736581679" duration="12603000" />
     </task>
     <servers />
   </component>

@@ -38,6 +38,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore.StartupTemplate.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore.StartupTemplate.CoreGeneratorConsole", "AspNetCore.StartupTemplate.CoreGeneratorConsole\AspNetCore.StartupTemplate.CoreGeneratorConsole.csproj", "{2CF58D72-F9DE-47B5-9CC0-DDF2AE2E5AF4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore.StartUpTemplate.Aop", "AspNetCore.StartUpTemplate.Aop\AspNetCore.StartUpTemplate.Aop.csproj", "{083990D1-303B-4F33-A786-4F9289017899}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -100,6 +102,10 @@ Global
 		{2CF58D72-F9DE-47B5-9CC0-DDF2AE2E5AF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2CF58D72-F9DE-47B5-9CC0-DDF2AE2E5AF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2CF58D72-F9DE-47B5-9CC0-DDF2AE2E5AF4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{083990D1-303B-4F33-A786-4F9289017899}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{083990D1-303B-4F33-A786-4F9289017899}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{083990D1-303B-4F33-A786-4F9289017899}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{083990D1-303B-4F33-A786-4F9289017899}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{0D71708E-C037-4B05-A12F-A6CF2DA2B98F} = {8BB20A97-2C3A-4E85-B74A-7BDB2BB70B46}
@@ -116,5 +122,6 @@ Global
 		{A8890829-5708-4F19-B1A0-85643B956B01} = {9B7E4906-8690-44D7-8B88-78158FBC84AC}
 		{6A2C4D47-6E8A-47A7-A68A-97EA86E9DA19} = {CE6C0D3C-FE43-4009-9C17-EEADE54822EC}
 		{2CF58D72-F9DE-47B5-9CC0-DDF2AE2E5AF4} = {CE6C0D3C-FE43-4009-9C17-EEADE54822EC}
+		{083990D1-303B-4F33-A786-4F9289017899} = {CE6C0D3C-FE43-4009-9C17-EEADE54822EC}
 	EndGlobalSection
 EndGlobal

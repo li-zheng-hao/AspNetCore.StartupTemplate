@@ -1,6 +1,7 @@
 using AspNetCore.CacheOutput;
 using AspNetCore.StartUpTemplate.Auth;
 using AspNetCore.StartUpTemplate.IRepository;
+using AspNetCore.StartUpTemplate.IService;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,13 +18,13 @@ public class UserController : ControllerBase
 
     private readonly ILogger<UserController> _logger;
     private readonly IMapper _mapper;
-    private readonly IUserRepository _userRepository;
+    private readonly IUserService _userService;
 
-    public UserController(ILogger<UserController> logger, IMapper mapper, IUserRepository up)
+    public UserController(ILogger<UserController> logger, IMapper mapper, IUserService us)
     {
         _logger = logger;
         _mapper = mapper;
-        _userRepository = up;
+        _userService = us;
     }
     [CacheOutput(ClientTimeSpan = 100,ServerTimeSpan = 100)]
     [NeedAuth]
@@ -43,10 +44,15 @@ public class UserController : ControllerBase
     [HttpGet("tokentest")]
     public string TokenTest()
     {
-        var res1123 = _userRepository.GetById("123");
         var tm = new UserData() { Id = "123", UserName = "lizhenghao" };
         var token = TokenHelper.CreateToken(tm);
         var res = TokenHelper.ResolveToken(token);
         return token;
     }
+    [HttpGet("tokentest2")]
+    public void TokenTest2()
+    {
+        _userService.Query();
+    }
+    
 }
