@@ -1,13 +1,11 @@
 using AspNetCore.CacheOutput;
 using AspNetCore.StartUpTemplate.Auth;
 using AspNetCore.StartUpTemplate.IRepository;
-using AspNetCore.StartUpTemplate.Repository;
 using AutoMapper;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AspNetCore.StartUpTemplate.Webapi.Controllers;
-
+[NeedAuth]
 [ApiController]
 [Route("[controller]")]
 public class UserController : ControllerBase

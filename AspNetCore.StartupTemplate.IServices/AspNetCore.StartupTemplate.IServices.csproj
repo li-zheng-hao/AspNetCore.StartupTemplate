@@ -7,4 +7,12 @@
         <RootNamespace>AspNetCore.StartUpTemplate.IService</RootNamespace>
     </PropertyGroup>
 
+    <ItemGroup>
+      <PackageReference Include="SqlSugarCore" Version="5.1.2.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\AspNetCore.StartupTemplate.Contract\AspNetCore.StartupTemplate.Contract.csproj" />
+    </ItemGroup>
+
 </Project>

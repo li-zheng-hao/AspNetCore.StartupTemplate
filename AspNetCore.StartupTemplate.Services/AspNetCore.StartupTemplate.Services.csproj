@@ -7,4 +7,9 @@
         <RootNamespace>AspNetCore.StartUpTemplate.Services</RootNamespace>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\AspNetCore.StartupTemplate.IRepository\AspNetCore.StartupTemplate.IRepository.csproj" />
+      <ProjectReference Include="..\AspNetCore.StartupTemplate.IServices\AspNetCore.StartupTemplate.IServices.csproj" />
+    </ItemGroup>
+
 </Project>

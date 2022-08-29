@@ -1,55 +1,67 @@
-﻿using System.Linq.Expressions;
+using System.Linq.Expressions;
 using CoreCms.Net.Model.ViewModels.Basics;
 using SqlSugar;
 
-namespace AspNetCore.StartUpTemplate.IRepository;
+namespace AspNetCore.StartUpTemplate.IService;
 
-public interface IBaseRepository<T>:ISimpleClient<T> where T : class, new()
+public interface IBaseService<T> where T : class,new()
 {
-    /// <summary>
-    ///     根据条件查询数据
-    /// </summary>
-    /// <param name="predicate">条件表达式树</param>
-    /// <param name="orderByPredicate">排序字段</param>
-    /// <param name="orderByType">排序顺序</param>
-    /// <param name="blUseNoLock">是否使用WITH(NOLOCK)</param>
-    /// <returns></returns>
-    T QueryByClause(Expression<Func<T, bool>>? predicate, Expression<Func<T, object>> orderByPredicate,
-        OrderByType orderByType, bool blUseNoLock = false);
-    
-    /// <summary>
-    ///     根据主值列表查询单条数据
-    /// </summary>
-    /// <param name="lstIds"></param>
-    /// <param name="blUseNoLock">是否使用WITH(NOLOCK)</param>
-    /// <returns></returns>
-    List<T> QueryByIDs(int[] lstIds, bool blUseNoLock = false);
-
-    /// <summary>
-    ///     根据主值列表查询单条数据
-    /// </summary>
-    /// <param name="lstIds"></param>
-    /// <param name="blUseNoLock">是否使用WITH(NOLOCK)</param>
-    /// <returns></returns>
-    Task<List<T>> QueryByIDsAsync(int[] lstIds, bool blUseNoLock = false);
-    
-     /// <summary>
-        ///     根据条件查询数据
+        /// <summary>
+        ///     根据主值查询单条数据
         /// </summary>
-        /// <param name="strWhere">条件</param>
-        /// <param name="orderBy">排序</param>
-        /// <param name="blUseNoLock">是否使用WITH(NOLOCK)</param>
-        /// <returns>泛型实体集合</returns>
-        List<T> QueryListByClause(string strWhere, string orderBy = "", bool blUseNoLock = false);
+        /// <param name="pkValue">主键值</param>
+        /// <returns>泛型实体</returns>
+        T QueryById(object pkValue);
+
+        /// <summary>
+        ///     根据主值查询单条数据
+        /// </summary>
+        /// <param name="objId"></param>
+        /// <returns></returns>
+        Task<T> QueryByIdAsync(object objId);
+
+
+        /// <summary>
+        ///     根据主值列表查询单条数据
+        /// </summary>
+        /// <param name="lstIds"></param>
+        /// <returns></returns>
+        List<T> QueryByIDs(int[] lstIds);
+
+        /// <summary>
+        ///     根据主值列表查询单条数据
+        /// </summary>
+        /// <param name="lstIds"></param>
+        /// <returns></returns>
+        Task<List<T>> QueryByIDsAsync(int[] lstIds);
+
+        /// <summary>
+        ///     查询所有数据(无分页,请慎用)
+        /// </summary>
+        /// <returns></returns>
+        List<T> Query();
+
+        /// <summary>
+        ///     查询所有数据(无分页,请慎用)
+        /// </summary>
+        /// <returns></returns>
+        Task<List<T>> QueryAsync();
 
         /// <summary>
         ///     根据条件查询数据
         /// </summary>
         /// <param name="strWhere">条件</param>
         /// <param name="orderBy">排序</param>
-        /// <param name="blUseNoLock">是否使用WITH(NOLOCK)</param>
         /// <returns>泛型实体集合</returns>
-        Task<List<T>> QueryListByClauseAsync(string strWhere, string orderBy = "", bool blUseNoLock = false);
+        List<T> QueryListByClause(string strWhere, string orderBy = "");
+
+        /// <summary>
+        ///     根据条件查询数据
+        /// </summary>
+        /// <param name="strWhere">条件</param>
+        /// <param name="orderBy">排序</param>
+        /// <returns>泛型实体集合</returns>
+        Task<List<T>> QueryListByClauseAsync(string strWhere, string orderBy = "");
 
         /// <summary>
         ///     根据条件查询数据
@@ -58,7 +70,7 @@ public interface IBaseRepository<T>:ISimpleClient<T> where T : class, new()
         /// <param name="orderBy">排序</param>
         /// <param name="blUseNoLock">是否使用WITH(NOLOCK)</param>
         /// <returns>泛型实体集合</returns>
-        List<T> QueryListByClause(Expression<Func<T, bool>>? predicate, string orderBy = "", bool blUseNoLock = false);
+        List<T> QueryListByClause(Expression<Func<T, bool>>? predicate, string orderBy = "");
 
         /// <summary>
         ///     根据条件查询数据
@@ -67,8 +79,7 @@ public interface IBaseRepository<T>:ISimpleClient<T> where T : class, new()
         /// <param name="orderBy">排序</param>
         /// <param name="blUseNoLock">是否使用WITH(NOLOCK)</param>
         /// <returns>泛型实体集合</returns>
-        Task<List<T>> QueryListByClauseAsync(Expression<Func<T, bool>>? predicate, string orderBy = "",
-            bool blUseNoLock = false);
+        Task<List<T>> QueryListByClauseAsync(Expression<Func<T, bool>>? predicate, string orderBy = "");
 
         /// <summary>
         ///     根据条件查询数据
@@ -79,7 +90,7 @@ public interface IBaseRepository<T>:ISimpleClient<T> where T : class, new()
         /// <param name="blUseNoLock">是否使用WITH(NOLOCK)</param>
         /// <returns>泛型实体集合</returns>
         List<T> QueryListByClause(Expression<Func<T, bool>>? predicate, Expression<Func<T, object>> orderByPredicate,
-            OrderByType orderByType, bool blUseNoLock = false);
+            OrderByType orderByType);
 
         /// <summary>
         ///     根据条件查询数据
@@ -90,7 +101,7 @@ public interface IBaseRepository<T>:ISimpleClient<T> where T : class, new()
         /// <param name="blUseNoLock">是否使用WITH(NOLOCK)</param>
         /// <returns>泛型实体集合</returns>
         Task<List<T>> QueryListByClauseAsync(Expression<Func<T, bool>>? predicate,
-            Expression<Func<T, object>> orderByPredicate, OrderByType orderByType, bool blUseNoLock = false);
+            Expression<Func<T, object>> orderByPredicate, OrderByType orderByType);
 
         /// <summary>
         ///     根据条件查询一定数量数据
@@ -102,7 +113,7 @@ public interface IBaseRepository<T>:ISimpleClient<T> where T : class, new()
         /// <param name="blUseNoLock">是否使用WITH(NOLOCK)</param>
         /// <returns></returns>
         List<T> QueryListByClause(Expression<Func<T, bool>>? predicate, int take,
-            Expression<Func<T, object>> orderByPredicate, OrderByType orderByType, bool blUseNoLock = false);
+            Expression<Func<T, object>> orderByPredicate, OrderByType orderByType);
 
         /// <summary>
         ///     根据条件查询一定数量数据
@@ -114,7 +125,7 @@ public interface IBaseRepository<T>:ISimpleClient<T> where T : class, new()
         /// <param name="blUseNoLock">是否使用WITH(NOLOCK)</param>
         /// <returns></returns>
         Task<List<T>> QueryListByClauseAsync(Expression<Func<T, bool>>? predicate, int take,
-            Expression<Func<T, object>> orderByPredicate, OrderByType orderByType, bool blUseNoLock = false);
+            Expression<Func<T, object>> orderByPredicate, OrderByType orderByType);
 
         /// <summary>
         ///     根据条件查询一定数量数据
@@ -124,8 +135,7 @@ public interface IBaseRepository<T>:ISimpleClient<T> where T : class, new()
         /// <param name="strOrderByFileds">排序字段，如name asc,age desc</param>
         /// <param name="blUseNoLock">是否使用WITH(NOLOCK)</param>
         /// <returns></returns>
-        List<T> QueryListByClause(Expression<Func<T, bool>>? predicate, int take, string strOrderByFileds = "",
-            bool blUseNoLock = false);
+        List<T> QueryListByClause(Expression<Func<T, bool>>? predicate, int take, string strOrderByFileds = "");
 
         /// <summary>
         ///     根据条件查询一定数量数据
@@ -136,7 +146,7 @@ public interface IBaseRepository<T>:ISimpleClient<T> where T : class, new()
         /// <param name="blUseNoLock">是否使用WITH(NOLOCK)</param>
         /// <returns></returns>
         Task<List<T>> QueryListByClauseAsync(Expression<Func<T, bool>>? predicate, int take,
-            string strOrderByFileds = "", bool blUseNoLock = false);
+            string strOrderByFileds = "");
 
         /// <summary>
         ///     根据条件查询数据
@@ -144,7 +154,7 @@ public interface IBaseRepository<T>:ISimpleClient<T> where T : class, new()
         /// <param name="predicate">条件表达式树</param>
         /// <param name="blUseNoLock">是否使用WITH(NOLOCK)</param>
         /// <returns></returns>
-        T QueryByClause(Expression<Func<T, bool>>? predicate, bool blUseNoLock = false);
+        T QueryByClause(Expression<Func<T, bool>>? predicate);
 
         /// <summary>
         ///     根据条件查询数据
@@ -152,8 +162,18 @@ public interface IBaseRepository<T>:ISimpleClient<T> where T : class, new()
         /// <param name="predicate">条件表达式树</param>
         /// <param name="blUseNoLock">是否使用WITH(NOLOCK)</param>
         /// <returns></returns>
-        Task<T> QueryByClauseAsync(Expression<Func<T, bool>>? predicate, bool blUseNoLock = false);
+        Task<T> QueryByClauseAsync(Expression<Func<T, bool>>? predicate);
 
+        /// <summary>
+        ///     根据条件查询数据
+        /// </summary>
+        /// <param name="predicate">条件表达式树</param>
+        /// <param name="orderByPredicate">排序字段</param>
+        /// <param name="orderByType">排序顺序</param>
+        /// <param name="blUseNoLock">是否使用WITH(NOLOCK)</param>
+        /// <returns></returns>
+        T QueryByClause(Expression<Func<T, bool>>? predicate, Expression<Func<T, object>> orderByPredicate,
+            OrderByType orderByType);
 
         /// <summary>
         ///     根据条件查询数据
@@ -164,7 +184,7 @@ public interface IBaseRepository<T>:ISimpleClient<T> where T : class, new()
         /// <param name="blUseNoLock">是否使用WITH(NOLOCK)</param>
         /// <returns></returns>
         Task<T> QueryByClauseAsync(Expression<Func<T, bool>>? predicate, Expression<Func<T, object>> orderByPredicate,
-            OrderByType orderByType, bool blUseNoLock = false);
+            OrderByType orderByType);
 
         /// <summary>
         ///     写入实体数据
@@ -221,13 +241,6 @@ public interface IBaseRepository<T>:ISimpleClient<T> where T : class, new()
         /// <param name="entity">实体类</param>
         /// <returns></returns>
         Task<int> InsertAsync(List<T> entity);
-
-        /// <summary>
-        ///     批量写入实体数据
-        /// </summary>
-        /// <param name="entity">实体类</param>
-        /// <returns></returns>
-        Task<int> InsertCommandAsync(List<T> entity);
 
         /// <summary>
         ///     批量更新实体数据
@@ -397,19 +410,9 @@ public interface IBaseRepository<T>:ISimpleClient<T> where T : class, new()
         /// <returns></returns>
         Task<bool> DeleteByIdsAsync(int[] ids);
 
-        /// <summary>
-        ///     删除指定ID集合的数据(批量删除)
-        /// </summary>
-        /// <param name="ids"></param>
-        /// <returns></returns>
-        bool DeleteByIds(long[] ids);
+        
 
-        /// <summary>
-        ///     删除指定ID集合的数据(批量删除)
-        /// </summary>
-        /// <param name="ids"></param>
-        /// <returns></returns>
-        Task<bool> DeleteByIdsAsync(long[] ids);
+       
 
         /// <summary>
         ///     删除指定ID集合的数据(批量删除)
@@ -438,8 +441,6 @@ public interface IBaseRepository<T>:ISimpleClient<T> where T : class, new()
         /// <param name="ids"></param>
         /// <returns></returns>
         Task<bool> DeleteByIdsAsync(string[] ids);
-
-
 
         /// <summary>
         ///     删除指定ID集合的数据(批量删除)
@@ -470,7 +471,6 @@ public interface IBaseRepository<T>:ISimpleClient<T> where T : class, new()
         /// <returns></returns>
         Task<bool> DeleteByIdsAsync(List<string> ids);
 
-
         /// <summary>
         ///     删除指定ID集合的数据(批量删除)
         /// </summary>
@@ -486,19 +486,6 @@ public interface IBaseRepository<T>:ISimpleClient<T> where T : class, new()
         Task<bool> DeleteByIdsAsync(List<Guid> ids);
 
 
-        /// <summary>
-        ///     删除指定ID集合的数据(批量删除)
-        /// </summary>
-        /// <param name="ids"></param>
-        /// <returns></returns>
-        bool DeleteByIds(List<long> ids);
-
-        /// <summary>
-        ///     删除指定ID集合的数据(批量删除)
-        /// </summary>
-        /// <param name="ids"></param>
-        /// <returns></returns>
-        Task<bool> DeleteByIdsAsync(List<long> ids);
 
         /// <summary>
         ///     判断数据是否存在
@@ -506,7 +493,7 @@ public interface IBaseRepository<T>:ISimpleClient<T> where T : class, new()
         /// <param name="predicate">条件表达式树</param>
         /// <param name="blUseNoLock">是否使用WITH(NOLOCK)</param>
         /// <returns></returns>
-        bool Exists(Expression<Func<T, bool>> predicate, bool blUseNoLock = false);
+        bool Exists(Expression<Func<T, bool>>? predicate);
 
         /// <summary>
         ///     判断数据是否存在
@@ -514,7 +501,7 @@ public interface IBaseRepository<T>:ISimpleClient<T> where T : class, new()
         /// <param name="predicate">条件表达式树</param>
         /// <param name="blUseNoLock">是否使用WITH(NOLOCK)</param>
         /// <returns></returns>
-        Task<bool> ExistsAsync(Expression<Func<T, bool>> predicate, bool blUseNoLock = false);
+        Task<bool> ExistsAsync(Expression<Func<T, bool>>? predicate);
 
         /// <summary>
         ///     获取数据总数
@@ -522,7 +509,7 @@ public interface IBaseRepository<T>:ISimpleClient<T> where T : class, new()
         /// <param name="predicate">条件表达式树</param>
         /// <param name="blUseNoLock">是否使用WITH(NOLOCK)</param>
         /// <returns></returns>
-        int GetCount(Expression<Func<T, bool>> predicate, bool blUseNoLock = false);
+        int GetCount(Expression<Func<T, bool>>? predicate);
 
         /// <summary>
         ///     获取数据总数
@@ -530,7 +517,7 @@ public interface IBaseRepository<T>:ISimpleClient<T> where T : class, new()
         /// <param name="predicate">条件表达式树</param>
         /// <param name="blUseNoLock">是否使用WITH(NOLOCK)</param>
         /// <returns></returns>
-        Task<int> GetCountAsync(Expression<Func<T, bool>> predicate, bool blUseNoLock = false);
+        Task<int> GetCountAsync(Expression<Func<T, bool>>? predicate);
 
         /// <summary>
         ///     获取数据某个字段的合计
@@ -539,7 +526,7 @@ public interface IBaseRepository<T>:ISimpleClient<T> where T : class, new()
         /// <param name="field">字段</param>
         /// <param name="blUseNoLock">是否使用WITH(NOLOCK)</param>
         /// <returns></returns>
-        int GetSum(Expression<Func<T, bool>> predicate, Expression<Func<T, int>> field, bool blUseNoLock = false);
+        int GetSum(Expression<Func<T, bool>>? predicate, Expression<Func<T, int>> field);
 
         /// <summary>
         ///     获取数据某个字段的合计
@@ -548,7 +535,7 @@ public interface IBaseRepository<T>:ISimpleClient<T> where T : class, new()
         /// <param name="field">字段</param>
         /// <param name="blUseNoLock">是否使用WITH(NOLOCK)</param>
         /// <returns></returns>
-        Task<int> GetSumAsync(Expression<Func<T, bool>> predicate, Expression<Func<T, int>> field,
+        Task<int> GetSumAsync(Expression<Func<T, bool>>? predicate, Expression<Func<T, int>> field,
             bool blUseNoLock = false);
 
         /// <summary>
@@ -558,7 +545,7 @@ public interface IBaseRepository<T>:ISimpleClient<T> where T : class, new()
         /// <param name="field">字段</param>
         /// <param name="blUseNoLock">是否使用WITH(NOLOCK)</param>
         /// <returns></returns>
-        decimal GetSum(Expression<Func<T, bool>> predicate, Expression<Func<T, decimal>> field,
+        decimal GetSum(Expression<Func<T, bool>>? predicate, Expression<Func<T, decimal>> field,
             bool blUseNoLock = false);
 
         /// <summary>
@@ -568,7 +555,7 @@ public interface IBaseRepository<T>:ISimpleClient<T> where T : class, new()
         /// <param name="field">字段</param>
         /// <param name="blUseNoLock">是否使用WITH(NOLOCK)</param>
         /// <returns></returns>
-        Task<decimal> GetSumAsync(Expression<Func<T, bool>> predicate, Expression<Func<T, decimal>> field,
+        Task<decimal> GetSumAsync(Expression<Func<T, bool>>? predicate, Expression<Func<T, decimal>> field,
             bool blUseNoLock = false);
 
         /// <summary>
@@ -578,7 +565,7 @@ public interface IBaseRepository<T>:ISimpleClient<T> where T : class, new()
         /// <param name="field">字段</param>
         /// <param name="blUseNoLock">是否使用WITH(NOLOCK)</param>
         /// <returns></returns>
-        float GetSum(Expression<Func<T, bool>> predicate, Expression<Func<T, float>> field, bool blUseNoLock = false);
+        float GetSum(Expression<Func<T, bool>>? predicate, Expression<Func<T, float>> field);
 
         /// <summary>
         ///     获取数据某个字段的合计
@@ -587,8 +574,7 @@ public interface IBaseRepository<T>:ISimpleClient<T> where T : class, new()
         /// <param name="field">字段</param>
         /// <param name="blUseNoLock">是否使用WITH(NOLOCK)</param>
         /// <returns></returns>
-        Task<float> GetSumAsync(Expression<Func<T, bool>> predicate, Expression<Func<T, float>> field,
-            bool blUseNoLock = false);
+        Task<float> GetSumAsync(Expression<Func<T, bool>>? predicate, Expression<Func<T, float>> field);
 
         /// <summary>
         ///     根据条件查询分页数据
@@ -599,8 +585,8 @@ public interface IBaseRepository<T>:ISimpleClient<T> where T : class, new()
         /// <param name="pageSize">分布大小</param>
         /// <param name="blUseNoLock">是否使用WITH(NOLOCK)</param>
         /// <returns></returns>
-        IPageList<T> QueryPage(Expression<Func<T, bool>> predicate, string orderBy = "", int pageIndex = 1,
-            int pageSize = 20, bool blUseNoLock = false);
+        IPageList<T> QueryPage(Expression<Func<T, bool>>? predicate, string orderBy = "", int pageIndex = 1,
+            int pageSize = 20);
 
         /// <summary>
         ///     根据条件查询分页数据
@@ -611,8 +597,8 @@ public interface IBaseRepository<T>:ISimpleClient<T> where T : class, new()
         /// <param name="pageSize">分布大小</param>
         /// <param name="blUseNoLock">是否使用WITH(NOLOCK)</param>
         /// <returns></returns>
-        Task<IPageList<T>> QueryPageAsync(Expression<Func<T, bool>> predicate, string orderBy = "", int pageIndex = 1,
-            int pageSize = 20, bool blUseNoLock = false);
+        Task<IPageList<T>> QueryPageAsync(Expression<Func<T, bool>>? predicate, string orderBy = "", int pageIndex = 1,
+            int pageSize = 20);
 
         /// <summary>
         ///     根据条件查询分页数据
@@ -624,8 +610,8 @@ public interface IBaseRepository<T>:ISimpleClient<T> where T : class, new()
         /// <param name="orderByExpression"></param>
         /// <param name="blUseNoLock">是否使用WITH(NOLOCK)</param>
         /// <returns></returns>
-        IPageList<T> QueryPage(Expression<Func<T, bool>> predicate, Expression<Func<T, object>> orderByExpression,
-            OrderByType orderByType, int pageIndex = 1, int pageSize = 20, bool blUseNoLock = false);
+        IPageList<T> QueryPage(Expression<Func<T, bool>>? predicate, Expression<Func<T, object>> orderByExpression,
+            OrderByType orderByType, int pageIndex = 1, int pageSize = 20);
 
         /// <summary>
         ///     根据条件查询分页数据
@@ -637,9 +623,9 @@ public interface IBaseRepository<T>:ISimpleClient<T> where T : class, new()
         /// <param name="orderByExpression"></param>
         /// <param name="blUseNoLock">是否使用WITH(NOLOCK)</param>
         /// <returns></returns>
-        Task<IPageList<T>> QueryPageAsync(Expression<Func<T, bool>> predicate,
+        Task<IPageList<T>> QueryPageAsync(Expression<Func<T, bool>>? predicate,
             Expression<Func<T, object>> orderByExpression, OrderByType orderByType, int pageIndex = 1,
-            int pageSize = 20, bool blUseNoLock = false);
+            int pageSize = 20);
 
         /// <summary>
         ///     查询-多表查询
@@ -655,7 +641,7 @@ public interface IBaseRepository<T>:ISimpleClient<T> where T : class, new()
         List<TResult> QueryMuch<T1, T2, TResult>(
             Expression<Func<T1, T2, object[]>> joinExpression,
             Expression<Func<T1, T2, TResult>> selectExpression,
-            Expression<Func<T1, T2, bool>> whereLambda = null, bool blUseNoLock = false) where T1 : class, new();
+            Expression<Func<T1, T2, bool>> whereLambda = null) where T1 : class, new();
 
         /// <summary>
         ///     查询-多表查询
@@ -671,7 +657,7 @@ public interface IBaseRepository<T>:ISimpleClient<T> where T : class, new()
         Task<List<TResult>> QueryMuchAsync<T1, T2, TResult>(
             Expression<Func<T1, T2, object[]>> joinExpression,
             Expression<Func<T1, T2, TResult>> selectExpression,
-            Expression<Func<T1, T2, bool>> whereLambda = null, bool blUseNoLock = false) where T1 : class, new();
+            Expression<Func<T1, T2, bool>> whereLambda = null) where T1 : class, new();
 
         /// <summary>
         ///     查询-多表查询
@@ -687,7 +673,7 @@ public interface IBaseRepository<T>:ISimpleClient<T> where T : class, new()
         TResult QueryMuchFirst<T1, T2, TResult>(
             Expression<Func<T1, T2, object[]>> joinExpression,
             Expression<Func<T1, T2, TResult>> selectExpression,
-            Expression<Func<T1, T2, bool>> whereLambda = null, bool blUseNoLock = false) where T1 : class, new();
+            Expression<Func<T1, T2, bool>> whereLambda = null) where T1 : class, new();
 
         /// <summary>
         ///     查询-多表查询
@@ -703,7 +689,7 @@ public interface IBaseRepository<T>:ISimpleClient<T> where T : class, new()
         Task<TResult> QueryMuchFirstAsync<T1, T2, TResult>(
             Expression<Func<T1, T2, object[]>> joinExpression,
             Expression<Func<T1, T2, TResult>> selectExpression,
-            Expression<Func<T1, T2, bool>> whereLambda = null, bool blUseNoLock = false) where T1 : class, new();
+            Expression<Func<T1, T2, bool>> whereLambda = null) where T1 : class, new();
 
         /// <summary>
         ///     查询-三表查询
@@ -720,7 +706,7 @@ public interface IBaseRepository<T>:ISimpleClient<T> where T : class, new()
         List<TResult> QueryMuch<T1, T2, T3, TResult>(
             Expression<Func<T1, T2, T3, object[]>> joinExpression,
             Expression<Func<T1, T2, T3, TResult>> selectExpression,
-            Expression<Func<T1, T2, T3, bool>> whereLambda = null, bool blUseNoLock = false) where T1 : class, new();
+            Expression<Func<T1, T2, T3, bool>> whereLambda = null) where T1 : class, new();
 
         /// <summary>
         ///     查询-三表查询
@@ -737,7 +723,7 @@ public interface IBaseRepository<T>:ISimpleClient<T> where T : class, new()
         Task<List<TResult>> QueryMuchAsync<T1, T2, T3, TResult>(
             Expression<Func<T1, T2, T3, object[]>> joinExpression,
             Expression<Func<T1, T2, T3, TResult>> selectExpression,
-            Expression<Func<T1, T2, T3, bool>> whereLambda = null, bool blUseNoLock = false) where T1 : class, new();
+            Expression<Func<T1, T2, T3, bool>> whereLambda = null) where T1 : class, new();
 
         /// <summary>
         ///     执行sql语句并返回List<T>

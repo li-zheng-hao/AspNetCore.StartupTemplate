@@ -7,12 +7,36 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d36a8aa1-8807-4bcc-adac-67d12e68e40c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Contract/PageList/IPageList.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Contract/PageList/PageList.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.CoreGeneratorConsole/CrudTemplete/Controllers/Controller.tpl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.CoreGeneratorConsole/CrudTemplete/DbModel/Model.tpl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.CoreGeneratorConsole/CrudTemplete/Repositories/IRepository.tpl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.CoreGeneratorConsole/CrudTemplete/Repositories/Repository.tpl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.CoreGeneratorConsole/CrudTemplete/Services/IServices.tpl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.CoreGeneratorConsole/CrudTemplete/Services/Services.tpl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.CoreGeneratorConsole/GeneratorCodeHelper.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.IServices/IBaseService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Services/BaseService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.AspNetCore.StartupTemplate/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.AspNetCore.StartupTemplate/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AspNetCore.StartupTemplate.CoreGeneratorConsole/AspNetCore.StartupTemplate.CoreGeneratorConsole.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.CoreGeneratorConsole/AspNetCore.StartupTemplate.CoreGeneratorConsole.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AspNetCore.StartupTemplate.IRepository/AspNetCore.StartupTemplate.IRepository.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.IRepository/AspNetCore.StartupTemplate.IRepository.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AspNetCore.StartupTemplate.IRepository/IBaseRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.IRepository/IBaseRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AspNetCore.StartupTemplate.IServices/AspNetCore.StartupTemplate.IServices.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.IServices/AspNetCore.StartupTemplate.IServices.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Repository/BaseRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Repository/BaseRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Services/AspNetCore.StartupTemplate.Services.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Services/AspNetCore.StartupTemplate.Services.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Webapi/Controllers/UserController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Webapi/Controllers/UserController.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1fbe5b5f8b4644a5857e84495f48446c1ec800/b3/6644e180/ISimpleClient`1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/f993f26659c444a198a8f8ebecebe9f61eda00/33/d9f3c143/SimpleClient`1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/f993f26659c444a198a8f8ebecebe9f61eda00/7e/acfa2a35/ISimpleClient`1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/f993f26659c444a198a8f8ebecebe9f61eda00/ff/a5062141/ISugarRepository.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -92,7 +116,7 @@
       <updated>1661735309204</updated>
       <workItem from="1661735331815" duration="122000" />
       <workItem from="1661735476938" duration="911000" />
-      <workItem from="1661736581679" duration="1192000" />
+      <workItem from="1661736581679" duration="7788000" />
     </task>
     <servers />
   </component>
