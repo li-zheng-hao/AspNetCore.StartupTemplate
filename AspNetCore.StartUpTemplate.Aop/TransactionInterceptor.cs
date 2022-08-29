@@ -1,6 +1,8 @@
 ﻿using AspNetCore.StartUpTemplate.IRepository;
+using AspNetCore.StartUpTemplate.Utility;
 using Castle.Core.Internal;
 using Castle.DynamicProxy;
+using Microsoft.Extensions.Logging;
 
 namespace AspNetCore.StartUpTemplate.AOP;
 
@@ -9,20 +11,36 @@ namespace AspNetCore.StartUpTemplate.AOP;
 /// </summary>
 public class TransactionInterceptor : IInterceptor
 {
+    private readonly ILogger<TransactionInterceptor> _logger;
     private UseTransactionAttribute _useTransactionAttribute { get; set; }
     /// <summary>
     /// 通过属性注入
     /// </summary>
     public IUnitOfWork UnitOfWork { get; set; }
+    public TransactionInterceptor(ILogger<TransactionInterceptor> logger)
+    {
+        _logger = logger;
+    }
+   
     public void Intercept(IInvocation invocation)
     {
-        System.Diagnostics.Debug.WriteLine("你正在调用方法 \"{0}\"  参数是 {1}... ",
+#if DEBUG  
+        Console.WriteLine("你正在调用方法 \"{0}\"  参数是 {1}... ",
             invocation.Method.Name,              
             string.Join(", ", invocation.Arguments.Select(a => (a ?? "").ToString()).ToArray()));
-        var attribute = invocation.Method.GetAttribute<UseTransactionAttribute>();
-        if (attribute != null)
+#endif
+
+        // 加在interface上
+        var attributeOnInterface = invocation.Method.GetAttribute<UseTransactionAttribute>();
+        // 加在了实现类上
+        var attributeOnImpl = invocation.MethodInvocationTarget.GetAttribute<UseTransactionAttribute>();
+        if (attributeOnInterface != null)
         {
-            _useTransactionAttribute = attribute;
+            _useTransactionAttribute = attributeOnInterface;
+            UnitOfWork.BeginTran();
+        }else if (attributeOnImpl != null)
+        {
+            _useTransactionAttribute = attributeOnImpl;
             UnitOfWork.BeginTran();
         }
 
@@ -34,12 +52,28 @@ public class TransactionInterceptor : IInterceptor
         catch (Exception e)
         {
             Console.WriteLine(e);
-            // todo 此处需要判断是否为要忽略的异常类型
-            UnitOfWork.CommitTran();
+            var checkRes=this.IsIgnoreException(e);
+            if(checkRes)
+                UnitOfWork.CommitTran();
+            else
+            {
+                UnitOfWork.RollbackTran();
+            }
+            _logger.LogError("AOP层捕获到异常",e);
             throw;
         }
-        UnitOfWork.CommitTran();
+        if(UnitOfWork.IsUsingTransaction())
+            UnitOfWork.CommitTran();
+#if DEBUG  
+        Console.WriteLine("方法执行完毕，返回结果：{0}", invocation.ReturnValue);
+#endif
+    }
 
-        System.Diagnostics.Debug.WriteLine("方法执行完毕，返回结果：{0}", invocation.ReturnValue);
+
+    private bool IsIgnoreException(Exception ex)
+    {
+        var list=_useTransactionAttribute.IgnoreExceptions;
+        
+        return list.Any(it => ex.GetType().IsSubClassOrEqualEx(it));
     }
 }

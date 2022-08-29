@@ -19,6 +19,7 @@ namespace {{NameSpacePrefix}}.Services
         {
             this._dal = dal;
             _unitOfWork = unitOfWork;
+            base.BaseRepo = userRepository;
         }
 
         #region 实现重写增删改查操作==========================================================

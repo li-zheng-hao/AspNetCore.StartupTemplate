@@ -10,6 +10,7 @@ namespace {{NameSpacePrefix}}.IServices
 	/// <summary>
     /// {{ModelDescription}} 服务工厂接口
     /// </summary>
+    [Intercept(typeof(TransactionInterceptor))]
     public interface I{{ModelClassName}}Services : IBaseServices<{{ModelClassName}}>
     {
         #region 重写根据条件查询分页数据

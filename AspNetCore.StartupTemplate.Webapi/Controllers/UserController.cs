@@ -6,7 +6,6 @@ using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AspNetCore.StartUpTemplate.Webapi.Controllers;
-[NeedAuth]
 [ApiController]
 [Route("[controller]")]
 public class UserController : ControllerBase

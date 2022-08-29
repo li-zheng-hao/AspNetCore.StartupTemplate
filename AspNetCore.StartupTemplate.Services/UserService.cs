@@ -5,10 +5,13 @@ using AspNetCore.StartUpTemplate.Model;
 using Autofac.Extras.DynamicProxy;
 
 namespace AspNetCore.StartUpTemplate.Services;
-[Intercept(typeof(TransactionInterceptor))]
 public class UserService:BaseServices<Users>,IUserService
 {
-    public UserService(IUnitOfWork unitOfWork) : base(unitOfWork)
+    private readonly IUserRepository _dal;
+
+    public UserService(IUnitOfWork unitOfWork,IUserRepository userRepository) : base(unitOfWork)
     {
+        base.BaseRepo = userRepository;
+        _dal = userRepository;
     }
 }

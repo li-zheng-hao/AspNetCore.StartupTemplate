@@ -1,3 +1,5 @@
+using AspNetCore.StartUpTemplate.Utility;
+
 namespace AspNetCore.StartUpTemplate.AOP;
 
 /// <summary>
@@ -9,10 +11,16 @@ public class UseTransactionAttribute:Attribute
     /// <summary>
     /// 忽略的异常
     /// </summary>
-    public List<Exception> IgnoreExceptions = new List<Exception>();
+    public List<Type> IgnoreExceptions = new List<Type>() ;
 
-    public UseTransactionAttribute(Exception[] ignoreExceptions=null)
+    public UseTransactionAttribute(params Type[] ignoreExceptions)
     {
+        
+        var checkRes=ignoreExceptions?.Any(it => false== it.IsSubClassOrEqualEx(typeof(Exception)));
+        if (checkRes != null&&checkRes== true)
+        {
+            throw new ArgumentException("传入的类型必须是Exception及派生类型");
+        }
         IgnoreExceptions.AddRange(ignoreExceptions);
     }
 }

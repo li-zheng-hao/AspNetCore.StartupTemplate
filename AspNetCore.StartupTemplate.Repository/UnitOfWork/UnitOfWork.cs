@@ -5,7 +5,7 @@ using SqlSugar;
 
 namespace AspNetCore.StartUpTemplate.Repository;
 
-public class UnitOfWork:IUnitOfWork,IDisposable
+public class UnitOfWork:IUnitOfWork
 {
     private readonly ISqlSugarClient _sqlSugarClient;
     private readonly ILogger _logger;
@@ -41,7 +41,7 @@ public class UnitOfWork:IUnitOfWork,IDisposable
         catch (Exception ex)
         {
             GetDbClient().RollbackTran();
-            // _logger.LogError("事务提交异常",ex);
+            _logger.LogError("事务提交异常",ex);
             throw;
         }
     }
@@ -51,11 +51,9 @@ public class UnitOfWork:IUnitOfWork,IDisposable
         GetDbClient().RollbackTran();
     }
 
-    public void Dispose()
+    public bool IsUsingTransaction()
     {
-        if (_isUsingTransaction)
-        {
-            CommitTran();
-        }
+        return _isUsingTransaction;
     }
+
 }

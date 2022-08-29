@@ -10,4 +10,6 @@ public interface IUnitOfWork
 
     void CommitTran();
     void RollbackTran();
+
+    bool IsUsingTransaction();
 }
