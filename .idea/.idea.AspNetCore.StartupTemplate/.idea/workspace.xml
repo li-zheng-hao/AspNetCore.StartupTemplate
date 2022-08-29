@@ -7,25 +7,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d36a8aa1-8807-4bcc-adac-67d12e68e40c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Contract/PageList/IPageList.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Contract/PageList/PageList.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.CoreGeneratorConsole/CrudTemplete/Controllers/Controller.tpl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.CoreGeneratorConsole/CrudTemplete/DbModel/Model.tpl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.CoreGeneratorConsole/CrudTemplete/Repositories/IRepository.tpl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.CoreGeneratorConsole/CrudTemplete/Repositories/Repository.tpl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.CoreGeneratorConsole/CrudTemplete/Services/IServices.tpl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.CoreGeneratorConsole/CrudTemplete/Services/Services.tpl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.CoreGeneratorConsole/GeneratorCodeHelper.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.IServices/IBaseService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Services/BaseService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.AspNetCore.StartupTemplate/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.AspNetCore.StartupTemplate/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AspNetCore.StartupTemplate.CoreGeneratorConsole/AspNetCore.StartupTemplate.CoreGeneratorConsole.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.CoreGeneratorConsole/AspNetCore.StartupTemplate.CoreGeneratorConsole.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AspNetCore.StartupTemplate.IRepository/AspNetCore.StartupTemplate.IRepository.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.IRepository/AspNetCore.StartupTemplate.IRepository.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AspNetCore.StartupTemplate.IRepository/IBaseRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.IRepository/IBaseRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AspNetCore.StartupTemplate.IServices/AspNetCore.StartupTemplate.IServices.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.IServices/AspNetCore.StartupTemplate.IServices.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Repository/BaseRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Repository/BaseRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Services/AspNetCore.StartupTemplate.Services.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Services/AspNetCore.StartupTemplate.Services.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Webapi/Controllers/UserController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Webapi/Controllers/UserController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AspNetCore.StartupTemplate.CoreGeneratorConsole/GeneratorCodeHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.CoreGeneratorConsole/GeneratorCodeHelper.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AspNetCore.StartupTemplate.CoreGeneratorConsole/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.CoreGeneratorConsole/Program.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,6 +21,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/f993f26659c444a198a8f8ebecebe9f61eda00/33/d9f3c143/SimpleClient`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/f993f26659c444a198a8f8ebecebe9f61eda00/7e/acfa2a35/ISimpleClient`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/f993f26659c444a198a8f8ebecebe9f61eda00/ff/a5062141/ISugarRepository.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f3b9684f72bc2cc435eb694f7cc86eca8c240d2d1cefa1e8697a61f1f2f27f/SafeFileHandle.Windows.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -56,7 +41,7 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected=".NET Launch Settings Profile.AspNetCore.StartUpTemplate.Webapi">
+  <component name="RunManager" selected=".NET Project.AspNetCore.StartUpTemplate.CoreGeneratorConsole">
     <configuration name="AspNetCore.StartUpTemplate.CoreGeneratorConsole" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="" />
       <option name="PROGRAM_PARAMETERS" value="" />
@@ -116,7 +101,7 @@
       <updated>1661735309204</updated>
       <workItem from="1661735331815" duration="122000" />
       <workItem from="1661735476938" duration="911000" />
-      <workItem from="1661736581679" duration="7788000" />
+      <workItem from="1661736581679" duration="10984000" />
     </task>
     <servers />
   </component>
@@ -138,5 +123,37 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/AspNetCore.StartupTemplate.CoreGeneratorConsole/Program.cs</url>
+          <line>15</line>
+          <properties documentPath="F:\Code\AspNetCore.StartUpTemplate\content\AspNetCore.StartupTemplate.CoreGeneratorConsole\Program.cs" initialLine="15" containingFunctionPresentation="">
+            <startOffsets>
+              <option value="469" />
+            </startOffsets>
+            <endOffsets>
+              <option value="561" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/AspNetCore.StartupTemplate.CoreGeneratorConsole/GeneratorCodeHelper.cs</url>
+          <line>29</line>
+          <properties documentPath="F:\Code\AspNetCore.StartUpTemplate\content\AspNetCore.StartupTemplate.CoreGeneratorConsole\GeneratorCodeHelper.cs" initialLine="29" containingFunctionPresentation="method 'CodeGenerator'">
+            <startOffsets>
+              <option value="842" />
+            </startOffsets>
+            <endOffsets>
+              <option value="854" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

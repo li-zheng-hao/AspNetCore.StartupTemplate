@@ -13,4 +13,31 @@
       <PackageReference Include="SqlSugarCore" Version="5.1.2.1" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Remove="CrudTemplete\Controllers\Controller.tpl" />
+      <Content Include="CrudTemplate\Controllers\Controller.tpl">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="CrudTemplete\DbModel\Model.tpl" />
+      <Content Include="CrudTemplate\DbModel\Model.tpl">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="CrudTemplete\Repositories\IRepository.tpl" />
+      <Content Include="CrudTemplate\Repositories\IRepository.tpl">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="CrudTemplete\Repositories\Repository.tpl" />
+      <Content Include="CrudTemplate\Repositories\Repository.tpl">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="CrudTemplete\Services\IServices.tpl" />
+      <Content Include="CrudTemplate\Services\IServices.tpl">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="CrudTemplete\Services\Services.tpl" />
+      <Content Include="CrudTemplate\Services\Services.tpl">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+    </ItemGroup>
+
 </Project>
