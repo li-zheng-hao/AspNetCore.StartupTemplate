@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <RootNamespace>AspNetCore.StartUpTemplate.Filter</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="JWT" Version="9.0.3" />
+      <PackageReference Include="NLog" Version="5.0.2" />
+      <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.2.3" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\AspNetCore.StartupTemplate.Contract\AspNetCore.StartupTemplate.Contract.csproj" />
+      <ProjectReference Include="..\AspNetCore.StartupTemplate.Utility\AspNetCore.StartupTemplate.Utility.csproj" />
+    </ItemGroup>
+
+</Project>

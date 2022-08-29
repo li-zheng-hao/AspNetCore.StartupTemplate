@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <RootNamespace>AspNetCore.StartUpTemplate.IRepository</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="SqlSugarCore" Version="5.1.2.3" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\AspNetCore.StartupTemplate.Model\AspNetCore.StartupTemplate.Model.csproj" />
+    </ItemGroup>
+
+</Project>

@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <RootNamespace>AspNetCore.StartUpTemplate.Repository</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="SqlSugarCore" Version="5.1.2.3" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\AspNetCore.StartupTemplate.Configuration\AspNetCore.StartupTemplate.Configuration.csproj" />
+      <ProjectReference Include="..\AspNetCore.StartupTemplate.IRepository\AspNetCore.StartupTemplate.IRepository.csproj" />
+      <ProjectReference Include="..\AspNetCore.StartupTemplate.Model\AspNetCore.StartupTemplate.Model.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="Microsoft.Extensions.Logging.Abstractions">
+        <HintPath>C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\6.0.6\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+</Project>
