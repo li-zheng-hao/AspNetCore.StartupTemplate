@@ -4,6 +4,7 @@ using AspNetCore.StartUpTemplate.Auth;
 using AspNetCore.StartUpTemplate.Configuration;
 using AspNetCore.StartUpTemplate.Core;
 using AspNetCore.StartUpTemplate.Filter;
+using AspNetCore.StartupTemplate.Log;
 using AspNetCore.StartUpTemplate.Mapping;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
@@ -15,15 +16,18 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using NLog;
 using NLog.Web;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 #region Nlog配置===========================
-var logger = NLog.LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
-builder.Logging.ClearProviders();
-builder.Host.UseNLog();
+// var logger = NLog.LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
+// builder.Logging.ClearProviders();
+// builder.Host.UseNLog();
+var logger=LogSetup.LogSetups();
+builder.Host.UseSerilog(logger, dispose: true);
 #endregion
 
 

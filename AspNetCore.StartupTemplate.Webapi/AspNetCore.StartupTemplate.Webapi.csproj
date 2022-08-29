@@ -33,6 +33,7 @@
       <ProjectReference Include="..\AspNetCore.StartupTemplate.Filter\AspNetCore.StartupTemplate.Filter.csproj" />
       <ProjectReference Include="..\AspNetCore.StartupTemplate.IRepository\AspNetCore.StartupTemplate.IRepository.csproj" />
       <ProjectReference Include="..\AspNetCore.StartupTemplate.IServices\AspNetCore.StartupTemplate.IServices.csproj" />
+      <ProjectReference Include="..\AspNetCore.StartupTemplate.Log\AspNetCore.StartupTemplate.Log.csproj" />
       <ProjectReference Include="..\AspNetCore.StartupTemplate.Mapping\AspNetCore.StartupTemplate.Mapping.csproj" />
       <ProjectReference Include="..\AspNetCore.StartupTemplate.Model\AspNetCore.StartupTemplate.Model.csproj" />
       <ProjectReference Include="..\AspNetCore.StartupTemplate.Repository\AspNetCore.StartupTemplate.Repository.csproj" />
