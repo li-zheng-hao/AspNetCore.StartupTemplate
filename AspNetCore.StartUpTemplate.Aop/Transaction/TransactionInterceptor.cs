@@ -55,11 +55,11 @@ public class TransactionInterceptor : IInterceptor
             _logger.LogError("AOP层捕获到异常",e);
             throw;
         }
-
-        if(_unitOfWork.IsUsingTransaction()&&_unitOfWork.IsNestedTrans()==false)
+        // 方法结束提交
+        if(_unitOfWork.IsUsingTransaction()&&_useTransactionAttribute.Propagation!=Propagation.Nested)
             _unitOfWork.CommitTran();
 #if DEBUG  
-        Console.WriteLine("方法执行完毕，返回结果：{0}", invocation.ReturnValue);
+        Console.WriteLine("方法{0}执行完毕，返回结果：{1}",invocation.Method.Name, invocation.ReturnValue);
 #endif
     }
     /// <summary>
@@ -72,6 +72,7 @@ public class TransactionInterceptor : IInterceptor
         switch (_useTransactionAttribute.Propagation)
         {
             case Propagation.Required:
+                if (_unitOfWork.IsUsingTransaction()) break;
                 _unitOfWork.BeginTran();
                 break;
             case Propagation.RequireNew:

@@ -73,8 +73,7 @@ public class UserController : ControllerBase
     [HttpGet("nestedtrans")]
     public void NestedTrans()
     {
-        _userService.TestNestedTrans();
-        _userService.TestNestedTransIn();
+       _userService.TestNestedTrans();
     }
     
 }
