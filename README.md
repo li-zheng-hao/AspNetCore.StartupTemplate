@@ -17,6 +17,10 @@
 - `Repository`,`IRepository`:仓储层
 - `IServices`,`Services`:服务层
 - `Webapi`: Webapi层
+- `MQ`:rabbitmq官方库封装
+- `Redis`:redis库封装
+- `Snowflake`:支持workid自动获取回收的雪花id库
+- `Logging`:Serilog日志库配置，支持输出至文件，控制台及ElasticSearch
 
 # 技术栈
 
@@ -25,3 +29,15 @@
 - 数据库ORM：`SqlSugar`
 - 接口缓存：`CacheOutput`
 - 实体映射：`AutoMapper`
+- 消息队列：`RabbitMQ`
+
+# 致谢
+
+1. [https://github.com/CoreUnion/CoreShop](https://github.com/CoreUnion/CoreShop) .Net Core 商城APP
+2. [https://www.donet5.com/Home/Doc](https://www.donet5.com/Home/Doc) SqlSugar 非常好用的ORM
+3. [https://github.com/fuluteam/ICH.Snowflake](https://github.com/fuluteam/ICH.Snowflake) 项目中使用的雪花ID生成器
+4. [https://www.jetbrains.com/rider/](https://www.jetbrains.com/rider/) Rider .Net IDE
+
+# 开源协议
+
+[MIT license](https://github.com/li-zheng-hao/AspNetCore.StartupTemplate/blob/main/LICENSE)
