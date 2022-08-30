@@ -9,7 +9,6 @@
 
     <ItemGroup>
       <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-      <PackageReference Include="NLog" Version="5.0.2" />
     </ItemGroup>
 
     <ItemGroup>
@@ -22,6 +21,9 @@
       </Reference>
       <Reference Include="Microsoft.AspNetCore.Mvc.Core">
         <HintPath>C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\6.0.6\Microsoft.AspNetCore.Mvc.Core.dll</HintPath>
+      </Reference>
+      <Reference Include="Microsoft.Extensions.Logging.Abstractions">
+        <HintPath>C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\6.0.6\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
       </Reference>
     </ItemGroup>
 

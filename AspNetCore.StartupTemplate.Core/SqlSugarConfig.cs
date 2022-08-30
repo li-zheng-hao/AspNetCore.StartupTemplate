@@ -2,7 +2,10 @@
 using AspNetCore.StartUpTemplate.Configuration;
 using Castle.Core.Logging;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Serilog;
 using SqlSugar;
+using ILogger = Microsoft.Extensions.Logging.ILogger;
 
 namespace AspNetCore.StartUpTemplate.Core;
 /// <summary>
@@ -27,7 +30,7 @@ public static class SqlSugarConfig
             db=> {
                 db.Aop.OnLogExecuting = (sql, pars) =>
                 {
-                    NLog.LogManager.GetCurrentClassLogger().Info("lzh"+sql);
+                    Log.Logger.Information(sql,pars);
                 };
             });
         services.AddSingleton(scope);
@@ -48,7 +51,7 @@ public static class SqlSugarConfig
         });
         client.Aop.OnLogExecuting = (sql, pars) =>
         {
-            NLog.LogManager.GetCurrentClassLogger().Info("lzh"+sql);
+            Log.Logger.Information(sql,pars);
         };
         return client;
     }

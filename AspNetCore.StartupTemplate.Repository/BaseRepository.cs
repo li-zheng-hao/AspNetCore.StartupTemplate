@@ -1,5 +1,4 @@
 ﻿using System.Linq.Expressions;
-using AspNetCore.StartUpTemplate.AOP;
 using AspNetCore.StartUpTemplate.Core;
 using AspNetCore.StartUpTemplate.IRepository;
 using CoreCms.Net.Model.ViewModels.Basics;
@@ -7,9 +6,9 @@ using SqlSugar;
 
 namespace AspNetCore.StartUpTemplate.Repository;
 
-public class BaseRepository<T>:SimpleClient<T>,IBaseRepository<T>,IUnitOfWorkChangeable where T : class, new()
+public class BaseRepository<T>:SimpleClient<T>,IBaseRepository<T> where T : class, new()
 {
-    private readonly IUnitOfWork _unitOfWork;
+    private  IUnitOfWork _unitOfWork;
     private ISqlSugarClient _dbBase=>_unitOfWork.GetDbClient();
     /// <summary>
     /// 构造函数
@@ -448,10 +447,10 @@ public class BaseRepository<T>:SimpleClient<T>,IBaseRepository<T>,IUnitOfWorkCha
             : _dbBase.Queryable<T>().First(predicate);
     }
 
-    public void ResetDb(ISqlSugarClient sugarClient)
+   
+    public void SetUnitOfWork(IUnitOfWork unitOfWork)
     {
-        _unitOfWork.Reset();
-        _unitOfWork.SetDbClient(sugarClient);
+        _unitOfWork = unitOfWork;
     }
 
     public IUnitOfWork GetUnitOfWork()

@@ -10,19 +10,9 @@ public class AutofacModuleRegister : Autofac.Module
     {
         var basePath = AppContext.BaseDirectory;
 
-        #region 注入事务AOP类
-        Assembly assembly = Assembly.Load("AspNetCore.StartupTemplate.Aop");
-        if (assembly == null)
-            throw new Exception("Aop.dll丢失了,请判断对应文件在目录下是否存在");
-        
-        var types = assembly.GetTypes().ToArray();
-        builder.RegisterTypes(types).PropertiesAutowired();
-        #endregion
-
         #region 注入工作单元
 
         builder.RegisterType<UnitOfWork>().As<IUnitOfWork>().InstancePerLifetimeScope().PropertiesAutowired();
-
         #endregion
         #region 带有接口层的服务注入
 
@@ -46,7 +36,7 @@ public class AutofacModuleRegister : Autofac.Module
         //支持属性注入依赖重复 每个请求只有一个实例
         builder.RegisterAssemblyTypes(assemblysRepository).AsImplementedInterfaces().InstancePerLifetimeScope()
             .PropertiesAutowired(PropertyWiringOptions.AllowCircularDependencies);
-
+        
         #endregion
 
     }

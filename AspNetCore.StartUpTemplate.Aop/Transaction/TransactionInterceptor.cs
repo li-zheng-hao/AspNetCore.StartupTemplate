@@ -3,6 +3,7 @@ using AspNetCore.StartUpTemplate.Utility;
 using Castle.Core.Internal;
 using Castle.DynamicProxy;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using Org.BouncyCastle.Bcpg.Sig;
 
 namespace AspNetCore.StartUpTemplate.AOP;
@@ -55,9 +56,9 @@ public class TransactionInterceptor : IInterceptor
             _logger.LogError("AOP层捕获到异常",e);
             throw;
         }
-        // 方法结束提交
-        if(_unitOfWork.IsUsingTransaction()&&_useTransactionAttribute.Propagation!=Propagation.Nested)
-            _unitOfWork.CommitTran();
+        // 不在这里提交,而是利用UnitOfWork的Disposable接口来提交
+        // if(_unitOfWork.IsUsingTransaction()&&_useTransactionAttribute.Propagation==Propagation.RequireNew)
+        //     _unitOfWork.CommitTran();
 #if DEBUG  
         Console.WriteLine("方法{0}执行完毕，返回结果：{1}",invocation.Method.Name, invocation.ReturnValue);
 #endif
@@ -79,9 +80,12 @@ public class TransactionInterceptor : IInterceptor
                 var targetObj=invocation.InvocationTarget as IUnitOfWorkChangeable;
                 if (targetObj == null)
                     throw new Exception($"标记了{Propagation.RequireNew}的方法所在类必须实现了IUnitOfWorkChangeable接口");
-                targetObj.ResetDb(SqlSugarConfig.GetSugarClient());
-                var uow=targetObj.GetUnitOfWork();
-                uow.BeginTran();
+                // todo 这里要弄一个新的工作单元
+                var unitOfWork= IocHelper.ResolveWithName<IUnitOfWork>("IUnitOfWork");
+                unitOfWork.SetDbClient(SqlSugarConfig.GetSugarClient());
+                targetObj.SetUnitOfWork(unitOfWork);
+                // var uow=targetObj.GetUnitOfWork();
+                unitOfWork.BeginTran();
                 break;
             case Propagation.Supports:
                 // 无需处理
@@ -108,7 +112,6 @@ public class TransactionInterceptor : IInterceptor
                 break;
             default:
                 throw new Exception("未定义事务Propagation属性");
-                break;
         }
        
         

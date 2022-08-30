@@ -5,7 +5,7 @@ namespace AspNetCore.StartUpTemplate.AOP;
 
 public interface IUnitOfWorkChangeable
 {
-    void ResetDb(ISqlSugarClient sugarClient);
+    void SetUnitOfWork(IUnitOfWork unitOfWork);
 
     IUnitOfWork GetUnitOfWork();
 

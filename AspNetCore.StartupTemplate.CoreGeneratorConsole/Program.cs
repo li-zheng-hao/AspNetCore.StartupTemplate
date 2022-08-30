@@ -11,6 +11,6 @@ const string CLASS_DESCRIPTION = "新增的测试类";
 // 对应的文件
 string PATH = Path.Combine( Environment.CurrentDirectory,$"template-{DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss")}.zip");
 // 命名空间前缀 
-const string NAMESPACE_PREFIX = "AspNetCore.StartupTemplate";
+const string NAMESPACE_PREFIX = "AspNetCore.StartupTemplate.Log";
 
 GeneratorCodeHelper.CodeGenerator(MODEL_CLASS_NAME,CLASS_DESCRIPTION,PATH,NAMESPACE_PREFIX);

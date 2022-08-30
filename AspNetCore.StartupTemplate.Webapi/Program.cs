@@ -1,10 +1,11 @@
 using System.Reflection;
 using AspNetCore.CacheOutput.Redis.Extensions;
+using AspNetCore.StartupTemplate;
 using AspNetCore.StartUpTemplate.Auth;
 using AspNetCore.StartUpTemplate.Configuration;
 using AspNetCore.StartUpTemplate.Core;
 using AspNetCore.StartUpTemplate.Filter;
-// using AspNetCore.StartupTemplate.Log;
+// using AspNetCore.StartupTemplate.Log.Log;
 using AspNetCore.StartUpTemplate.Mapping;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
@@ -14,8 +15,8 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
-using NLog;
-using NLog.Web;
+using Serilog;
+
 // using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -23,11 +24,11 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 #region Nlog配置===========================
-var logger = NLog.LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
-builder.Logging.ClearProviders();
-builder.Host.UseNLog();
-// var logger=LogSetup.LogSetups();
-// builder.Host.UseSerilog(logger, dispose: true);
+// var logger = NLog.LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
+// builder.Logging.ClearProviders();
+// builder.Host.UseNLog();
+var logger=LogSetup.Setup(builder.Configuration);
+builder.Host.UseSerilog(logger, dispose: true);
 #endregion
 
 
@@ -116,9 +117,10 @@ builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory()).Conf
 
     c.RegisterTypes(controllersTypesInAssembly).PropertiesAutowired();
     c.RegisterModule(new AutofacModuleRegister());
-
+    
 });
 builder.Services.Replace(ServiceDescriptor.Transient<IControllerActivator, ServiceBasedControllerActivator>());
+
 #endregion
 
 #region 配置跨域=========================
@@ -143,6 +145,13 @@ builder.Services.AddAutoMapper(typeof(AutoMapperConfig));
 
 builder.Services.AddRedisCacheOutput(AppSettingsConstVars.RedisConn);
 var app = builder.Build();
+
+#region IOC工具类
+
+
+var container= app.Services.GetAutofacRoot();
+IocHelper.container = container;
+#endregion
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

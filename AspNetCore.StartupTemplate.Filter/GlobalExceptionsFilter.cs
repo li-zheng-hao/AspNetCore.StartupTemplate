@@ -1,16 +1,4 @@
-﻿/***********************************************************************
- *            Project: CoreCms.Net                                     *
- *                Web: https://CoreCms.Net                             *
- *        ProjectName: 核心内容管理系统                                *
- *             Author: 大灰灰                                          *
- *              Email: JianWeie@163.com                                *
- *           Versions: 1.0                                             *
- *         CreateTime: 2020-02-05 19:20:08
- *        Description: 
- ***********************************************************************/
-
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Text;
@@ -22,17 +10,17 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using NLog;
+using Serilog;
+
 namespace AspNetCore.StartUpTemplate.Filter;
 /// <summary>
 /// 接口全局异常错误日志
 /// </summary>
 public class GlobalExceptionsFilter : IExceptionFilter
 {
-
     public void OnException(ExceptionContext context)
     {
-        LogManager.GetCurrentClassLogger().LogErrorEx("全局捕获异常",context.Exception);
+        Log.Error("全局捕获异常",context.Exception);
         HttpStatusCode status = HttpStatusCode.InternalServerError;
 
         //处理各种异常
@@ -44,8 +32,7 @@ public class GlobalExceptionsFilter : IExceptionFilter
             Data = context.Exception
         };
         context.ExceptionHandled = true;
-        context.Result = new ObjectResult(jm);
-
+        context.Result = new JsonResult(jm);
     }
 
 }

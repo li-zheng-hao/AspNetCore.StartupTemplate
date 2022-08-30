@@ -2,7 +2,7 @@
 
 namespace AspNetCore.StartUpTemplate.Core;
 
-public interface IUnitOfWork
+public interface IUnitOfWork:IDisposable
 {
     ISqlSugarClient GetDbClient();
     void SetDbClient(ISqlSugarClient client);

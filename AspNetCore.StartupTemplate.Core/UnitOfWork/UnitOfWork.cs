@@ -17,7 +17,7 @@ public class UnitOfWork:IUnitOfWork
         _sqlSugarClient = dbScoped;
         _logger = logger;
     }
-
+    
     /// <summary>
     ///     获取DB
     /// </summary>
@@ -83,5 +83,11 @@ public class UnitOfWork:IUnitOfWork
     {
         _savepointName = savepointName;
         _isNestedTrans = true;
+    }
+
+    public void Dispose()
+    {
+        if(_isUsingTransaction)
+            CommitTran();
     }
 }

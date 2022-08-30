@@ -21,8 +21,6 @@
         <PackageReference Include="JWT" Version="9.0.3" />
         <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.8" />
         <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-        <PackageReference Include="NLog" Version="5.0.2" />
-        <PackageReference Include="NLog.Web.AspNetCore" Version="5.1.1" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
     </ItemGroup>
 
@@ -33,6 +31,7 @@
       <ProjectReference Include="..\AspNetCore.StartupTemplate.Filter\AspNetCore.StartupTemplate.Filter.csproj" />
       <ProjectReference Include="..\AspNetCore.StartupTemplate.IRepository\AspNetCore.StartupTemplate.IRepository.csproj" />
       <ProjectReference Include="..\AspNetCore.StartupTemplate.IServices\AspNetCore.StartupTemplate.IServices.csproj" />
+      <ProjectReference Include="..\AspNetCore.StartupTemplate.Log\AspNetCore.StartupTemplate.Log.csproj" />
       <ProjectReference Include="..\AspNetCore.StartupTemplate.Mapping\AspNetCore.StartupTemplate.Mapping.csproj" />
       <ProjectReference Include="..\AspNetCore.StartupTemplate.Model\AspNetCore.StartupTemplate.Model.csproj" />
       <ProjectReference Include="..\AspNetCore.StartupTemplate.Repository\AspNetCore.StartupTemplate.Repository.csproj" />

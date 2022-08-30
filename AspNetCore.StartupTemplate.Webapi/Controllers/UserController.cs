@@ -69,11 +69,19 @@ public class UserController : ControllerBase
         _userService.Query();
     }
     
-    [Description("嵌套事务")]
+    
+    
+    /// <summary>
+    /// 注解事务
+    /// 存在问题
+    /// 1. Service内部调用不会触发 外部调用会触发 需要在service层判断是否调用过了本方法，并记录第一次调用过的Method名
+    /// </summary>
     [HttpGet("nestedtrans")]
     public void NestedTrans()
     {
-       _userService.TestNestedTrans();
+        // _userService.Query();
+        
+        
     }
     
 }
