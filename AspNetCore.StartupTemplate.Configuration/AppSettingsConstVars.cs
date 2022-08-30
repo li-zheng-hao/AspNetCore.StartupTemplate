@@ -21,6 +21,7 @@ public class AppSettingsConstVars
     /// </summary>
     public static readonly string DbConnection = AppSettingsHelper.GetContent("Mysql", "ConnectionString");
     public static readonly string RedisConn = AppSettingsHelper.GetContent("RedisConn");
+    public static readonly string MQConnStr = AppSettingsHelper.GetContent("RabbitMQ:ConnStr");
    
     #endregion
 

@@ -40,7 +40,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore.StartupTemplate.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore.StartupTemplate.MQ", "AspNetCore.StartupTemplate.MQ\AspNetCore.StartupTemplate.MQ.csproj", "{D54E1FE1-78F8-4C8C-BB8A-EA1DCFC702E6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore.StartupTemplate.Log", "AspNetCore.StartupTemplate.Log\AspNetCore.StartupTemplate.Log.csproj", "{FC0DF183-B623-4753-9CB8-A08FD45DD43F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore.StartupTemplate.Logging", "AspNetCore.StartupTemplate.Logging\AspNetCore.StartupTemplate.Logging.csproj", "{FC0DF183-B623-4753-9CB8-A08FD45DD43F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -5,7 +5,7 @@ using AspNetCore.StartUpTemplate.Auth;
 using AspNetCore.StartUpTemplate.Configuration;
 using AspNetCore.StartUpTemplate.Core;
 using AspNetCore.StartUpTemplate.Filter;
-// using AspNetCore.StartupTemplate.Log.Log;
+// using AspNetCore.StartupTemplate.Logging.Log;
 using AspNetCore.StartUpTemplate.Mapping;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;

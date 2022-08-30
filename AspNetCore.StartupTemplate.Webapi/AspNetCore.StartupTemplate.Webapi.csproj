@@ -18,6 +18,7 @@
         <PackageReference Include="Autofac" Version="6.4.0" />
         <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="8.0.0" />
         <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+        <PackageReference Include="Flurl.Http" Version="3.2.4" />
         <PackageReference Include="JWT" Version="9.0.3" />
         <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.8" />
         <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
@@ -31,7 +32,7 @@
       <ProjectReference Include="..\AspNetCore.StartupTemplate.Filter\AspNetCore.StartupTemplate.Filter.csproj" />
       <ProjectReference Include="..\AspNetCore.StartupTemplate.IRepository\AspNetCore.StartupTemplate.IRepository.csproj" />
       <ProjectReference Include="..\AspNetCore.StartupTemplate.IServices\AspNetCore.StartupTemplate.IServices.csproj" />
-      <ProjectReference Include="..\AspNetCore.StartupTemplate.Log\AspNetCore.StartupTemplate.Log.csproj" />
+      <ProjectReference Include="..\AspNetCore.StartupTemplate.Logging\AspNetCore.StartupTemplate.Logging.csproj" />
       <ProjectReference Include="..\AspNetCore.StartupTemplate.Mapping\AspNetCore.StartupTemplate.Mapping.csproj" />
       <ProjectReference Include="..\AspNetCore.StartupTemplate.Model\AspNetCore.StartupTemplate.Model.csproj" />
       <ProjectReference Include="..\AspNetCore.StartupTemplate.Repository\AspNetCore.StartupTemplate.Repository.csproj" />
