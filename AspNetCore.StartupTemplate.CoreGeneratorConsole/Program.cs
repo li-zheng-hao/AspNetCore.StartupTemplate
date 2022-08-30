@@ -2,7 +2,7 @@
 
 using AspNetCore.StartUpTemplate.CoreGeneratorConsole;
 
-Console.WriteLine("Hello, World!");
+Console.WriteLine("代码生成器启动");
 
 // 实体类名
 const string MODEL_CLASS_NAME = "TESTMODEL";
