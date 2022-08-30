@@ -1,13 +1,13 @@
-# 语言
+# Language
 
 - English [Readme-En](./README-EN.md)
 - 中文 [ReadMe-中文](./README.md)
 
-# 介绍
+# Introduction
 
  Asp.Net Core Webapi project quick start template
 
-# 项目结构
+# Project Structure
 
 - `Congfiguration`:Project configuration library
 - `Core`:Core common infrastructure library
@@ -22,7 +22,7 @@
 - `Snowflake`:Support workID to automatically obtain the reclaimed snowflake ID library
 - `Logging`:Serilog log library configuration, support output to file, console and ElasticSearch
 
-# 技术栈
+# Technology Stack
 
 - Serialization：`Newtonsoft.Json`
 - Authentication：`Jwt.Net`
@@ -31,13 +31,13 @@
 - entity mapper：`AutoMapper`
 - message queue：`RabbitMQ`
 
-# 致谢
+# Acknowledgements
 
 1. [https://github.com/CoreUnion/CoreShop](https://github.com/CoreUnion/CoreShop) .Net Core shop APP
 2. [https://www.donet5.com/Home/Doc](https://www.donet5.com/Home/Doc) SqlSugar very useful ORM
 3. [https://github.com/fuluteam/ICH.Snowflake](https://github.com/fuluteam/ICH.Snowflake) The snowflake ID generator used in the project
 4. [https://www.jetbrains.com/rider/](https://www.jetbrains.com/rider/) Rider .Net IDE
 
-# 开源协议
+# Open Source Licenses
 
 [MIT license](https://github.com/li-zheng-hao/AspNetCore.StartupTemplate/blob/main/LICENSE)
