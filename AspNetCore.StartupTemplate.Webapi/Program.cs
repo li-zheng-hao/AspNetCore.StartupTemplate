@@ -17,16 +17,9 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Serilog;
 
-// using Serilog;
-
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
 #region Nlog配置===========================
-// var logger = NLog.LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
-// builder.Logging.ClearProviders();
-// builder.Host.UseNLog();
 var logger=LogSetup.Setup(builder.Configuration);
 builder.Host.UseSerilog(logger, dispose: true);
 #endregion
@@ -147,8 +140,6 @@ builder.Services.AddRedisCacheOutput(AppSettingsConstVars.RedisConn);
 var app = builder.Build();
 
 #region IOC工具类
-
-
 var container= app.Services.GetAutofacRoot();
 IocHelper.container = container;
 #endregion

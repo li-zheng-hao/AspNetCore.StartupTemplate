@@ -12,11 +12,6 @@ namespace AspNetCore.StartUpTemplate.Webapi.Controllers;
 [Route("[controller]")]
 public class UserController : ControllerBase
 {
-    private static readonly string[] Summaries = new[]
-    {
-        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-    };
-
     private readonly ILogger<UserController> _logger;
     private readonly IMapper _mapper;
     private readonly IUserService _userService;
@@ -36,16 +31,9 @@ public class UserController : ControllerBase
     [CacheOutput(ClientTimeSpan = 100,ServerTimeSpan = 100)]
     [NeedAuth]
     [HttpGet("get")]
-    public IEnumerable<WeatherForecast> Get(string id)
+    public string  Get(string id)
     {
-        return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = Random.Shared.Next(-20, 55),
-                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-            })
-            .Where(it=>it.Summary.Contains(id))
-            .ToArray();
+        return id;
     }
     /// <summary>
     /// 清除所有缓存示例 + Token生成
@@ -59,29 +47,6 @@ public class UserController : ControllerBase
         var token = TokenHelper.CreateToken(tm);
         var res = TokenHelper.ResolveToken(token);
         return token;
-    }
-    /// <summary>
-    /// 注解事务示例
-    /// </summary>
-    [HttpGet("transdemo")]
-    public void TokenTest2()
-    {
-        _userService.Query();
-    }
-    
-    
-    
-    /// <summary>
-    /// 注解事务
-    /// 存在问题
-    /// 1. Service内部调用不会触发 外部调用会触发 需要在service层判断是否调用过了本方法，并记录第一次调用过的Method名
-    /// </summary>
-    [HttpGet("nestedtrans")]
-    public void NestedTrans()
-    {
-        // _userService.Query();
-        
-        
     }
     
 }
