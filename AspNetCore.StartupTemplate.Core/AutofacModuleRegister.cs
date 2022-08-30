@@ -18,7 +18,12 @@ public class AutofacModuleRegister : Autofac.Module
         var types = assembly.GetTypes().ToArray();
         builder.RegisterTypes(types).PropertiesAutowired();
         #endregion
-        
+
+        #region 注入工作单元
+
+        builder.RegisterType<UnitOfWork>().As<IUnitOfWork>().InstancePerLifetimeScope().PropertiesAutowired();
+
+        #endregion
         #region 带有接口层的服务注入
 
         var servicesDllFile = Path.Combine(basePath, "AspNetCore.StartupTemplate.Services.dll");

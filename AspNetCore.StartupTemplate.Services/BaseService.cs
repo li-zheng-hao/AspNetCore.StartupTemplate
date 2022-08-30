@@ -1,5 +1,7 @@
 using System.Linq.Expressions;
+using System.Transactions;
 using AspNetCore.StartUpTemplate.AOP;
+using AspNetCore.StartUpTemplate.Core;
 using AspNetCore.StartUpTemplate.IRepository;
 using AspNetCore.StartUpTemplate.IService;
 using CoreCms.Net.Model.ViewModels.Basics;
@@ -7,14 +9,21 @@ using SqlSugar;
 
 namespace AspNetCore.StartUpTemplate.Services;
 
-public class BaseServices<T> :IBaseService<T> where T : class, new()
+public class BaseServices<T> :IBaseService<T>,IUnitOfWorkChangeable where T : class, new()
 {
     public IBaseRepository<T> BaseRepo = null!; //通过在子类的构造函数中注入，这里是基类，不用构造函数
-    private readonly IUnitOfWork _unitOfWork;
+    public readonly IUnitOfWork _unitOfWork;
     public BaseServices(IUnitOfWork unitOfWork)
     {
         _unitOfWork = unitOfWork;
     }
+
+    public void ResetUnitOfWork(ISqlSugarClient client)
+    {
+        _unitOfWork.Reset();
+        _unitOfWork.SetDbClient(client);
+    }
+
     public T QueryById(object pkValue)
     {
         return BaseRepo.GetById(pkValue);
@@ -36,7 +45,7 @@ public class BaseServices<T> :IBaseService<T> where T : class, new()
         return await BaseRepo.QueryByIDsAsync(lstIds);
 
     }
-    [UseTransaction(typeof(Exception))]
+    [UseTransaction( ignoreExceptions:typeof(Exception))]
     public List<T> Query()
     {
         throw new ArgumentException("xxx");
@@ -505,5 +514,16 @@ public class BaseServices<T> :IBaseService<T> where T : class, new()
     {
         return await BaseRepo.SqlQueryable(sql);
 
+    }
+
+    public void ResetDb(ISqlSugarClient sugarClient)
+    {
+        _unitOfWork.Reset();
+        _unitOfWork.SetDbClient(sugarClient);
+    }
+
+    public IUnitOfWork GetUnitOfWork()
+    {
+        return _unitOfWork;
     }
 }

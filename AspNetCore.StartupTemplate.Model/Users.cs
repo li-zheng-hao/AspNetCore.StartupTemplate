@@ -14,7 +14,7 @@ namespace AspNetCore.StartUpTemplate.Model;
       /// id 
       ///</summary>
        [SugarColumn(ColumnName="Id" ,IsPrimaryKey = true   )]
-       public int Id { get; set; }
+       public long Id { get; set; }
       /// <summary>
       ///  用户名
       ///</summary>

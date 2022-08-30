@@ -1,4 +1,5 @@
 using System.Linq.Expressions;
+using AspNetCore.StartUpTemplate.AOP;
 using CoreCms.Net.Model.ViewModels.Basics;
 using SqlSugar;
 
@@ -6,6 +7,7 @@ namespace AspNetCore.StartUpTemplate.IService;
 
 public interface IBaseService<T> where T : class,new()
 {
+    void ResetUnitOfWork(ISqlSugarClient client);
         /// <summary>
         ///     根据主值查询单条数据
         /// </summary>

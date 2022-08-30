@@ -6,5 +6,6 @@ namespace AspNetCore.StartUpTemplate.IService;
 [Intercept(typeof(TransactionInterceptor))]
 public interface IUserService: IBaseService<Users> 
 {
-    
+    void TestNestedTrans();
+    void TestNestedTransIn();
 }

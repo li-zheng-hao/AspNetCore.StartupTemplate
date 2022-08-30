@@ -1,6 +1,7 @@
 ﻿using SqlSugar;
 using System.Collections.Generic;
 using System.Linq;
+using AspNetCore.StartUpTemplate.Core;
 using AspNetCore.StartUpTemplate.IRepository;
 using AspNetCore.StartUpTemplate.Model;
 

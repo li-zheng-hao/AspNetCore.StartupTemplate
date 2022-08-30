@@ -1,3 +1,4 @@
+using System.Transactions;
 using AspNetCore.StartUpTemplate.Utility;
 
 namespace AspNetCore.StartUpTemplate.AOP;
@@ -13,9 +14,15 @@ public class UseTransactionAttribute:Attribute
     /// </summary>
     public List<Type> IgnoreExceptions = new List<Type>() ;
 
-    public UseTransactionAttribute(params Type[] ignoreExceptions)
+    /// <summary>
+    /// 事务隔离级别
+    /// </summary>
+    public IsolationLevel IsolationLevel;
+
+    public UseTransactionAttribute(Propagation propagation=Propagation.Required,IsolationLevel isolationLevel=IsolationLevel.ReadCommitted,params Type[] ignoreExceptions)
     {
-        
+        this.Propagation = propagation;
+        IsolationLevel = isolationLevel;
         var checkRes=ignoreExceptions?.Any(it => false== it.IsSubClassOrEqualEx(typeof(Exception)));
         if (checkRes != null&&checkRes== true)
         {
@@ -23,4 +30,8 @@ public class UseTransactionAttribute:Attribute
         }
         IgnoreExceptions.AddRange(ignoreExceptions);
     }
+    /// <summary>
+    /// 事务传播行为
+    /// </summary>
+    public Propagation Propagation { get; set; }
 }

@@ -5,10 +5,38 @@
     <projectFile>AspNetCore.StartUpTemplate.Log/AspNetCore.StartUpTemplate.Log.csproj</projectFile>
     <projectFile profileName="AspNetCore.StartUpTemplate.Webapi">AspNetCore.StartUpTemplate.Webapi/AspNetCore.StartUpTemplate.Webapi.csproj</projectFile>
     <projectFile profileName="IIS Express">AspNetCore.StartUpTemplate.Webapi/AspNetCore.StartUpTemplate.Webapi.csproj</projectFile>
+    <projectFile>AspNetCore.StartupTemplate.CoreGeneratorConsole/AspNetCore.StartupTemplate.CoreGeneratorConsole.csproj</projectFile>
+    <projectFile profileName="AspNetCore.StartUpTemplate.Webapi">AspNetCore.StartupTemplate.Webapi/AspNetCore.StartupTemplate.Webapi.csproj</projectFile>
+    <projectFile profileName="IIS Express">AspNetCore.StartupTemplate.Webapi/AspNetCore.StartupTemplate.Webapi.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d36a8aa1-8807-4bcc-adac-67d12e68e40c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/AspNetCore.StartupTemplate.sln" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.sln" afterDir="false" />
+    <list default="true" id="7e0bf9da-50c0-4d65-a93a-4de938453b5b" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/AspNetCore.StartUpTemplate.Aop/Transaction/IUnitOfWorkChangeable.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AspNetCore.StartUpTemplate.Aop/Transaction/Propagation.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.UnitOfWork/IUnitOfWork.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.UnitOfWork/UnitOfWork.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Webapi/TestMethod.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.AspNetCore.StartupTemplate/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.AspNetCore.StartupTemplate/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AspNetCore.StartUpTemplate.Aop/AspNetCore.StartUpTemplate.Aop.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartUpTemplate.Aop/AspNetCore.StartUpTemplate.Aop.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AspNetCore.StartUpTemplate.Aop/TransactionInterceptor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartUpTemplate.Aop/Transaction/TransactionInterceptor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AspNetCore.StartUpTemplate.Aop/UseTransactionAttribute.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartUpTemplate.Aop/Transaction/UseTransactionAttribute.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Core/AutofacModuleRegister.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Core/AutofacModuleRegister.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Core/SqlSugarSetup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Core/SqlSugarConfig.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AspNetCore.StartupTemplate.IRepository/UnitOfWork/IUnitOfWork.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Core/UnitOfWork/IUnitOfWork.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AspNetCore.StartupTemplate.IServices/IBaseService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.IServices/IBaseService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AspNetCore.StartupTemplate.IServices/IUserService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.IServices/IUserService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Model/Users.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Model/Users.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Repository/AspNetCore.StartupTemplate.Repository.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Repository/AspNetCore.StartupTemplate.Repository.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Repository/BaseRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Repository/BaseRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Repository/UnitOfWork/UnitOfWork.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Core/UnitOfWork/UnitOfWork.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Repository/UserRepository/UserRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Repository/UserRepository/UserRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Services/AspNetCore.StartupTemplate.Services.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Services/AspNetCore.StartupTemplate.Services.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Services/BaseService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Services/BaseService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Services/UserService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Services/UserService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Webapi/AspNetCore.StartupTemplate.Webapi.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Webapi/AspNetCore.StartupTemplate.Webapi.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Webapi/Controllers/UserController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Webapi/Controllers/UserController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Webapi/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Webapi/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Webapi/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/AspNetCore.StartupTemplate.Webapi/appsettings.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,20 +44,19 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/23c4e6013839447196863c89842d515844200/1e/4d19cf65/AbstractInvocation.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/23c4e6013839447196863c89842d515844200/44/f1e2ddfc/AttributesUtil.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/a2c3edbc63784d288c08088d6f900ca383490/ba/4ae34ad5/Enumerable.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/3486b86ab6b7445697d82442c3174df355c90/3a/38cad25d/IsolationLevel.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/f993f26659c444a198a8f8ebecebe9f61eda00/33/d9f3c143/SimpleClient`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/f993f26659c444a198a8f8ebecebe9f61eda00/7e/acfa2a35/ISimpleClient`1.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/198a6261cebc324728dcc4c178edc5f2894123f711722c80e8557cbfd27651/ThrowHelper.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/575c31ecc35a636b6f962cb71d53992552941a18982aae1c8e6c16305cc3761b/ExceptionDispatchInfo.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/69a534bb18411e7a5e49d3fe13098116bb8d8d0c594d8db1cce7cdbb9949a/ObjectMethodExecutor.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/7061593d8380a8ff34a8be311352d34fd41a80602dd4abdf79ef3678933b2d/RuntimeCustomAttributeData.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/a2486b5e044b68e08e1cf9c5b9aa7af81ef4da37de0a0551f713f5374ace/Exception.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/AspNetCore.StartUpTemplate.Aop/TransactionInterceptor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/AspNetCore.StartUpTemplate.Aop/Transaction/TransactionInterceptor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/AspNetCore.StartupTemplate.UnitOfWork/IUnitOfWork.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="Toolset" />
   </component>
   <component name="ProjectId" id="2E0bAKIt2j2XnpmSpApekX1VcjX" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -37,16 +64,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propDebugger&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected=".NET Launch Settings Profile.AspNetCore.StartUpTemplate.Webapi">
     <configuration name="AspNetCore.StartUpTemplate.CoreGeneratorConsole" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="" />
@@ -118,7 +145,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="d36a8aa1-8807-4bcc-adac-67d12e68e40c" name="Changes" comment="" />
+      <changelist id="7e0bf9da-50c0-4d65-a93a-4de938453b5b" name="Changes" comment="" />
       <created>1661735309204</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -127,6 +154,7 @@
       <workItem from="1661735476938" duration="911000" />
       <workItem from="1661736581679" duration="12603000" />
       <workItem from="1661775672887" duration="7405000" />
+      <workItem from="1661821317883" duration="10976000" />
     </task>
     <servers />
   </component>
@@ -165,61 +193,68 @@
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/AspNetCore.StartUpTemplate.Webapi/Controllers/UserController.cs</url>
-          <line>62</line>
-          <properties documentPath="D:\AspNetCore.StartUpTemplate\AspNetCore.StartUpTemplate.Webapi\Controllers\UserController.cs" initialLine="54" containingFunctionPresentation="method 'TokenTest2'">
-            <startOffsets>
-              <option value="1988" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2009" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/AspNetCore.StartUpTemplate.Services/BaseService.cs</url>
           <line>41</line>
-          <properties documentPath="D:\AspNetCore.StartUpTemplate\AspNetCore.StartUpTemplate.Services\BaseService.cs" initialLine="41" containingFunctionPresentation="method 'Query'">
-            <startOffsets>
-              <option value="1078" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1113" />
-            </endOffsets>
-          </properties>
+          <properties documentPath="D:\AspNetCore.StartUpTemplate\AspNetCore.StartUpTemplate.Services\BaseService.cs" initialLine="41" containingFunctionPresentation="method 'Query'" />
           <option name="timeStamp" value="11" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/AspNetCore.StartUpTemplate.Aop/UseTransactionAttribute.cs</url>
-          <line>18</line>
-          <properties documentPath="D:\AspNetCore.StartUpTemplate\AspNetCore.StartUpTemplate.Aop\UseTransactionAttribute.cs" initialLine="15" containingFunctionPresentation="constructor 'UseTransactionAttribute'">
+          <url>file://$PROJECT_DIR$/AspNetCore.StartupTemplate.Webapi/Controllers/UserController.cs</url>
+          <line>75</line>
+          <properties documentPath="F:\Code\AspNetCore.StartUpTemplate\content\AspNetCore.StartupTemplate.Webapi\Controllers\UserController.cs" initialLine="75" containingFunctionPresentation="method 'NestedTrans'">
             <startOffsets>
-              <option value="465" />
+              <option value="2206" />
             </startOffsets>
             <endOffsets>
-              <option value="557" />
+              <option value="2237" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="12" />
+          <option name="timeStamp" value="20" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/AspNetCore.StartUpTemplate.Utility/TypeHelper.cs</url>
-          <line>6</line>
-          <properties documentPath="D:\AspNetCore.StartUpTemplate\AspNetCore.StartUpTemplate.Utility\TypeHelper.cs" initialLine="6" containingFunctionPresentation="method 'IsSubClassOrEqualEx'">
+          <url>file://$PROJECT_DIR$/AspNetCore.StartUpTemplate.Aop/Transaction/TransactionInterceptor.cs</url>
+          <line>36</line>
+          <properties documentPath="F:\Code\AspNetCore.StartUpTemplate\content\AspNetCore.StartUpTemplate.Aop\Transaction\TransactionInterceptor.cs" initialLine="36" containingFunctionPresentation="method 'Intercept'">
             <startOffsets>
-              <option value="161" />
+              <option value="1072" />
             </startOffsets>
             <endOffsets>
-              <option value="204" />
+              <option value="1157" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="15" />
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/AspNetCore.StartupTemplate.Core/SqlSugarConfig.cs</url>
+          <line>29</line>
+          <properties documentPath="F:\Code\AspNetCore.StartUpTemplate\content\AspNetCore.StartupTemplate.Core\SqlSugarConfig.cs" initialLine="29" containingFunctionPresentation="lambda expression inside method 'AddSqlSugarSetup'">
+            <startOffsets>
+              <option value="1008" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1064" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="22" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/AspNetCore.StartupTemplate.Core/SqlSugarConfig.cs</url>
+          <line>50</line>
+          <properties documentPath="F:\Code\AspNetCore.StartUpTemplate\content\AspNetCore.StartupTemplate.Core\SqlSugarConfig.cs" initialLine="50" containingFunctionPresentation="lambda expression inside method 'GetSugarClient'">
+            <startOffsets>
+              <option value="1719" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1775" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="23" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
+        <PinnedItemInfo parentTag="Type#AspNetCore.StartUpTemplate.Services.BaseServices`1" memberName="_unitOfWork" />
         <PinnedItemInfo parentTag="Type#System.Reflection.RuntimeMethodInfo" memberName="DeclaringType" />
       </pinned-members>
     </pin-to-top-manager>

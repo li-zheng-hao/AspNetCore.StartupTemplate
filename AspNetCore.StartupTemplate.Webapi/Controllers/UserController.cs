@@ -7,6 +7,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AspNetCore.StartUpTemplate.Webapi.Controllers;
+
 [ApiController]
 [Route("[controller]")]
 public class UserController : ControllerBase
@@ -46,7 +47,10 @@ public class UserController : ControllerBase
             .Where(it=>it.Summary.Contains(id))
             .ToArray();
     }
-    [Description("清除所有缓存示例")]
+    /// <summary>
+    /// 清除所有缓存示例 + Token生成
+    /// </summary>
+    /// <returns></returns>
     [InvalidateCacheOutput("*")] 
     [HttpGet("tokentest")]
     public string TokenTest()
@@ -56,11 +60,21 @@ public class UserController : ControllerBase
         var res = TokenHelper.ResolveToken(token);
         return token;
     }
-    [Description("注解事务示例")]
-    [HttpGet("tokentest2")]
+    /// <summary>
+    /// 注解事务示例
+    /// </summary>
+    [HttpGet("transdemo")]
     public void TokenTest2()
     {
         _userService.Query();
+    }
+    
+    [Description("嵌套事务")]
+    [HttpGet("nestedtrans")]
+    public void NestedTrans()
+    {
+        _userService.TestNestedTrans();
+        _userService.TestNestedTransIn();
     }
     
 }
