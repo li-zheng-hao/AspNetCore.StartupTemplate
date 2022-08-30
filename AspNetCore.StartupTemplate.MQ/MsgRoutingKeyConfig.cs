@@ -3,7 +3,7 @@ namespace AspNetCore.StartupTemplate.MQ;
 /// <summary>
 /// 所有的消息routingkey字典
 /// </summary>
-public class MessageKeyDic
+public class MsgRoutingKeyConfig
 {
     /// <summary>
     /// 通知用户

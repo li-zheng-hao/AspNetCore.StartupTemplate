@@ -20,9 +20,14 @@ public class AppSettingsConstVars
     /// 获取数据库连接字符串
     /// </summary>
     public static readonly string DbConnection = AppSettingsHelper.GetContent("Mysql", "ConnectionString");
-    public static readonly string RedisConn = AppSettingsHelper.GetContent("RedisConn");
-    public static readonly string MQConnStr = AppSettingsHelper.GetContent("RabbitMQ:ConnStr");
    
+    #endregion
+
+    #region RabbitMQ================================================================================
+    public static readonly string MQConnStr = AppSettingsHelper.GetContent("RabbitMQ:ConnStr");
+    public static readonly string MQDirectExchangeName = AppSettingsHelper.GetContent("RabbitMQ:Direct:ExchangeName");
+    public static readonly string MQTopicExchangeName = AppSettingsHelper.GetContent("RabbitMQ:Topic:ExchangeName");
+
     #endregion
 
     #region redis================================================================================
@@ -31,6 +36,7 @@ public class AppSettingsConstVars
     /// 获取redis连接字符串
     /// </summary>
     //public static readonly string RedisConfigConnectionString = AppSettingsHelper.GetContent("RedisConfig", "ConnectionString");
+    public static readonly string RedisConn = AppSettingsHelper.GetContent("RedisConn");
 
 
     #endregion
