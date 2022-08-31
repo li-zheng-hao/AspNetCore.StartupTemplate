@@ -1,8 +1,10 @@
 using System.ComponentModel;
 using AspNetCore.CacheOutput;
 using AspNetCore.StartUpTemplate.Auth;
+using AspNetCore.StartUpTemplate.Core;
 using AspNetCore.StartUpTemplate.IRepository;
 using AspNetCore.StartUpTemplate.IService;
+using AspNetCore.StartupTemplate.Snowflake.SnowFlake;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 
@@ -48,5 +50,14 @@ public class UserController : ControllerBase
         var res = TokenHelper.ResolveToken(token);
         return token;
     }
-    
+
+    /// <summary>
+    /// 获取雪花ID
+    /// </summary>
+    /// <returns></returns>
+    [HttpGet("GetSnowFlake")]
+    public string GetSnowFlake()
+    {
+        return IocHelper.Resolve<ISnowflakeIdMaker>().NextId().ToString();
+    }
 }

@@ -7,6 +7,7 @@ using AspNetCore.StartUpTemplate.Core;
 using AspNetCore.StartUpTemplate.Filter;
 // using AspNetCore.StartupTemplate.Logging.Log;
 using AspNetCore.StartUpTemplate.Mapping;
+using AspNetCore.StartupTemplate.Snowflake.SnowFlake.Redis;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Mvc;
@@ -28,6 +29,19 @@ builder.Host.UseSerilog(logger, dispose: true);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
+
+#region 配置雪花ID========================
+
+builder.Services.AddSnowflakeWithRedis(opt =>
+{
+    opt.InstanceName = "snowflake:";
+    opt.ConnectionString = AppSettingsConstVars.RedisConn;
+    opt.WorkIdLength = 9; // 9位支持512个工作节点
+    opt.RefreshAliveInterval = TimeSpan.FromHours(1);
+    opt.StartTimeStamp = new DateTime(2000, 0, 0);
+});
+
+#endregion
 
 #region 添加自定义过滤器======================
 
@@ -145,11 +159,11 @@ IocHelper.container = container;
 #endregion
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
+// if (app.Environment.IsDevelopment())
+// {
     app.UseSwagger();
     app.UseSwaggerUI();
-}
+// }
 
 app.UseCors();
 
