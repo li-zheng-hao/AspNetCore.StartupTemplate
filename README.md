@@ -37,6 +37,8 @@
 2. [https://www.donet5.com/Home/Doc](https://www.donet5.com/Home/Doc) SqlSugar 非常好用的ORM
 3. [https://github.com/fuluteam/ICH.Snowflake](https://github.com/fuluteam/ICH.Snowflake) 项目中使用的雪花ID生成器
 4. [https://www.jetbrains.com/rider/](https://www.jetbrains.com/rider/) Rider .Net IDE
+5. [https://github.com/luoyunchong/lin-cms-dotnetcore](https://github.com/luoyunchong/lin-cms-dotnetcore) 一个前后端分离的 CMS 开源项目
+6. [https://freesql.net/guide/](https://freesql.net/guide/) FreeSql 非常好用的ORM
 
 # 开源协议
 

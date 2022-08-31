@@ -35,6 +35,7 @@
       <ProjectReference Include="..\AspNetCore.StartupTemplate.Logging\AspNetCore.StartupTemplate.Logging.csproj" />
       <ProjectReference Include="..\AspNetCore.StartupTemplate.Mapping\AspNetCore.StartupTemplate.Mapping.csproj" />
       <ProjectReference Include="..\AspNetCore.StartupTemplate.Model\AspNetCore.StartupTemplate.Model.csproj" />
+      <ProjectReference Include="..\AspNetCore.StartupTemplate.Redis\AspNetCore.StartupTemplate.Redis.csproj" />
       <ProjectReference Include="..\AspNetCore.StartupTemplate.Repository\AspNetCore.StartupTemplate.Repository.csproj" />
       <ProjectReference Include="..\AspNetCore.StartupTemplate.Services\AspNetCore.StartupTemplate.Services.csproj" />
       <ProjectReference Include="..\AspNetCore.StartupTemplate.Snowflake\AspNetCore.StartupTemplate.Snowflake.csproj" />

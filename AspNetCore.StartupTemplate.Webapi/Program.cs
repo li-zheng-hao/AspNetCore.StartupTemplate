@@ -7,6 +7,7 @@ using AspNetCore.StartUpTemplate.Core;
 using AspNetCore.StartUpTemplate.Filter;
 // using AspNetCore.StartupTemplate.Logging.Log;
 using AspNetCore.StartUpTemplate.Mapping;
+using AspNetCore.StartupTemplate.Redis;
 using AspNetCore.StartupTemplate.Snowflake.SnowFlake.Redis;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
@@ -20,11 +21,10 @@ using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
-#region Nlog配置===========================
+#region Serilog配置===========================
 var logger=LogSetup.Setup(builder.Configuration);
 builder.Host.UseSerilog(logger, dispose: true);
 #endregion
-
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -38,7 +38,7 @@ builder.Services.AddSnowflakeWithRedis(opt =>
     opt.ConnectionString = AppSettingsConstVars.RedisConn;
     opt.WorkIdLength = 9; // 9位支持512个工作节点
     opt.RefreshAliveInterval = TimeSpan.FromHours(1);
-    opt.StartTimeStamp = new DateTime(2000, 0, 0);
+    // opt.StartTimeStamp = new DateTime(2000, 0, 0);
 });
 
 #endregion
@@ -144,16 +144,25 @@ builder.Services.AddCors(options =>
 });
 #endregion
 
-#region AutoMapper配置===========
+#region AutoMapper配置=====================
 
 builder.Services.AddAutoMapper(typeof(AutoMapperConfig));
 
 #endregion
 
+#region Redis相关配置====================
+
+// redis工具类
+builder.Services.AddRedisManager();
+
+// webapi接口使用redis缓存
 builder.Services.AddRedisCacheOutput(AppSettingsConstVars.RedisConn);
+
+#endregion
+
 var app = builder.Build();
 
-#region IOC工具类
+#region IOC工具类===============================
 var container= app.Services.GetAutofacRoot();
 IocHelper.container = container;
 #endregion
