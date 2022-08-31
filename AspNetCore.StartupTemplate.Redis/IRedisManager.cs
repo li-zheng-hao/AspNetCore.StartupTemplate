@@ -1,5 +1,5 @@
 ﻿namespace AspNetCore.StartupTemplate.Redis;
 
-public class Class1
+public interface IRedisManager
 {
 }
