@@ -6,7 +6,7 @@ using FreeSql.DataAnnotations;
 namespace AspNetCore.StartUpTemplate.Model;
 
   
-  public class Users
+  public class Test
   {
    
       /// <summary>

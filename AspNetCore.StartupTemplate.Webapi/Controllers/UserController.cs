@@ -60,4 +60,13 @@ public class UserController : ControllerBase
     {
         return IocHelper.Resolve<ISnowflakeIdMaker>().NextId().ToString();
     }
+    /// <summary>
+    /// 注解式事务示例
+    /// </summary>
+    [HttpGet("transsample")]
+    public void TransSample()
+    {
+        _userService.FuncA();
+        
+    }
 }

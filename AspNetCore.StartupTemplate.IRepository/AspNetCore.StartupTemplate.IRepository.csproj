@@ -8,12 +8,13 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="SqlSugarCore" Version="5.1.2.3" />
+      <ProjectReference Include="..\AspNetCore.StartupTemplate.Contract\AspNetCore.StartupTemplate.Contract.csproj" />
+      <ProjectReference Include="..\AspNetCore.StartupTemplate.Model\AspNetCore.StartupTemplate.Model.csproj" />
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\AspNetCore.StartupTemplate.Contract\AspNetCore.StartupTemplate.Contract.csproj" />
-      <ProjectReference Include="..\AspNetCore.StartupTemplate.Model\AspNetCore.StartupTemplate.Model.csproj" />
+      <PackageReference Include="FreeSql" Version="3.2.666" />
+      <PackageReference Include="FreeSql.Repository" Version="3.2.666" />
     </ItemGroup>
 
 </Project>

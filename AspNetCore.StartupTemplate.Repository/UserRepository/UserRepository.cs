@@ -1,5 +1,4 @@
-﻿using SqlSugar;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using AspNetCore.StartUpTemplate.Core;
 using AspNetCore.StartUpTemplate.IRepository;
@@ -11,11 +10,10 @@ namespace AspNetCore.StartUpTemplate.Repository
     /// 仓储模式
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class UserRepository : BaseRepository<Users>, IUserRepository
+    public class UserRepository : CurBaseRepository<Users,long>, IUserRepository
     {
-        public UserRepository(IUnitOfWork unitOfWork) : base(unitOfWork)
+        public UserRepository(IFreeSql fsql) : base(fsql)
         {
-            Console.WriteLine(unitOfWork.GetDbClient().ContextID.ToString()+"  repository层");
         }
     }
 }

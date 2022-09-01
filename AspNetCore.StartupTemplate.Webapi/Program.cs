@@ -9,8 +9,11 @@ using AspNetCore.StartUpTemplate.Filter;
 using AspNetCore.StartUpTemplate.Mapping;
 using AspNetCore.StartupTemplate.Redis;
 using AspNetCore.StartupTemplate.Snowflake.SnowFlake.Redis;
+using AspNetCore.StartUpTemplate.Webapi.Startup;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using HealthChecks.UI.Client;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.Extensions.DependencyInjection.Extensions;
@@ -115,7 +118,6 @@ builder.Services.AddSwaggerGen(c =>
 #region IOC配置============================
 
 builder.Services.AddSingleton(new AppSettingsHelper(builder.Configuration));
-builder.Services.AddSqlSugarSetup();
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory()).ConfigureContainer<ContainerBuilder>((c) =>
 {
     var controllersTypesInAssembly = typeof(Program).Assembly
@@ -125,8 +127,10 @@ builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory()).Conf
     c.RegisterTypes(controllersTypesInAssembly).PropertiesAutowired();
     c.RegisterModule(new AutofacModuleRegister());
     
+    
 });
-builder.Services.Replace(ServiceDescriptor.Transient<IControllerActivator, ServiceBasedControllerActivator>());
+builder.Services.AddFreeSql();
+// builder.Services.Replace(ServiceDescriptor.Transient<IControllerActivator, ServiceBasedControllerActivator>());
 
 #endregion
 
@@ -160,13 +164,27 @@ builder.Services.AddRedisCacheOutput(AppSettingsConstVars.RedisConn);
 
 #endregion
 
+#region Kestrel服务器配置===================
+
+builder.WebHost.ConfigureKestrel((context, options) =>
+{
+    //设置应用服务器Kestrel请求体最大为50MB，默认为28.6MB
+    options.Limits.MaxRequestBodySize = 1024 * 1024 * 50;
+});
+#endregion
+
+#region 健康检查=========================
+
+builder.Services.AddHealthChecks();//健康检查
+
+#endregion
+
 var app = builder.Build();
 
 #region IOC工具类===============================
 var container= app.Services.GetAutofacRoot();
 IocHelper.container = container;
 #endregion
-
 // Configure the HTTP request pipeline.
 // if (app.Environment.IsDevelopment())
 // {
@@ -174,12 +192,30 @@ IocHelper.container = container;
     app.UseSwaggerUI();
 // }
 
+#region 事务管理器
+app.Use(async (context, next) =>
+{
+    TransactionalAttribute.SetServiceProvider(context.RequestServices);
+    await next();
+});
+#endregion
+
 app.UseCors();
 
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
-app.MapControllers();
+app.UseRouting().UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers();
+
+    endpoints.MapHealthChecks("/health", new HealthCheckOptions
+    {
+        Predicate = s => true,
+        ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+    });
+});
+// app.MapControllers();
 
 app.Run();

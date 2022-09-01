@@ -1,8 +1,9 @@
 ﻿using AspNetCore.StartUpTemplate.Model;
+using FreeSql;
 
 namespace AspNetCore.StartUpTemplate.IRepository;
 
-public interface IUserRepository:IBaseRepository<Users> 
+public interface IUserRepository:IBaseRepository<Users>
 {
     
 }

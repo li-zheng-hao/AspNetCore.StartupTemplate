@@ -15,13 +15,18 @@
     <ItemGroup>
         <PackageReference Include="AspNetCore.CacheOutput" Version="2.1.0" />
         <PackageReference Include="AspNetCore.CacheOutput.Redis" Version="2.1.0" />
+        <PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="6.0.5" />
         <PackageReference Include="Autofac" Version="6.4.0" />
         <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="8.0.0" />
         <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
         <PackageReference Include="Flurl.Http" Version="3.2.4" />
+        <PackageReference Include="FreeSql.Extensions.JsonMap" Version="3.2.666" />
+        <PackageReference Include="FreeSql.Provider.MySql" Version="3.2.666" />
+        <PackageReference Include="FreeSql.Repository" Version="3.2.666" />
         <PackageReference Include="JWT" Version="9.0.3" />
         <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.8" />
         <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+        <PackageReference Include="Rougamo.Fody" Version="1.1.2" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
     </ItemGroup>
 
