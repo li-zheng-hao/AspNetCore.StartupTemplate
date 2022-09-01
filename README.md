@@ -20,16 +20,22 @@
 - `MQ`:rabbitmq官方库封装
 - `Redis`:redis库封装
 - `Snowflake`:支持workid自动获取回收的雪花id库
-- `Logging`:Serilog日志库配置，支持输出至文件，控制台及ElasticSearch
 
 # 技术栈
 
 - 序列化：`Newtonsoft.Json`
 - 身份验证：`Jwt.Net`
-- 数据库ORM：`SqlSugar`
+- 数据库ORM：`FreeSql`
 - 接口缓存：`CacheOutput`
 - 实体映射：`AutoMapper`
 - 消息队列：`RabbitMQ`
+- 数据迁移：`Evolve`
+- 缓存:`StackExchange.Redis`
+- 编译时AOP：`Rougamo`
+- 单元测试：`XUnit`
+- 模板生成：`DotLiquid`
+- Http库：`Flurl.Http`
+- Mock库：`Moq`
 
 # 致谢
 
@@ -39,6 +45,8 @@
 4. [https://www.jetbrains.com/rider/](https://www.jetbrains.com/rider/) Rider .Net IDE
 5. [https://github.com/luoyunchong/lin-cms-dotnetcore](https://github.com/luoyunchong/lin-cms-dotnetcore) 一个前后端分离的 CMS 开源项目
 6. [https://freesql.net/guide/](https://freesql.net/guide/) FreeSql 非常好用的ORM
+7. [https://github.com/lecaillon/Evolve](https://github.com/lecaillon/Evolve) 数据库版本控制库
+8. [https://github.com/inversionhourglass/Rougamo](https://github.com/inversionhourglass/Rougamo) 编译时AOP框架
 
 # 开源协议
 
