@@ -1,18 +1,19 @@
 using AspNetCore.StartUpTemplate.Core;
-using AspNetCore.StartUpTemplate.IRepository;
 using AspNetCore.StartUpTemplate.IService;
 using AspNetCore.StartUpTemplate.Model;
 using AspNetCore.StartupTemplate.Snowflake.SnowFlake;
-using Autofac.Extras.DynamicProxy;
 using FreeSql;
+using Microsoft.Extensions.Logging;
 
 namespace AspNetCore.StartUpTemplate.Services;
 public class TestService:ITestService
 {
     private readonly IBaseRepository<Test> _dal;
+    private readonly ILogger<TestService> _logger;
 
-    public TestService(IBaseRepository<Test>  testRepository) 
+    public TestService(ILogger<TestService> logger,IBaseRepository<Test>  testRepository)
     {
+        _logger = logger;
         _dal = testRepository;
     }
   

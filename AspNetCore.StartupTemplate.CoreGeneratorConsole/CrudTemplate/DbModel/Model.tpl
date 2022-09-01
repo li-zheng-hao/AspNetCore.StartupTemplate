@@ -9,23 +9,13 @@ namespace {{NameSpacePrefix}}.Model
     /// </summary>
     public class {{ModelClassName}}
     {
-        /// <summary>
-        /// 构造函数
-        /// </summary>
-        public {{ModelClassName}}()
-        {
-        }
 		{% for field in ModelFields %}
         /// <summary>
         /// {{field.ColumnDescription}}
         /// </summary>
         [Display(Name = "{{field.ColumnDescription}}")]
-		{% if field.IsIdentity == true and field.IsPrimarykey == true %}
-        [SugarColumn(IsPrimaryKey = true, IsIdentity = true)]
-        {% elsif  field.IsIdentity == true and field.IsPrimarykey == false %}
-        [SugarColumn(IsIdentity = true)]
-        {% elsif  field.IsIdentity == false and field.IsPrimarykey == true %}
-        [SugarColumn(IsPrimaryKey = true)]
+		{% if field.IsPrimarykey == true %}
+        [Column(IsPrimaryKey = true)]
         {% else %}{% endif %}
         {% if field.IsNullable == false %}[Required(ErrorMessage = "请输入{0}")]{% endif %}
         {% if field.DataType == 'nvarchar' and field.Length > 0 %}[StringLength(maximumLength:{{field.Length}},ErrorMessage = "{0}不能超过{1}字")]{% endif %}
