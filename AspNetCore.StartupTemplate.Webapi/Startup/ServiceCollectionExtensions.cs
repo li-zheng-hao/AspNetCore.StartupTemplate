@@ -10,6 +10,7 @@ using Microsoft.Extensions.Caching.Distributed;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Serilog;
+using Serilog.Core;
 
 namespace AspNetCore.StartUpTemplate.Webapi.Startup
 {
@@ -68,6 +69,7 @@ namespace AspNetCore.StartUpTemplate.Webapi.Startup
         }
         #endregion
 
+       
 
     }
 }

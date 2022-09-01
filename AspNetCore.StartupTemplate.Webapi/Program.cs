@@ -1,6 +1,5 @@
 using System.Reflection;
 using AspNetCore.CacheOutput.Redis.Extensions;
-using AspNetCore.StartupTemplate;
 using AspNetCore.StartUpTemplate.Auth;
 using AspNetCore.StartUpTemplate.Configuration;
 using AspNetCore.StartUpTemplate.Core;
@@ -25,7 +24,8 @@ using Serilog;
 var builder = WebApplication.CreateBuilder(args);
 
 #region Serilog配置===========================
-var logger=LogSetup.Setup(builder.Configuration);
+
+var logger=LogSetup.InitSeialog(builder.Configuration);
 builder.Host.UseSerilog(logger, dispose: true);
 #endregion
 
