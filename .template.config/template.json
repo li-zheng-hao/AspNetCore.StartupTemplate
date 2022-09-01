@@ -2,13 +2,13 @@
     "$schema": "http://json.schemastore.org/template",
     "author": "lizhenghao", 
     "classifications": [ "Web/WebAPI" ], 
-    "name": "AspNetCore.StartUpTemplate", 
-    "identity": "AspNetCore.StartUpTemplate", 
+    "name": "AspNetCore.StartupTemplate", 
+    "identity": "AspNetCore.StartupTemplate", 
     "shortName": "aspnetcorestartuptemplate",
     "tags": {
       "language": "C#" ,
       "type":"project"
     },
-    "sourceName": "AspNetCore.StartUpTemplate", 
+    "sourceName": "AspNetCore.StartupTemplate", 
     "preferNameDirectory": true   
 }

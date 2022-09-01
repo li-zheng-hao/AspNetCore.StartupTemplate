@@ -5,7 +5,43 @@
 
 # 介绍
 
- Asp.Net Core Webapi 项目快速启动模板
+  Asp.Net Core快速启动项目模板,支持微服务/单体应用,以下功能开箱即用：
+
+1. Spring式注解事务
+2. 工作单元+仓储
+3. 消息队列
+4. API接口缓存
+5. 代码模板生成器
+6. 数据库迁移版本管理
+7. 分布式雪花id(支持自动回收获取)
+8. Nacos服务注册中心
+9. DTM分布式事务(SAGA模式)
+10. 身份认证等功能
+11. 定时任务
+
+单体应用不需要微服务模块可以手动移除,详细使用文档在Github上查看：https://github.com/li-zheng-hao/AspNetCore.StartupTemplate
+
+各个部分在Controller层都有示例代码，根据模板新建项目后可根据相关功能的示例代码参考开发
+
+欢迎任何star、issue、pr~⭐
+
+#  开发环境
+
+- Rider 2022 + Visual Studio Community 2022
+- .NET 6
+
+# 快速开始
+
+```sh
+dotnet new --install AspNetCore.StartupTemplate
+dotnet new aspnetcorestartuptemplate -n XXX   //  XXX为项目名
+```
+
+|                            | nuget                                                        |
+| -------------------------- | ------------------------------------------------------------ |
+| AspNetCore.StartupTemplate | ![Nuget](https://img.shields.io/nuget/dt/AspNetCore.StartupTemplate) |
+
+
 
 # 项目结构
 
