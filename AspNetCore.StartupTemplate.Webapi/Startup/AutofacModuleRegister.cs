@@ -27,8 +27,8 @@ public class AutofacModuleRegister : Autofac.Module
 
         // 获取 Repository.dll 程序集服务，并注册
         //支持属性注入依赖重复 每个请求只有一个实例
-        builder.RegisterAssemblyTypes(assemblyRepositoryDll).AsImplementedInterfaces().InstancePerLifetimeScope()
-            .PropertiesAutowired(PropertyWiringOptions.AllowCircularDependencies);
+        // builder.RegisterAssemblyTypes(assemblyRepositoryDll).AsImplementedInterfaces().InstancePerLifetimeScope()
+        //     .PropertiesAutowired(PropertyWiringOptions.AllowCircularDependencies);
         
         #endregion
         builder.RegisterType<HttpContextAccessor>().As<IHttpContextAccessor>().SingleInstance();

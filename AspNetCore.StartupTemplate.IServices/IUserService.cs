@@ -5,4 +5,7 @@ namespace AspNetCore.StartUpTemplate.IService;
 public interface IUserService
 {
  void FuncA();
+
+ void ChangeMoney(int userid,int number);
+ void ChangeMoneyError(int userid,int number);
 }

@@ -1,11 +1,15 @@
 using System.ComponentModel;
 using AspNetCore.CacheOutput;
 using AspNetCore.StartUpTemplate.Auth;
+using AspNetCore.StartUpTemplate.Configuration;
+using AspNetCore.StartUpTemplate.Contract;
 using AspNetCore.StartUpTemplate.Core;
 using AspNetCore.StartUpTemplate.IRepository;
 using AspNetCore.StartUpTemplate.IService;
 using AspNetCore.StartupTemplate.Snowflake.SnowFlake;
 using AutoMapper;
+using Dtmcli;
+using FreeSql;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AspNetCore.StartUpTemplate.Webapi.Controllers;
@@ -24,6 +28,8 @@ public class UserController : ControllerBase
         _mapper = mapper;
         _userService = us;
     }
+    
+    
     /// <summary>
     /// 缓存+权限验证示例
     /// </summary>

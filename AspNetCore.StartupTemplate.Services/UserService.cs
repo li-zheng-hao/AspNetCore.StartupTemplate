@@ -36,14 +36,23 @@ public class UserService:IUserService
             Console.WriteLine(e);
         }
     }
-    
-    
-    
-    
-    
-    
-    
-    
+    [Transactional]
+    public void ChangeMoney(int userid,int number)
+    {
+        var u=_dal.Where(it => it.Id == userid).ToOne();
+        u.Money += number;
+        _dal.Update(u);
+    }
+    [Transactional]
+    public void ChangeMoneyError(int userid,int number)
+    {
+        var u=_dal.Where(it => it.Id == userid).ToOne();
+        u.Money += number;
+        _dal.Update(u);
+        throw new Exception("抛出异常");
+    }
+
+
     [Transactional(Propagation = Propagation.Nested)]
     public void FuncB()
     {

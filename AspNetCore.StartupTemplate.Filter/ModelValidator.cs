@@ -21,29 +21,29 @@ public class ModelValidator : ResultFilterAttribute
     public override void OnResultExecuting(ResultExecutingContext actionContext)
     {
         var modelState = actionContext.ModelState;
-        if (!modelState.IsValid)
-        {
-            var baseResult = new ResponseResult()
-            {
-                Status = false,
-                Code = ResponseCode.PARAM_ERROR,
-                Msg = "请提交必要的参数",
-            };
-            List<string> errors = new List<string>();
-            foreach (var key in modelState.Keys)
-            {
-                var state = modelState[key];
-                if (state.Errors.Any())
-                {
-                    errors.Add( $"{key} -  { state.Errors.FirstOrDefault().ErrorMessage}");
-                }
-            }
-            baseResult.Data = errors;
-            actionContext.Result = new ContentResult
-            {
-                Content = JsonConvert.SerializeObject(baseResult),
-                ContentType = "application/json"
-            };
-        }
+        // if (!modelState.IsValid)
+        // {
+        //     var baseResult = new ResponseResult()
+        //     {
+        //         Status = false,
+        //         Code = ResponseCode.PARAM_ERROR,
+        //         Msg = "请提交必要的参数",
+        //     };
+        //     List<string> errors = new List<string>();
+        //     foreach (var key in modelState.Keys)
+        //     {
+        //         var state = modelState[key];
+        //         if (state.Errors.Any())
+        //         {
+        //             errors.Add( $"{key} -  { state.Errors.FirstOrDefault().ErrorMessage}");
+        //         }
+        //     }
+        //     baseResult.Data = errors;
+        //     actionContext.Result = new ContentResult
+        //     {
+        //         Content = JsonConvert.SerializeObject(baseResult),
+        //         ContentType = "application/json"
+        //     };
+        // }
     }
 }

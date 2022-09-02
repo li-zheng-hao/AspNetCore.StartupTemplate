@@ -49,5 +49,14 @@ public class AppSettingsConstVars
     public static readonly string JwtConfigAudience = AppSettingsHelper.GetContent("Jwt", "Audience");
     #endregion
 
+    #region DTM相关配置=========================================================================
+
+    public static readonly string DtmUrl = AppSettingsHelper.GetContent("Dtm:DtmUrl");
+    public static readonly string BusiUrl = AppSettingsHelper.GetContent("Dtm:BusiUrl");
+    public static readonly string DtmBarrierTableName = AppSettingsHelper.GetContent("Dtm:DtmBarrierTableName");
+
+    
+
+    #endregion
 }
 

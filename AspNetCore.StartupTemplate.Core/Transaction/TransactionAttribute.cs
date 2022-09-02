@@ -2,6 +2,8 @@ using System.Data;
 using FreeSql;
 using Microsoft.Extensions.DependencyInjection;
 using Rougamo.Context;
+using Serilog;
+using Serilog.Core;
 
 namespace AspNetCore.StartUpTemplate.Core;
 
@@ -24,7 +26,7 @@ public class TransactionalAttribute : Rougamo.MoAttribute
     }
     public override void OnExit(MethodContext context)
     {
-        Console.Write(_uow.Orm.Ado.Identifier.ToString());
+        Log.Debug(_uow.Orm.Ado.Identifier.ToString());
         if (typeof(Task).IsAssignableFrom(context.RealReturnType))
             ((Task)context.ReturnValue).ContinueWith(t => _OnExit());
         else _OnExit();
@@ -37,7 +39,7 @@ public class TransactionalAttribute : Rougamo.MoAttribute
                     _uow.Commit();
                 else
                 {
-                    Console.Write("回滚");
+                    Log.Error("UnitofWorkManager 切面 回滚 ");
                     _uow.Rollback();
                 }
             }

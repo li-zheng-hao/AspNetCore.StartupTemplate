@@ -10,7 +10,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Serilog;
 
 namespace AspNetCore.StartUpTemplate.Filter;
 /// <summary>
@@ -18,9 +17,15 @@ namespace AspNetCore.StartUpTemplate.Filter;
 /// </summary>
 public class GlobalExceptionsFilter : IExceptionFilter
 {
+    private readonly ILogger<GlobalExceptionsFilter> _logger;
+
+    public GlobalExceptionsFilter(ILogger<GlobalExceptionsFilter> logger)
+    {
+        _logger = logger;
+    }
     public void OnException(ExceptionContext context)
     {
-        Log.Error("全局捕获异常",context.Exception);
+        _logger.LogError($"全局异常 {context.Exception}");
         HttpStatusCode status = HttpStatusCode.InternalServerError;
 
         //处理各种异常

@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Reflection;
 using AspNetCore.StartUpTemplate.Configuration;
+using Dtmcli;
 using FreeSql;
 using FreeSql.Internal;
 using Microsoft.AspNetCore.Http.Features;
@@ -55,8 +56,6 @@ namespace AspNetCore.StartUpTemplate.Webapi.Startup
                     }
                 };
 
-
-
                 fsql.UseJsonMap();
                 return fsql;
             };
@@ -64,11 +63,28 @@ namespace AspNetCore.StartUpTemplate.Webapi.Startup
             services.AddSingleton(fsql);
             services.AddScoped<UnitOfWorkManager>();
             services.AddFreeRepository(null, typeof(Program).Assembly);
-
+            
             return services;
         }
         #endregion
 
+        #region DTM
+        /// <summary>
+        /// 配置DTM
+        /// </summary>
+        /// <param name="services"></param>
+        /// <returns></returns>
+        public static IServiceCollection AddDtm(this IServiceCollection services)
+        {
+            services.AddDtmcli(dtm =>
+            {
+                dtm.DtmUrl = AppSettingsConstVars.DtmUrl;
+                dtm.BarrierTableName = "barrier";
+            });
+            return services;
+        }
+
+        #endregion
        
 
     }

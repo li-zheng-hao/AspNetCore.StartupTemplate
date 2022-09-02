@@ -38,4 +38,8 @@ namespace AspNetCore.StartUpTemplate.Model;
       ///  头像地址
       ///</summary>
        public string IconUrl { get; set; }
+       /// <summary>
+       /// 钱包余额
+       /// </summary>
+       public int Money { get; set; }
   }

@@ -10,7 +10,7 @@ public class LogSetup
         const string OUTPUT_TEMPLATE = "[{Level}] {ENV} {Timestamp:yyyy-MM-dd HH:mm:ss.fff} {SourceContext} <{ThreadId}>  {Message:lj}{NewLine}{Exception}";
         var logger= new LoggerConfiguration()
 #if DEBUG
-            .MinimumLevel.Debug()
+            .MinimumLevel.Warning()
 #else
             .MinimumLevel.Information()
 #endif

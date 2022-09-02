@@ -50,8 +50,8 @@ builder.Services.AddSnowflakeWithRedis(opt =>
 
 builder.Services.AddMvc(options =>
 {
-    //实体验证
-    options.Filters.Add<ModelValidator>(); 
+    // //实体验证
+    // options.Filters.Add<ModelValidator>(); 
     //异常处理
     options.Filters.Add<GlobalExceptionsFilter>();
 
@@ -130,8 +130,6 @@ builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory()).Conf
     
 });
 builder.Services.AddFreeSql();
-// builder.Services.Replace(ServiceDescriptor.Transient<IControllerActivator, ServiceBasedControllerActivator>());
-
 #endregion
 
 #region 配置跨域=========================
@@ -178,6 +176,11 @@ builder.WebHost.ConfigureKestrel((context, options) =>
 builder.Services.AddHealthChecks();//健康检查
 
 #endregion
+#region DTM配置=========================
+
+builder.Services.AddDtm();//健康检查
+
+#endregion
 
 var app = builder.Build();
 
@@ -192,7 +195,7 @@ IocHelper.container = container;
     app.UseSwaggerUI();
 // }
 
-#region 事务管理器
+#region Spring事务管理器注入
 app.Use(async (context, next) =>
 {
     TransactionalAttribute.SetServiceProvider(context.RequestServices);
