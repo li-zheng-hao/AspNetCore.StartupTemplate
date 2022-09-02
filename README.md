@@ -19,7 +19,7 @@
 10. 身份认证等功能
 11. 定时任务
 
-单体应用不需要微服务模块可以手动移除,详细使用文档在Github上查看：https://github.com/li-zheng-hao/AspNetCore.StartupTemplate
+单体应用不需要微服务模块可以手动移除,详细使用文档在Github上查看：[https://github.com/li-zheng-hao/AspNetCore.StartupTemplate/wiki](https://github.com/li-zheng-hao/AspNetCore.StartupTemplate/wiki)
 
 各个部分在Controller层都有示例代码，根据模板新建项目后可根据相关功能的示例代码参考开发
 
@@ -39,9 +39,9 @@ dotnet new aspnetcorestartuptemplate -n XXX   //  XXX为项目名
 
 |                            | nuget                                                        |
 | -------------------------- | ------------------------------------------------------------ |
-| AspNetCore.StartupTemplate | ![Nuget](https://img.shields.io/nuget/dt/AspNetCore.StartupTemplate) |
+| AspNetCore.StartupTemplate | [![Nuget](https://img.shields.io/nuget/dt/AspNetCore.StartupTemplate)](https://www.nuget.org/packages/AspNetCore.StartupTemplate) |
 
-
+更详细的文档：[Wiki](https://github.com/li-zheng-hao/AspNetCore.StartupTemplate/wiki)
 
 # 项目结构
 
