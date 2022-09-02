@@ -40,8 +40,8 @@ builder.Services.AddSnowflakeWithRedis(opt =>
     opt.InstanceName = "snowflake:";
     opt.ConnectionString = AppSettingsConstVars.RedisConn;
     opt.WorkIdLength = 9; // 9位支持512个工作节点
-    opt.RefreshAliveInterval = TimeSpan.FromHours(1);
-    // opt.StartTimeStamp = new DateTime(2000, 0, 0);
+    opt.RefreshAliveInterval = TimeSpan.FromMinutes(4);
+    opt.StartTimeStamp = new DateTime(2000, 0, 0);
 });
 
 #endregion
@@ -51,7 +51,7 @@ builder.Services.AddSnowflakeWithRedis(opt =>
 builder.Services.AddMvc(options =>
 {
     // //实体验证
-    // options.Filters.Add<ModelValidator>(); 
+    options.Filters.Add<ModelValidator>(); 
     //异常处理
     options.Filters.Add<GlobalExceptionsFilter>();
 
