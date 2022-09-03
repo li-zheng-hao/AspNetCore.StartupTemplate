@@ -36,7 +36,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore.StartupTemplate.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore.StartupTemplate.Auth", "AspNetCore.StartupTemplate.Auth\AspNetCore.StartupTemplate.Auth.csproj", "{6A2C4D47-6E8A-47A7-A68A-97EA86E9DA19}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore.StartupTemplate.CoreGeneratorConsole", "AspNetCore.StartupTemplate.CoreGeneratorConsole\AspNetCore.StartupTemplate.CoreGeneratorConsole.csproj", "{2CF58D72-F9DE-47B5-9CC0-DDF2AE2E5AF4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore.StartupTemplate.CodeGeneratorConsole", "AspNetCore.StartupTemplate.CodeGeneratorConsole\AspNetCore.StartupTemplate.CodeGeneratorConsole.csproj", "{2CF58D72-F9DE-47B5-9CC0-DDF2AE2E5AF4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore.StartupTemplate.MQ", "AspNetCore.StartupTemplate.MQ\AspNetCore.StartupTemplate.MQ.csproj", "{D54E1FE1-78F8-4C8C-BB8A-EA1DCFC702E6}"
 EndProject
