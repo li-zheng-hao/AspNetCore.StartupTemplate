@@ -99,6 +99,7 @@ public static class DtmDbUtilsExtension
         string gid, string branchID, string op, string barrierID, string reason)
     {
         if (string.IsNullOrWhiteSpace(op)) return (0, null);
+        // todo 这里要检查是否是注册的单例或scope
         var _specialDelegate = IocHelper.Resolve<DbSpecialDelegate>();
         try
         {

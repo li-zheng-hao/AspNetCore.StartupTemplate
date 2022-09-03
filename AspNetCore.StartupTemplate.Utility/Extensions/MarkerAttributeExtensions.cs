@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Abstractions;
-using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.Filters;
 using System.Reflection;
+using Microsoft.AspNetCore.Mvc.Controllers;
+
 namespace AspNetCore.StartUpTemplate.Utility;
 
 
@@ -44,6 +45,19 @@ public static class MarkerAttributeExtensions
             if (controllerActionDescriptor.MethodInfo?.GetCustomAttributes(inherit: true)?.Any(a => a.GetType().Equals(typeof(T))) ?? false)
                 return true;
         }
+        return false;
+    }
+    /// <summary>
+    /// 检查接口上是否有指定的特性
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="that"></param>
+    /// <returns></returns>
+    public static bool MethodHasAttribute<T>(this MethodInfo that) where T : Attribute
+    {
+        // Check if the attribute exists on the action method
+        if (that.GetCustomAttributes(inherit: true)?.Any(a => a.GetType().Equals(typeof(T))) ?? false)
+                return true;
         return false;
     }
     /// <summary>

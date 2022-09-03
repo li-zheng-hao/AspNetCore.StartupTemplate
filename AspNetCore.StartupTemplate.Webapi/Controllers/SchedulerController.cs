@@ -25,24 +25,35 @@ public class SchedulerController : ControllerBase
     private readonly ILogger<SchedulerController> _logger;
     private readonly IMapper _mapper;
     private readonly IFreeSql _freesql;
+    private readonly SchedulerManager _schedulerManager;
 
-    public SchedulerController(ILogger<SchedulerController> logger, IMapper mapper,IFreeSql freeSql)
+    public SchedulerController(ILogger<SchedulerController> logger, IMapper mapper,IFreeSql freeSql,SchedulerManager schedulerManager)
     {
         _logger = logger;
         _mapper = mapper;
         _freesql = freeSql;
+        _schedulerManager = schedulerManager;
     }
     
     
     
     /// <summary>
-    /// 注解式事务示例
+    /// 创建定时任务
     /// </summary>
-    [HttpPost("testtemp")]
-    public string TestTemp(string topic)
+    [HttpPost("CreateTask")]
+    public string CreateTask(string topic)
     {
-        var cs=new CustomScheduler(_freesql);
-        var (res,id)=cs.AddTask(topic);
+        
+        var (res,id)=_schedulerManager.AddTask(topic);
         return $"创建完成,结果：{res}-id：{id}";
+    }
+    /// <summary>
+    /// 创建定时任务2
+    /// </summary>
+    [HttpPost("CreateTask2")]
+    public string CreateTask2(string topic)
+    {
+        _schedulerManager.AddTask(topic);
+        return "";
     }
 }

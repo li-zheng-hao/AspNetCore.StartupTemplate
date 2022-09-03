@@ -3,6 +3,7 @@ using AspNetCore.CacheOutput.Redis.Extensions;
 using AspNetCore.StartUpTemplate.Auth;
 using AspNetCore.StartUpTemplate.Configuration;
 using AspNetCore.StartUpTemplate.Core;
+using AspNetCore.StartupTemplate.CustomScheduler;
 using AspNetCore.StartupTemplate.DbMigration;
 using AspNetCore.StartUpTemplate.Filter;
 // using AspNetCore.StartupTemplate.Logging.Log;
@@ -40,6 +41,7 @@ builder.Services
     .AddRedisCacheOutput(AppSettingsConstVars.RedisConn)
     .AddDtm()
     .AddDbMigration()
+    .AddScheduler()
     .AddMvc(options =>
     {
         // //实体验证
@@ -81,9 +83,9 @@ builder.Services.AddHealthChecks(); //健康检查
 var app = builder.Build();
 
 #region IOC工具类===============================
-
-var container = app.Services.GetAutofacRoot();
-IocHelper.container = container;
+// 全局的生命周期
+var globalLifetimeScope = app.Services.GetAutofacRoot();
+IocHelper.GlobalLifetimeScope = globalLifetimeScope;
 
 #endregion
 

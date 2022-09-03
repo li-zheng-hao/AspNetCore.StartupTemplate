@@ -6,28 +6,33 @@ namespace AspNetCore.StartupTemplate.CustomScheduler;
 
 class MyTaskHandler :  FreeScheduler.TaskHandlers.FreeSqlHandler
 {
-    public MyTaskHandler(IFreeSql fsql) : base(fsql) { }
+    private readonly ITaskManager _taskManager;
+
+    public MyTaskHandler(IFreeSql fsql, ITaskManager taskManager) : base(fsql)
+    {
+        _taskManager = taskManager;
+    }
     
     public override void OnExecuting(FreeScheduler.Scheduler scheduler, TaskInfo task)
     {
         base.OnExecuting(scheduler, task);
         Log.Information($"进入了 当前任务信息{ task.Id} {task.Topic}");
-        
-        // todo 通过反射获取当前程序集下面所有标记了SchedulerTask特性的方法，然后通过反射执行该方法
+        _taskManager.InvokeTask(task);
     }
 }
-public class CustomScheduler
+
+public class SchedulerManager
 {
-    public CustomScheduler(IFreeSql freeSql)
+    public SchedulerManager(IFreeSql freeSql,ITaskManager taskManager)
     {
         _freeSql = freeSql;
-        var tsk=new MyTaskHandler(freeSql);
+        var tsk=new MyTaskHandler(freeSql,taskManager);
         scheduler= new FreeScheduler.Scheduler(tsk);
     }
 
     FreeScheduler.Scheduler scheduler;
     private readonly IFreeSql _freeSql;
-    private readonly ILogger<CustomScheduler> _logger;
+    private readonly ILogger<SchedulerManager> _logger;
 
     /// <summary>
     /// 新增自定义时间任务
@@ -42,7 +47,6 @@ public class CustomScheduler
             Console.WriteLine($"新增任务-id:{id}-topic:{topic}-间隔:{intervalSecond}");
             return (true, id);
         }
-
         return (false, string.Empty);
     }
 }

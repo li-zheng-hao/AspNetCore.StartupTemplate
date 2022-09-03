@@ -21,6 +21,7 @@ public class TransactionalAttribute : Rougamo.MoAttribute
     IUnitOfWork _uow;
     public override void OnEntry(MethodContext context)
     {
+        Log.Debug("进入 Transactional事务切面");
         var uowManager = m_ServiceProvider.Value.GetService<UnitOfWorkManager>();
         _uow = uowManager.Begin(this.Propagation, this.m_IsolationLevel);
     }
@@ -48,5 +49,7 @@ public class TransactionalAttribute : Rougamo.MoAttribute
                 _uow.Dispose();
             }
         }
+        
+        Log.Debug("退出 Transactional事务切面");
     }
 }

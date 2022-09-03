@@ -9,13 +9,24 @@
 
     <ItemGroup>
       <PackageReference Include="FreeScheduler" Version="1.0.7" />
+      <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.2.0" />
+      <PackageReference Include="Rougamo.Fody" Version="1.2.0-alpha1" />
       <PackageReference Include="Serilog" Version="2.11.0" />
     </ItemGroup>
 
     <ItemGroup>
+      <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions">
+        <HintPath>C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\6.0.6\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+      </Reference>
       <Reference Include="Microsoft.Extensions.Logging.Abstractions">
         <HintPath>C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\6.0.6\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
       </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\AspNetCore.StartupTemplate.Core\AspNetCore.StartupTemplate.Core.csproj" />
+      <ProjectReference Include="..\AspNetCore.StartupTemplate.Model\AspNetCore.StartupTemplate.Model.csproj" />
+      <ProjectReference Include="..\AspNetCore.StartupTemplate.Utility\AspNetCore.StartupTemplate.Utility.csproj" />
     </ItemGroup>
 
 </Project>
