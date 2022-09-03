@@ -1,4 +1,5 @@
 using AspNetCore.StartUpTemplate.Configuration;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using StackExchange.Redis;
 
@@ -10,16 +11,16 @@ public class RedisManager : IRedisManager
 
     public string connString;
     private static ConnectionMultiplexer _db;
+    private static readonly object _lock = new object();
 
-    public RedisManager()
+    private readonly ILogger<RedisManager> _logger;
+    public RedisManager(ILogger<RedisManager> logger)
     {
         connString = AppSettingsConstVars.RedisConn;
+        _logger = logger;
     }
     
-    /// <summary>
-    /// 锁
-    /// </summary>
-    private static readonly object _lock = new object();
+   
 
     /// <summary>
     /// 获取redis连接
@@ -1095,7 +1096,7 @@ public class RedisManager : IRedisManager
     #region 错误重载
 
     /// <summary>
-    /// 写入Mongodb日志
+    /// 写入错误日志
     /// </summary>
     /// <param name="parameter"></param>
     /// <param name="ex"></param>
@@ -1104,7 +1105,7 @@ public class RedisManager : IRedisManager
     }
 
     /// <summary>
-    /// 写入Mongodb日志
+    /// 写入错误日志
     /// </summary>
     /// <param name="parameter"></param>
     /// <param name="ex"></param>

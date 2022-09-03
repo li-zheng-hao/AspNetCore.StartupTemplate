@@ -24,10 +24,13 @@ public class AppSettingsConstVars
     #endregion
 
     #region RabbitMQ================================================================================
-    public static readonly string MQConnStr = AppSettingsHelper.GetContent("RabbitMQ:ConnStr");
     public static readonly string MQDirectExchangeName = AppSettingsHelper.GetContent("RabbitMQ:Direct:ExchangeName");
     public static readonly string MQTopicExchangeName = AppSettingsHelper.GetContent("RabbitMQ:Topic:ExchangeName");
-
+    public static readonly string MQHostName = AppSettingsHelper.GetContent("RabbitMQ:HostName");
+    public static readonly int MQPort = AppSettingsHelper.GetContentInteger("RabbitMQ:Port");
+    public static readonly string MQVirtualHost = AppSettingsHelper.GetContent("RabbitMQ:VirtualHost");
+    public static readonly string MQUserName = AppSettingsHelper.GetContent("RabbitMQ:UserName");
+    public static readonly string MQPassword = AppSettingsHelper.GetContent("RabbitMQ:Password");
     #endregion
 
     #region redis================================================================================

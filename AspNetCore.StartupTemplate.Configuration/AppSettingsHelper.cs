@@ -37,5 +37,18 @@ public class AppSettingsHelper
 
         return "";
     }
+    /// <summary>
+    /// 封装要操作的字符
+    /// AppSettingsHelper.GetContent(new string[] { "JwtConfig", "SecretKey" });
+    /// </summary>
+    /// <param name="sections">节点配置</param>
+    /// <returns></returns>
+    public static int GetContentInteger(params string[] sections)
+    {
 
+        var str=GetContent(sections);
+        var convert=int.TryParse(str, out int result);
+        if (!convert) throw new Exception($"{string.Join(":", sections)} 配置读取失败,请检查配置文件");
+        return result;
+    }
 }

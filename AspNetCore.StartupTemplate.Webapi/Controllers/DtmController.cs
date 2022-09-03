@@ -4,6 +4,7 @@ using AspNetCore.StartUpTemplate.Auth;
 using AspNetCore.StartUpTemplate.Configuration;
 using AspNetCore.StartUpTemplate.Contract;
 using AspNetCore.StartUpTemplate.Core;
+using AspNetCore.StartUpTemplate.Filter;
 using AspNetCore.StartUpTemplate.IRepository;
 using AspNetCore.StartUpTemplate.IService;
 using AspNetCore.StartUpTemplate.Model;
@@ -71,12 +72,13 @@ public class DtmController : ControllerBase
 
         return Ok("成功处理");
     }
-    
+
     /// <summary>
     /// 转入分支
     /// dtm调用 不要自己调用
     /// </summary>
     [HttpPost("SagaInError")]
+    [SwaggerIgnore]
     public async Task<IActionResult> SagaInError([FromBody] TransRequest body)
     {
         try
@@ -106,6 +108,7 @@ public class DtmController : ControllerBase
     /// saga子分支失败直接回滚
     /// </summary>
     [HttpPost("SagaOut")]
+    [SwaggerIgnore]
     public async Task<IActionResult> SagaOut([FromBody] TransRequest body)
     {
         var branchBarrier = _barrierFactory.CreateBranchBarrier(Request.Query);
@@ -115,7 +118,7 @@ public class DtmController : ControllerBase
         {
             _logger?.LogWarning("用户: {0},转出 {1} 元---转出操作 屏障内", body.UserId, body.Number);
             _userService.ChangeMoney(body.UserId, body.Number);
-        
+
             await Task.CompletedTask;
         });
         return Ok(TransResponse.BuildSucceedResponse());
@@ -125,6 +128,7 @@ public class DtmController : ControllerBase
     /// dtm调用 不要自己调用
     /// </summary>
     [HttpPost("SagaInRevert")]
+    [SwaggerIgnore]
     public async Task<IActionResult> SagaInErrorRevert([FromBody] TransRequest body)
     {
         var branchBarrier = _barrierFactory.CreateBranchBarrier(Request.Query);
@@ -133,11 +137,11 @@ public class DtmController : ControllerBase
         await branchBarrier.Call(trans, async (tx) =>
         {
             _logger?.LogWarning("用户: {0},转出 {1} 元---转入操作回滚 屏障内", body.UserId, -1 * body.Number);
-            _userService.ChangeMoney(body.UserId,  -1 * body.Number);
+            _userService.ChangeMoney(body.UserId, -1 * body.Number);
             await Task.CompletedTask;
         });
-        
-        
+
+
         return Ok(TransResponse.BuildSucceedResponse());
     }
 
@@ -146,6 +150,7 @@ public class DtmController : ControllerBase
     /// saga子分支失败直接回滚
     /// </summary>
     [HttpPost("SagaOutRevert")]
+    [SwaggerIgnore]
     public async Task<IActionResult> SagaOutRevert([FromBody] TransRequest body)
     {
         var branchBarrier = _barrierFactory.CreateBranchBarrier(Request.Query);
@@ -154,10 +159,10 @@ public class DtmController : ControllerBase
         await branchBarrier.Call(trans, async (tx) =>
         {
             _logger?.LogWarning("用户: {0},转出 {1} 元---转出操作回滚 屏障内", body.UserId, 1 * body.Number);
-            _userService.ChangeMoney(body.UserId,  -1 * body.Number);
+            _userService.ChangeMoney(body.UserId, -1 * body.Number);
             await Task.CompletedTask;
         });
-        
+
         return Ok(TransResponse.BuildSucceedResponse());
     }
 }

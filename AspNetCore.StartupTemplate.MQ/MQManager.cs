@@ -12,7 +12,7 @@ namespace AspNetCore.StartupTemplate.MQ;
 /// IOC单例使用,注意事项：
 /// 1. 发布如果需要确认要在连接字符串上设置*publisherConfirms=true*
 /// </summary>
-public class MQManager:IDisposable 
+public class MQManager:IMQManager,IDisposable 
 {
     /// <summary>
     /// 生命周期与应用生命周期一致
@@ -20,18 +20,22 @@ public class MQManager:IDisposable
     private readonly IConnection _conn;
     public MQManager() {
         // todo 通过AppSettings获取
-        ConnectionFactory factory = new ConnectionFactory();
-        factory.UserName = "user";
-        factory.Password = "pwd";
-        factory.VirtualHost = "/";
-        factory.HostName = "hostname";
+        ConnectionFactory factory = new ConnectionFactory()
+        {
+            HostName = AppSettingsConstVars.MQHostName,//RabbitMQ地址
+            Port = AppSettingsConstVars.MQPort,//端口
+            VirtualHost =AppSettingsConstVars.MQVirtualHost,//RabbitMQ中要请求的VirtualHost名称
+            UserName =AppSettingsConstVars.MQUserName,//RabbitMQ用户
+            Password= AppSettingsConstVars.MQPassword//RabbitMQ用户密码
+             
+        };
         _conn = factory.CreateConnection();
         InitExchange();
         InitDurableQueue();
     }
     
 
-    public async Task PushMessageDirect<T>(MessageModel<T> msg, string routingkey) 
+    public void PushMessageDirect<T>(MessageModel<T> msg, string routingkey) 
     {
         var channel=_conn.CreateModel();
         var prop=channel.CreateBasicProperties();
