@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Reflection;
 using AspNetCore.StartUpTemplate.Configuration;
+using AspNetCore.StartupTemplate.DbMigration;
 using AspNetCore.StartUpTemplate.Filter;
 using AspNetCore.StartUpTemplate.Mapping;
 using Dtmcli;
@@ -174,5 +175,7 @@ namespace AspNetCore.StartUpTemplate.Webapi.Startup
             serviceCollection.AddAutoMapper(typeof(AutoMapperConfig));
             return serviceCollection;
         }
+        
+        
     }
 }

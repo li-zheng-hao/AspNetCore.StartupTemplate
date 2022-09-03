@@ -40,6 +40,7 @@
       <ProjectReference Include="..\AspNetCore.StartupTemplate.Auth\AspNetCore.StartupTemplate.Auth.csproj" />
       <ProjectReference Include="..\AspNetCore.StartupTemplate.Configuration\AspNetCore.StartupTemplate.Configuration.csproj" />
       <ProjectReference Include="..\AspNetCore.StartupTemplate.Core\AspNetCore.StartupTemplate.Core.csproj" />
+      <ProjectReference Include="..\AspNetCore.StartupTemplate.DbMigration\AspNetCore.StartupTemplate.DbMigration.csproj" />
       <ProjectReference Include="..\AspNetCore.StartupTemplate.Filter\AspNetCore.StartupTemplate.Filter.csproj" />
       <ProjectReference Include="..\AspNetCore.StartupTemplate.IRepository\AspNetCore.StartupTemplate.IRepository.csproj" />
       <ProjectReference Include="..\AspNetCore.StartupTemplate.IServices\AspNetCore.StartupTemplate.IServices.csproj" />

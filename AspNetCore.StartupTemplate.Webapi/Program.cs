@@ -3,6 +3,7 @@ using AspNetCore.CacheOutput.Redis.Extensions;
 using AspNetCore.StartUpTemplate.Auth;
 using AspNetCore.StartUpTemplate.Configuration;
 using AspNetCore.StartUpTemplate.Core;
+using AspNetCore.StartupTemplate.DbMigration;
 using AspNetCore.StartUpTemplate.Filter;
 // using AspNetCore.StartupTemplate.Logging.Log;
 using AspNetCore.StartUpTemplate.Mapping;
@@ -13,12 +14,6 @@ using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Controllers;
-using Microsoft.Extensions.DependencyInjection.Extensions;
-using Microsoft.OpenApi.Models;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -44,6 +39,7 @@ builder.Services
     .AddRedisManager()
     .AddRedisCacheOutput(AppSettingsConstVars.RedisConn)
     .AddDtm()
+    .AddDbMigration()
     .AddMvc(options =>
     {
         // //实体验证
@@ -91,12 +87,28 @@ IocHelper.container = container;
 
 #endregion
 
+#region 启动项目时执行数据库迁移
+
+// 生产环境需要执行，先用freesql生成差异化迁移脚本后放在db/migrations目录下在发布到生产环境执行
+// 开发环境测试环境(同一个数据库)通过freesql自动同步
+if(app.Environment.IsDevelopment()==false){
+    using (var scope = app.Services.CreateScope())
+    {
+        scope.ServiceProvider.MigrateDatabase();
+    }
+}
+
+
+
+#endregion
+
+
 // Configure the HTTP request pipeline.
-// if (app.Environment.IsDevelopment())
-// {
-app.UseSwagger();
-app.UseSwaggerUI();
-// }
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
 
 #region Spring事务管理器中间件
 

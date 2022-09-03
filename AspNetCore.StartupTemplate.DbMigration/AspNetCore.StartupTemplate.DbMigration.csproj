@@ -6,4 +6,30 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Evolve" Version="3.1.0-alpha7" />
+      <PackageReference Include="FreeSql" Version="3.2.666" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions">
+        <HintPath>C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\6.0.6\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+      </Reference>
+      <Reference Include="Microsoft.Extensions.Logging.Abstractions">
+        <HintPath>C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\6.0.6\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+    <ItemGroup>
+        <Content Include="db\migrations\**\*.sql">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+    </ItemGroup>
+    <ItemGroup>
+      <Folder Include="db" />
+    </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\AspNetCore.StartupTemplate.Model\AspNetCore.StartupTemplate.Model.csproj" />
+      <ProjectReference Include="..\AspNetCore.StartupTemplate.Utility\AspNetCore.StartupTemplate.Utility.csproj" />
+    </ItemGroup>
+
 </Project>
