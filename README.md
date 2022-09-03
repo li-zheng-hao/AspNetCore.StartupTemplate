@@ -1,7 +1,7 @@
 # 语言
 
-- English [Readme-En](./README-EN.md)
-- 中文 [ReadMe-中文](./README.md)
+- English [Readme-En](https://github.com/li-zheng-hao/AspNetCore.StartupTemplate/blob/main/README-EN.md)
+- 中文 [ReadMe-中文](https://github.com/li-zheng-hao/AspNetCore.StartupTemplate/blob/main/README.md)
 
 # 介绍
 
