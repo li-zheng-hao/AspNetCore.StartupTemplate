@@ -14,6 +14,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AspNetCore.StartUpTemplate.Webapi.Controllers;
 
+/// <summary>
+/// 通用示例
+/// </summary>
 [ApiController]
 [Route("[controller]")]
 public class UserController : ControllerBase

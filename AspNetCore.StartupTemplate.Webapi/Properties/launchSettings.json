@@ -19,14 +19,14 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "Webapi-UAT": {
+    "Webapi-Test": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
       "launchUrl": "swagger",
       "applicationUrl": "http://localhost:5000;https://localhost:5001",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "UAT"
+        "ASPNETCORE_ENVIRONMENT": "Testing"
       }
     },
     "Webapi-PROD": {
