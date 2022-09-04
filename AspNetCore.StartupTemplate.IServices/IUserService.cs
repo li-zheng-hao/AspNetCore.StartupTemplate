@@ -9,4 +9,10 @@ public interface IUserService
  void ChangeMoney(int userid,int number);
  void ChangeMoneyError(int userid,int number);
  void InsertUserBatch();
+
+ void UpdateBatch();
+
+ void QueryAll();
+
+ void PageQuery(int number, int size);
 }
