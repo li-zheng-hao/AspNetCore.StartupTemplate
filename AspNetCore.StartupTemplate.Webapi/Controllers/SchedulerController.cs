@@ -41,19 +41,11 @@ public class SchedulerController : ControllerBase
     /// 创建定时任务
     /// </summary>
     [HttpPost("CreateTask")]
-    public string CreateTask(string topic)
+    public string CreateTask(string topic,int interval=5)
     {
         
-        var (res,id)=_schedulerManager.AddTask(topic);
+        var (res,id)=_schedulerManager.AddTask(topic,interval);
         return $"创建完成,结果：{res}-id：{id}";
     }
-    /// <summary>
-    /// 创建定时任务2
-    /// </summary>
-    [HttpPost("CreateTask2")]
-    public string CreateTask2(string topic)
-    {
-        _schedulerManager.AddTask(topic);
-        return "";
-    }
+   
 }

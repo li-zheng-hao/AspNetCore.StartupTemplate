@@ -19,7 +19,7 @@ namespace AspNetCore.StartUpTemplate.Webapi.Controllers;
 /// 通用示例
 /// </summary>
 [ApiController]
-[Route("[controller]")]
+[Route("[controller]/[action]")]
 public class UserController : ControllerBase
 {
     private readonly ILogger<UserController> _logger;
@@ -45,7 +45,7 @@ public class UserController : ControllerBase
     [Description("缓存+权限验证示例")]
     [CacheOutput(ClientTimeSpan = 100,ServerTimeSpan = 100)]
     [NeedAuth]
-    [HttpGet("get")]
+    [HttpGet]
     public string  Get(string id)
     {
         return id;
@@ -55,7 +55,7 @@ public class UserController : ControllerBase
     /// </summary>
     /// <returns></returns>
     [InvalidateCacheOutput("*")] 
-    [HttpGet("tokentest")]
+    [HttpGet]
     public string TokenTest()
     {
         var tm = new UserData() { Id = "123", UserName = "lizhenghao" };
@@ -68,7 +68,7 @@ public class UserController : ControllerBase
     /// 获取雪花ID
     /// </summary>
     /// <returns></returns>
-    [HttpGet("GetSnowFlake")]
+    [HttpGet]
     public string GetSnowFlake()
     {
         return _serviceProvider.GetService<ISnowflakeIdMaker>().NextId().ToString();
@@ -76,10 +76,42 @@ public class UserController : ControllerBase
     /// <summary>
     /// 注解式事务示例
     /// </summary>
-    [HttpGet("transsample")]
+    [HttpGet]
     public void TransSample()
     {
         _userService.FuncA();
     }
     
+    /// <summary>
+    /// 批量插入1w
+    /// </summary>
+    [HttpGet]
+    public void BatchInsert()
+    {
+        _userService.InsertUserBatch();
+    }
+    /// <summary>
+    /// 批量更新
+    /// </summary>
+    [HttpGet]
+    public void BatchUpdate()
+    {
+        _userService.UpdateBatch();
+    }
+    /// <summary>
+    /// 全表查询
+    /// </summary>
+    [HttpGet]
+    public void BatchQuery()
+    {
+        _userService.QueryAll();
+    }
+    /// <summary>
+    /// 分页查询
+    /// </summary>
+    [HttpGet]
+    public void PageQuery(int number=100,int size=100)
+    {
+        _userService.PageQuery(number,size);
+    }
 }

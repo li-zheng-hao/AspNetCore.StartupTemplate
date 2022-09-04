@@ -43,7 +43,7 @@ namespace AspNetCore.StartUpTemplate.Webapi.Startup
                     .UseNoneCommandParameter(true)
                     .UseMonitorCommand(cmd =>
                         {
-                            Trace.WriteLine(cmd.CommandText + ";");
+                            Trace.WriteLine($"freesql监视命令 {cmd.CommandText}");
                         }
                     )
                     .Build()
@@ -57,6 +57,7 @@ namespace AspNetCore.StartUpTemplate.Webapi.Startup
                     {
                         //记录日志
                         //发送短信给负责人
+                        Log.Logger.Warning($"慢sql 耗时{e.ElapsedMilliseconds}毫秒 语句{e.Sql}");
                     }
                 };
 

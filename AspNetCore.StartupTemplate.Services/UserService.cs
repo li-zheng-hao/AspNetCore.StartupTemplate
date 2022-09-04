@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using AspNetCore.StartUpTemplate.Core;
 using AspNetCore.StartUpTemplate.IRepository;
 using AspNetCore.StartUpTemplate.IService;
@@ -54,7 +55,7 @@ public class UserService:IUserService
         _dal.Update(u);
         throw new Exception("抛出异常");
     }
-
+[Transactional]
     public void InsertUserBatch()
     {
         List<Users> us = new List<Users>();
@@ -69,8 +70,32 @@ public class UserService:IUserService
             u.Money = 444;
             us.Add(u);
         }
-        
+
         _dal.Insert(us);
+    }
+
+    public void UpdateBatch()
+    {
+        var res=_dal.Orm.Update<Users>().Where(it => true).Set(it =>it.Address, "modify address2").ExecuteAffrows();
+        _logger.LogInformation($"修改了{res}行");
+    }
+
+    public void QueryAll()
+    {
+        var time = new Stopwatch();
+        time.Restart();
+        var res = _dal.Where(it=>true).ToList();
+        time.Stop();
+        _logger.LogInformation($"全表查询{res.Count}个结果,时间{time.Elapsed}");
+    }
+
+    public void PageQuery(int number, int size)
+    {
+        var time = new Stopwatch();
+        time.Restart();
+        var res = _dal.Where(it=>true).Page(number,size).ToList();
+        time.Stop();
+        _logger.LogInformation($"分页查询{res.Count}个结果,时间{time.Elapsed}");
     }
 
 
