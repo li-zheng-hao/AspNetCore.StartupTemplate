@@ -98,6 +98,18 @@ public class UserService:IUserService
         _logger.LogInformation($"分页查询{res.Count}个结果,时间{time.Elapsed}");
     }
 
+    public void JoinQuery()
+    {
+        var res=_dal.Orm.Select<Users, Orders>()
+            .InnerJoin((a, b) => a.Id == b.UserId)
+            .ToList((a,b)=>new{a,b});
+        Orders orders = new Orders();
+        orders.Id = _snowflakeIdMaker.NextId();
+        orders.UserId = 100;
+        _dal.Orm.Insert(orders).ExecuteAffrows();
+        _logger.LogInformation($"查询到了{res.Count}");
+    }
+
 
     [Transactional(Propagation = Propagation.Nested)]
     public void FuncB()

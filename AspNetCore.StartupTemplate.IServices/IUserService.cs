@@ -15,4 +15,5 @@ public interface IUserService
  void QueryAll();
 
  void PageQuery(int number, int size);
+ void JoinQuery();
 }

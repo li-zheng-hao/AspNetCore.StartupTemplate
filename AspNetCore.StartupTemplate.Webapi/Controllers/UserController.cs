@@ -114,4 +114,13 @@ public class UserController : ControllerBase
     {
         _userService.PageQuery(number,size);
     }
+    
+    /// <summary>
+    /// 连表查询
+    /// </summary>
+    [HttpGet]
+    public void JoinQuery()
+    {
+        _userService.JoinQuery();
+    }
 }

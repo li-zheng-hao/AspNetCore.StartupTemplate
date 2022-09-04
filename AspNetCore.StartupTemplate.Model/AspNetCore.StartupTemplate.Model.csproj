@@ -7,6 +7,10 @@
         <RootNamespace>AspNetCore.StartUpTemplate.Model</RootNamespace>
     </PropertyGroup>
 
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+      <DocumentationFile>bin\Debug\AspNetCore.StartupTemplate.Model.xml</DocumentationFile>
+    </PropertyGroup>
+
     <ItemGroup>
       <PackageReference Include="FreeSql" Version="3.2.666" />
     </ItemGroup>
