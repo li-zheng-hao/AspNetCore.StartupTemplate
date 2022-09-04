@@ -54,6 +54,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plugins", "Plugins", "{D6EF
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore.StartupTemplate.CutstomScheduler", "AspNetCore.StartupTemplate.CutstomScheduler\AspNetCore.StartupTemplate.CutstomScheduler.csproj", "{D6109C14-A965-4FE1-9381-7628A02770C9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore.StartupTemplate.CacheAsync", "AspNetCore.StartupTemplate.CacheAsync\AspNetCore.StartupTemplate.CacheAsync.csproj", "{DC78CB3F-6E1D-4287-B497-1BB7BBC5138C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -140,6 +142,10 @@ Global
 		{D6109C14-A965-4FE1-9381-7628A02770C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D6109C14-A965-4FE1-9381-7628A02770C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D6109C14-A965-4FE1-9381-7628A02770C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC78CB3F-6E1D-4287-B497-1BB7BBC5138C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC78CB3F-6E1D-4287-B497-1BB7BBC5138C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC78CB3F-6E1D-4287-B497-1BB7BBC5138C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC78CB3F-6E1D-4287-B497-1BB7BBC5138C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{0D71708E-C037-4B05-A12F-A6CF2DA2B98F} = {8BB20A97-2C3A-4E85-B74A-7BDB2BB70B46}
@@ -162,5 +168,6 @@ Global
 		{A117C59E-A54F-41A0-89C3-414E58F59DB2} = {D6EF715A-2EA5-484D-98A1-CC3211F0779B}
 		{2CF58D72-F9DE-47B5-9CC0-DDF2AE2E5AF4} = {D6EF715A-2EA5-484D-98A1-CC3211F0779B}
 		{D6109C14-A965-4FE1-9381-7628A02770C9} = {D6EF715A-2EA5-484D-98A1-CC3211F0779B}
+		{DC78CB3F-6E1D-4287-B497-1BB7BBC5138C} = {D6EF715A-2EA5-484D-98A1-CC3211F0779B}
 	EndGlobalSection
 EndGlobal
