@@ -3,6 +3,7 @@ using AspNetCore.StartUpTemplate.IService;
 using AspNetCore.StartUpTemplate.Model;
 using AspNetCore.StartupTemplate.Snowflake.SnowFlake;
 using FreeSql;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
 namespace AspNetCore.StartUpTemplate.Services;
@@ -10,18 +11,20 @@ public class TestService:ITestService
 {
     private readonly IBaseRepository<Test> _dal;
     private readonly ILogger<TestService> _logger;
+    private readonly IServiceProvider _serviceProvider;
 
-    public TestService(ILogger<TestService> logger,IBaseRepository<Test>  testRepository)
+    public TestService(ILogger<TestService> logger,IBaseRepository<Test>  testRepository,IServiceProvider serviceProvider)
     {
         _logger = logger;
         _dal = testRepository;
+        _serviceProvider = serviceProvider;
     }
   
     [Transactional]
     public void TestNestedTransError()
     {
         Test test = new Test();
-        test.Id = IocHelper.Resolve<ISnowflakeIdMaker>().NextId();
+        test.Id = _serviceProvider.GetService<ISnowflakeIdMaker>().NextId();
         test.UserName = "FuncB" + Path.GetRandomFileName().ToLower();
         _dal.Insert(test);
         throw new Exception("11");
@@ -35,7 +38,7 @@ public class TestService:ITestService
     public void TestNestedTransOk()
     {
         Users user = new Users();
-        user.Id = IocHelper.Resolve<ISnowflakeIdMaker>().NextId();
+        user.Id = _serviceProvider.GetService<ISnowflakeIdMaker>().NextId();
         user.UserName = "FuncB" + Path.GetRandomFileName().ToLower();
         _dal.Orm.Insert(user);
     }

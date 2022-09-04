@@ -9,6 +9,7 @@ public class AutofacModuleRegister : Autofac.Module
 {
     protected override void Load(ContainerBuilder builder)
     {
+        
         Assembly[] assemblies = Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory, "AspNetCore.StartupTemplate.*.dll").Select(Assembly.LoadFrom).ToArray();
         
         #region 带有接口层的服务注入

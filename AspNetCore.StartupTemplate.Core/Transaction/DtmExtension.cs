@@ -2,6 +2,7 @@ using System.Data;
 using System.Data.Common;
 using AspNetCore.StartUpTemplate.Configuration;
 using AspNetCore.StartUpTemplate.Core;
+using Autofac;
 using Dapper;
 using DtmCommon;
 using Serilog;
@@ -17,7 +18,8 @@ public static class DtmBarrierExtension
     {
         barrier.BarrierID = barrier.BarrierID + 1;
         var bid = barrier.BarrierID.ToString().PadLeft(2, '0');
-        var dbutils = IocHelper.Resolve<DbUtils>();
+        using var scope=IocHelper.GetNewILifeTimeScope();
+        var dbutils = scope.Resolve<DbUtils>();
         try
         {
             var originOp = Constant.Barrier.OpDict.TryGetValue(barrier.Op, out var ot) ? ot : string.Empty;
@@ -100,7 +102,8 @@ public static class DtmDbUtilsExtension
     {
         if (string.IsNullOrWhiteSpace(op)) return (0, null);
         // todo 这里要检查是否是注册的单例或scope
-        var _specialDelegate = IocHelper.Resolve<DbSpecialDelegate>();
+        using var scope=IocHelper.GetNewILifeTimeScope();
+        var _specialDelegate =scope.Resolve<DbSpecialDelegate>();
         try
         {
             var str = string.Concat(AppSettingsConstVars.DtmBarrierTableName,

@@ -54,14 +54,19 @@ public class TaskManager:ITaskManager
             // 注意，这里必须每个方法开一个生命周期范围，因为不是从管道进来的，不会创建子生命周期范围
             using (var scope = _sp.CreateScope())
             {
-                using var classIntance= (IDisposable) scope.ServiceProvider.GetService(task.Item2.DeclaringType);
+                var classIntance= (IDisposable) scope.ServiceProvider.GetService(task.Item2.DeclaringType);
                 TransactionalAttribute.SetServiceProvider(_sp);
                 task.Item2.Invoke(classIntance,new object?[]{ taskInfo});
             }
            
         }
+        
         return true;
     }
+
+ 
+
+    
 
     public bool StopTask(string topic)
     {

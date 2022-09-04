@@ -8,4 +8,5 @@ public interface IUserService
 
  void ChangeMoney(int userid,int number);
  void ChangeMoneyError(int userid,int number);
+ void InsertUserBatch();
 }

@@ -175,7 +175,10 @@ namespace AspNetCore.StartUpTemplate.Webapi.Startup
             serviceCollection.AddAutoMapper(typeof(AutoMapperConfig));
             return serviceCollection;
         }
-        
-        
+
     }
+
+ 
+
+   
 }

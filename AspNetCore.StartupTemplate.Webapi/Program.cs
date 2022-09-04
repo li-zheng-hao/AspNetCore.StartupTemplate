@@ -57,10 +57,15 @@ builder.Services.AddControllers();
 
 #region IOC配置============================
 
-builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory()).ConfigureContainer<ContainerBuilder>((c) =>
-{
-    c.RegisterModule(new AutofacModuleRegister());
-});
+builder.Host
+    .UseServiceProviderFactory(new AutofacServiceProviderFactory())
+    .ConfigureContainer<ContainerBuilder>((c) =>
+    { 
+        c.RegisterModule(new AutofacModuleRegister());
+    });
+
+// builder.Host.UseDefaultServiceProvider(options =>
+    // options.ValidateScopes = true);
 
 #endregion
 
@@ -80,12 +85,15 @@ builder.Services.AddHealthChecks(); //健康检查
 
 #endregion
 
+
+
 var app = builder.Build();
+
 
 #region IOC工具类===============================
 // 全局的生命周期
 var globalLifetimeScope = app.Services.GetAutofacRoot();
-IocHelper.GlobalLifetimeScope = globalLifetimeScope;
+IocHelper.SetGlobalLifeTimeScope( globalLifetimeScope);
 
 #endregion
 

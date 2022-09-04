@@ -7,6 +7,7 @@ using AspNetCore.StartUpTemplate.Core;
 using AspNetCore.StartUpTemplate.IRepository;
 using AspNetCore.StartUpTemplate.IService;
 using AspNetCore.StartupTemplate.Snowflake.SnowFlake;
+using AspNetCore.StartUpTemplate.Webapi.Startup;
 using AutoMapper;
 using Dtmcli;
 using FreeSql;
@@ -24,12 +25,15 @@ public class UserController : ControllerBase
     private readonly ILogger<UserController> _logger;
     private readonly IMapper _mapper;
     private readonly IUserService _userService;
+    private readonly IServiceProvider _serviceProvider;
 
-    public UserController(ILogger<UserController> logger, IMapper mapper, IUserService us)
+    public UserController(ILogger<UserController> logger, IMapper mapper, IUserService us,IServiceProvider serviceProvider)
     {
         _logger = logger;
         _mapper = mapper;
         _userService = us;
+        _serviceProvider = serviceProvider;
+        
     }
     
     
@@ -67,7 +71,7 @@ public class UserController : ControllerBase
     [HttpGet("GetSnowFlake")]
     public string GetSnowFlake()
     {
-        return IocHelper.Resolve<ISnowflakeIdMaker>().NextId().ToString();
+        return _serviceProvider.GetService<ISnowflakeIdMaker>().NextId().ToString();
     }
     /// <summary>
     /// 注解式事务示例
@@ -76,6 +80,6 @@ public class UserController : ControllerBase
     public void TransSample()
     {
         _userService.FuncA();
-        
     }
+    
 }
