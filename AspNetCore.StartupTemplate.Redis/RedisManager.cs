@@ -1,4 +1,4 @@
-using AspNetCore.StartUpTemplate.Configuration;
+﻿using AspNetCore.StartUpTemplate.Configuration;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using StackExchange.Redis;
@@ -115,6 +115,48 @@ public class RedisManager : IRedisManager
     #endregion
 
     #region Key/Value
+    /// <summary>
+    /// 加锁 todo 这里应该做成过期时间比较短并且能自动续期的方式 目前先用这种简单的方式
+    /// </summary>
+    /// <param name="key"></param>
+    /// <param name="expire"></param>
+    /// <returns></returns>
+    public bool Lock(string key, int expire=300)
+    {
+        try
+        {
+            var database = GetConnectionDb();
+            var retryMaxTime=DateTime.Now.AddSeconds(expire);
+            
+            while (DateTime.Now<retryMaxTime)
+            {
+                var res=database.LockTake(new RedisKey(key), new RedisValue(key),TimeSpan.FromSeconds(expire));
+                if (res == false)
+                {
+                    Thread.Sleep(100);
+                }
+                else
+                {
+                    return true;
+                }
+            }
+            return false;
+           
+        }
+        catch (Exception e)
+        {
+            WriteSqlErrorLog(JsonConvert.SerializeObject(e), e);
+
+        }
+        return true;
+    }
+    
+    public bool ReleaseLock(string key)
+    {
+        var database = GetConnectionDb();
+        var res=database.LockRelease(new RedisKey(key), new RedisValue(key));
+        return res;
+    }
 
     /// <summary>
     /// 设置Key值不设置时间
@@ -123,6 +165,7 @@ public class RedisManager : IRedisManager
     /// <param name="value"></param>
     public bool Set<T>(string key, T t)
     {
+        
         var res = Do(database =>
         {
             var isSuccess = database.StringSet(key, ConvertJson(t));

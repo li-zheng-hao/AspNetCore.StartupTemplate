@@ -12,7 +12,9 @@ public interface IUserService
 
  void UpdateBatch();
 
- void QueryAll();
+ List<Users> QueryAll();
+
+ Users Query(string key);
 
  void PageQuery(int number, int size);
  void JoinQuery();

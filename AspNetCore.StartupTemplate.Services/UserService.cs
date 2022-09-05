@@ -1,8 +1,10 @@
 using System.Diagnostics;
 using AspNetCore.StartUpTemplate.Core;
+using AspNetCore.StartUpTemplate.Core.Cache;
 using AspNetCore.StartUpTemplate.IRepository;
 using AspNetCore.StartUpTemplate.IService;
 using AspNetCore.StartUpTemplate.Model;
+using AspNetCore.StartupTemplate.Redis;
 using AspNetCore.StartupTemplate.Snowflake.SnowFlake;
 using Autofac.Extras.DynamicProxy;
 using FreeSql;
@@ -15,7 +17,6 @@ public class UserService:IUserService
     private readonly ILogger<UserService> _logger;
     private readonly IBaseRepository<Users> _dal;
     private readonly ISnowflakeIdMaker _snowflakeIdMaker;
-
     public UserService(ILogger<UserService> logger,IBaseRepository<Users> userRepository,ITestService testService
     ,ISnowflakeIdMaker snowflakeIdMaker) 
     {
@@ -79,14 +80,20 @@ public class UserService:IUserService
         var res=_dal.Orm.Update<Users>().Where(it => true).Set(it =>it.Address, "modify address2").ExecuteAffrows();
         _logger.LogInformation($"修改了{res}行");
     }
-
-    public void QueryAll()
+    public List<Users> QueryAll()
     {
         var time = new Stopwatch();
         time.Restart();
         var res = _dal.Where(it=>true).ToList();
         time.Stop();
         _logger.LogInformation($"全表查询{res.Count}个结果,时间{time.Elapsed}");
+        return res;
+    }
+    [NeedCache]
+    public Users Query(string key)
+    {
+        var res = _dal.Where(it=>it.UserName==key).First();
+        return res;
     }
 
     public void PageQuery(int number, int size)
@@ -121,4 +128,6 @@ public class UserService:IUserService
         throw new Exception("1");
 
     }
+
+ 
 }

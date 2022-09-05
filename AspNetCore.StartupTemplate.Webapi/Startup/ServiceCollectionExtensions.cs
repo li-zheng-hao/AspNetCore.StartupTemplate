@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Reflection;
 using AspNetCore.StartUpTemplate.Configuration;
+using AspNetCore.StartUpTemplate.Core.Cache;
 using AspNetCore.StartupTemplate.DbMigration;
 using AspNetCore.StartUpTemplate.Filter;
 using AspNetCore.StartUpTemplate.Mapping;
@@ -174,6 +175,8 @@ namespace AspNetCore.StartUpTemplate.Webapi.Startup
         public static IServiceCollection AddAutoMapper(this IServiceCollection serviceCollection)
         {
             serviceCollection.AddAutoMapper(typeof(AutoMapperConfig));
+            serviceCollection.AddTransient<NeedCacheAttribute>();
+
             return serviceCollection;
         }
 

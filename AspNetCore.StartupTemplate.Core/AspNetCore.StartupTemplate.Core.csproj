@@ -24,6 +24,8 @@
 
     <ItemGroup>
       <ProjectReference Include="..\AspNetCore.StartupTemplate.Configuration\AspNetCore.StartupTemplate.Configuration.csproj" />
+      <ProjectReference Include="..\AspNetCore.StartupTemplate.Redis\AspNetCore.StartupTemplate.Redis.csproj" />
+      <ProjectReference Include="..\AspNetCore.StartupTemplate.Utility\AspNetCore.StartupTemplate.Utility.csproj" />
     </ItemGroup>
 
 </Project>

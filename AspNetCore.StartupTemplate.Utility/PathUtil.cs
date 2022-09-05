@@ -1,6 +1,6 @@
 namespace AspNetCore.StartUpTemplate.Utility;
 
-public static class PathHelper
+public static class PathUtil
 {
     /// <summary>
     /// 获取执行程序所在目录 可以获取到/debug级别目录

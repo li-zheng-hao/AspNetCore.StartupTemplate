@@ -28,12 +28,12 @@ public class DbMigation
         var user=_fsql.Select<Users>().ToOne();
         if (conn.Value.State != ConnectionState.Open)
             throw new Exception("数据库连接未打开");
-        _logger.LogWarning(Path.Combine( PathHelper.GetExecuteDir(),"db/migrations"));
+        _logger.LogWarning(Path.Combine( PathUtil.GetExecuteDir(),"db/migrations"));
         try
         {
             var evolve = new Evolve(conn.Value, msg => _logger.LogInformation(msg))
             {
-                Locations = new[] { Path.Combine( PathHelper.GetExecuteDir(),"db/migrations") },
+                Locations = new[] { Path.Combine( PathUtil.GetExecuteDir(),"db/migrations") },
                 IsEraseDisabled = true,
             };
             evolve.Migrate();

@@ -3,7 +3,7 @@ using System.Net.Sockets;
 
 namespace AspNetCore.StartUpTemplate.Utility;
 
-public static class NetworkHelper
+public static class NetworkUtil
 {
     public static string GetAddressIpByDns()
     {
