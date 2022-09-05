@@ -121,7 +121,7 @@ public class RedisManager : IRedisManager
     /// <param name="key"></param>
     /// <param name="expire"></param>
     /// <returns></returns>
-    public bool Lock(string key, int expire=300)
+    public bool Lock(string lockKey,string userUniqueToken, int expire=10)
     {
         try
         {
@@ -130,7 +130,7 @@ public class RedisManager : IRedisManager
             
             while (DateTime.Now<retryMaxTime)
             {
-                var res=database.LockTake(new RedisKey(key), new RedisValue(key),TimeSpan.FromSeconds(expire));
+                var res=database.LockTake(new RedisKey(lockKey), new RedisValue(userUniqueToken),TimeSpan.FromSeconds(expire));
                 if (res == false)
                 {
                     Thread.Sleep(100);
@@ -150,11 +150,27 @@ public class RedisManager : IRedisManager
         }
         return true;
     }
-    
-    public bool ReleaseLock(string key)
+
+  
+
+    public bool ReleaseLock(string key,string value)
     {
         var database = GetConnectionDb();
-        var res=database.LockRelease(new RedisKey(key), new RedisValue(key));
+        var res=database.LockRelease(new RedisKey(key), new RedisValue(value));
+        return res;
+    }
+
+    public bool RenewLock(string key, string value, int sec = 10)
+    {
+        var database = GetConnectionDb();
+        var res=database.LockExtend(new RedisKey(key),new RedisValue(value),TimeSpan.FromSeconds(sec));
+        return res;
+    }
+
+    public string QueryLock(string lockKey)
+    {
+        var database = GetConnectionDb();
+        var res=database.LockQuery(new RedisKey(lockKey));
         return res;
     }
 

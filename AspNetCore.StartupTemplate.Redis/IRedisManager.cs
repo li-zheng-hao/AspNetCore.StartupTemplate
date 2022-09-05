@@ -6,8 +6,10 @@ namespace AspNetCore.StartupTemplate.Redis;
 
 public interface IRedisManager
 {
-    bool Lock(string key,int expire=300);
-    bool ReleaseLock(string key);
+    bool Lock(string key,string userToken,int expire=10);
+    bool ReleaseLock(string key,string value);
+    bool RenewLock(string key, string value, int sec = 10);
+    string QueryLock(string lockKey);
     bool Set<T>(string key, T t);
     Task<bool> SetAsync<T>(string key, T t);
 

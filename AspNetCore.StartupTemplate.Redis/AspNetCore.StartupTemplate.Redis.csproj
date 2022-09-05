@@ -14,6 +14,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\AspNetCore.StartupTemplate.Configuration\AspNetCore.StartupTemplate.Configuration.csproj" />
+      <ProjectReference Include="..\AspNetCore.StartupTemplate.Snowflake\AspNetCore.StartupTemplate.Snowflake.csproj" />
     </ItemGroup>
 
     <ItemGroup>

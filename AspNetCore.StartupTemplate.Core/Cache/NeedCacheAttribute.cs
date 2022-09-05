@@ -48,14 +48,14 @@ public class NeedCacheAttribute:Rougamo.MoAttribute
         else
         {
             // 并发量大需要处理缓存击穿问题 用互斥锁
-            _RedisManager.Lock("Lock:"+CacheKey, 300);
+            // _RedisManager.Lock("Lock:"+CacheKey, 10); todo 改为新的分布式锁
             // 获取锁后再判断一次，如果已经有了就不用去数据库再读了
             if (_RedisManager.Exists(CacheKey))
             {
                 var resStr=_RedisManager.Get(CacheKey);
                 var realResult=JsonConvert.DeserializeObject(resStr, context.RealReturnType);
                 context.ReplaceReturnValue(this, realResult);
-                _RedisManager.ReleaseLock("Lock:"+CacheKey);
+                // _RedisManager.ReleaseLock("Lock:"+CacheKey); todo 改为新的分布式锁
             }
         }
     }
@@ -74,7 +74,7 @@ public class NeedCacheAttribute:Rougamo.MoAttribute
                 ,TimeSpan.FromSeconds(new Random().Next((int)Math.Floor(AppSettingsConstVars.RedisExpireSec*0.8)
                     ,(int)Math.Ceiling(AppSettingsConstVars.RedisExpireSec*1.2))));
         }
-        _RedisManager.ReleaseLock("Lock:"+CacheKey);
+        // _RedisManager.ReleaseLock("Lock:"+CacheKey); todo 改为新的分布式锁
 
        
     }
