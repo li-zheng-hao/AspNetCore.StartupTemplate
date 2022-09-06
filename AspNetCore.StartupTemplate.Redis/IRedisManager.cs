@@ -1,47 +1,28 @@
-﻿using AspNetCore.StartUpTemplate.Configuration;
-using Newtonsoft.Json;
+﻿using RedLockNet;
 using StackExchange.Redis;
 
 namespace AspNetCore.StartupTemplate.Redis;
 
 public interface IRedisManager
 {
-    bool Lock(string key,string userToken,int expire=10);
-    bool ReleaseLock(string key,string value);
-    bool RenewLock(string key, string value, int sec = 10);
-    string QueryLock(string lockKey);
+    Task<IRedLock> CreateLockAsync(string key, int expireSec = 10, int waitSec = 10, int retrySec = 1);
+    IRedLock CreateLock(string key, int expireSec = 10, int waitSec = 10, int retrySec = 1);
     bool Set<T>(string key, T t);
     Task<bool> SetAsync<T>(string key, T t);
-
     bool Set(string key, string value);
-
-
     Task<bool> SetAsync(string key, string value);
-
 
     T Get<T>(string key);
 
-
     Task<T> GetAsync<T>(string key);
 
-
     string Get(string key);
-
-
     Task<string> GetAsync(string key);
-
     List<T> GetList<T>(IEnumerable<string> keyList);
-
-
     Task<List<T>> GetListAsync<T>(IEnumerable<string> keyList);
 
-
     bool Set<T>(string key, T t, TimeSpan timeSpan);
-
-
     Task<bool> SetAsync<T>(string key, T t, TimeSpan timeSpan);
-
-
     bool Exists(string key);
 
 
@@ -122,6 +103,8 @@ public interface IRedisManager
 
     bool Remove(string key);
 
+    bool RemoveMultiKey(string pattern);
+    
     /// <summary>
     /// 移除指定数据缓存
     /// </summary>
@@ -129,9 +112,9 @@ public interface IRedisManager
     Task<bool> RemoveAsync(string key);
 
 
-  
+
     void WriteSqlErrorLog(string parameter, Exception ex);
 
-   
+
     void WriteSqlErrorLog(Exception ex);
 }

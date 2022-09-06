@@ -16,6 +16,6 @@ public interface IUserService
 
  Users Query(string key);
 
- void PageQuery(int number, int size);
+ List<Users> PageQuery(int number, int size);
  void JoinQuery();
 }

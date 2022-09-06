@@ -1,11 +1,11 @@
-using System.Data;
-using System.Data.Common;
-using AspNetCore.StartUpTemplate.Configuration;
+﻿using AspNetCore.StartUpTemplate.Configuration;
 using AspNetCore.StartUpTemplate.Core;
 using Autofac;
 using Dapper;
 using DtmCommon;
 using Serilog;
+using System.Data;
+using System.Data.Common;
 
 namespace AspNetCore.StartUpTemplate.Webapi;
 
@@ -18,7 +18,7 @@ public static class DtmBarrierExtension
     {
         barrier.BarrierID = barrier.BarrierID + 1;
         var bid = barrier.BarrierID.ToString().PadLeft(2, '0');
-        using var scope=IocHelper.GetNewILifeTimeScope();
+        using var scope = IocHelper.GetNewILifeTimeScope();
         var dbutils = scope.Resolve<DbUtils>();
         try
         {
@@ -101,9 +101,8 @@ public static class DtmDbUtilsExtension
         string gid, string branchID, string op, string barrierID, string reason)
     {
         if (string.IsNullOrWhiteSpace(op)) return (0, null);
-        // todo 这里要检查是否是注册的单例或scope
-        using var scope=IocHelper.GetNewILifeTimeScope();
-        var _specialDelegate =scope.Resolve<DbSpecialDelegate>();
+        using var scope = IocHelper.GetNewILifeTimeScope();
+        var _specialDelegate = scope.Resolve<DbSpecialDelegate>();
         try
         {
             var str = string.Concat(AppSettingsConstVars.DtmBarrierTableName,
@@ -115,7 +114,11 @@ public static class DtmDbUtilsExtension
                 sql,
                 new
                 {
-                    trans_type = transType, gid = gid, branch_id = branchID, op = op, barrier_id = barrierID,
+                    trans_type = transType,
+                    gid = gid,
+                    branch_id = branchID,
+                    op = op,
+                    barrier_id = barrierID,
                     reason = reason
                 },
                 transaction: tx);

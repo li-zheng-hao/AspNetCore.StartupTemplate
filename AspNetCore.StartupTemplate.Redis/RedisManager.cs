@@ -1,6 +1,9 @@
 ﻿using AspNetCore.StartUpTemplate.Configuration;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using RedLockNet;
+using RedLockNet.SERedis;
+using RedLockNet.SERedis.Configuration;
 using StackExchange.Redis;
 
 namespace AspNetCore.StartupTemplate.Redis;
@@ -14,13 +17,21 @@ public class RedisManager : IRedisManager
     private static readonly object _lock = new object();
 
     private readonly ILogger<RedisManager> _logger;
+    private readonly RedLockFactory _redlockFactory;
+
     public RedisManager(ILogger<RedisManager> logger)
     {
         connString = AppSettingsConstVars.RedisConn;
+        var existingConnectionMultiplexer = GetConnectionMultiplexer();
+        var multiplexers = new List<RedLockMultiplexer>
+        {
+            existingConnectionMultiplexer
+        };
+        _redlockFactory = RedLockFactory.Create(multiplexers);
         _logger = logger;
     }
-    
-   
+
+
 
     /// <summary>
     /// 获取redis连接
@@ -51,6 +62,12 @@ public class RedisManager : IRedisManager
         }
     }
 
+    private IServer GetServer()
+    {
+        var cm= GetConnectionMultiplexer();
+        // 这里默认只有一个redis服务器 如果配置了多个redis服务器需要修改这里
+        return cm.GetServer(cm.GetEndPoints()[0]);
+    }
     /// <summary>
     /// 获取reis配置信息
     /// </summary>
@@ -116,64 +133,38 @@ public class RedisManager : IRedisManager
 
     #region Key/Value
     /// <summary>
-    /// 加锁 todo 这里应该做成过期时间比较短并且能自动续期的方式 目前先用这种简单的方式
+    /// 获取一个分布式锁，必须dispose
     /// </summary>
-    /// <param name="key"></param>
-    /// <param name="expire"></param>
+    /// <param name="key">锁住的key，即资源</param>
+    /// <param name="expireSec">过期时间，如果不手动释放的话是不会过期的，监视任务会在expireSec/2秒的时间间隔不断刷新
+    /// ，如果程序异常退出，那在expireSec秒后会丢失锁的权限</param>
+    /// <param name="waitSec">获取锁的等待超时时间</param>
+    /// <param name="retrySec">重试的时间间隔</param>
     /// <returns></returns>
-    public bool Lock(string lockKey,string userUniqueToken, int expire=10)
+    public async Task<IRedLock> CreateLockAsync(string key, int expireSec = 10, int waitSec = 10, int retrySec = 1)
     {
-        try
-        {
-            var database = GetConnectionDb();
-            var retryMaxTime=DateTime.Now.AddSeconds(expire);
-            
-            while (DateTime.Now<retryMaxTime)
-            {
-                var res=database.LockTake(new RedisKey(lockKey), new RedisValue(userUniqueToken),TimeSpan.FromSeconds(expire));
-                if (res == false)
-                {
-                    Thread.Sleep(100);
-                }
-                else
-                {
-                    return true;
-                }
-            }
-            return false;
-           
-        }
-        catch (Exception e)
-        {
-            WriteSqlErrorLog(JsonConvert.SerializeObject(e), e);
-
-        }
-        return true;
+        IRedLock locks = await _redlockFactory.CreateLockAsync(key
+            , TimeSpan.FromSeconds(expireSec)
+            , TimeSpan.FromSeconds(waitSec),
+            TimeSpan.FromSeconds(retrySec));
+        return locks;
     }
-
-  
-
-    public bool ReleaseLock(string key,string value)
+    /// <summary>
+    /// 获取一个分布式锁，必须dispose
+    /// </summary>
+    /// <param name="key">锁住的key，即资源</param>
+    /// <param name="expireSec">过期时间，如果不手动释放的话是不会过期的，监视任务会在expireSec/2秒的时间间隔不断刷新
+    /// ，如果程序异常退出，那在expireSec秒后会丢失锁的权限</param>
+    /// <param name="waitSec">获取锁的等待超时时间</param>
+    /// <param name="retrySec">重试的时间间隔</param>
+    public IRedLock CreateLock(string key, int expireSec = 10, int waitSec = 10, int retrySec = 1)
     {
-        var database = GetConnectionDb();
-        var res=database.LockRelease(new RedisKey(key), new RedisValue(value));
-        return res;
+        IRedLock locks = _redlockFactory.CreateLock(key
+            , TimeSpan.FromSeconds(expireSec)
+            , TimeSpan.FromSeconds(waitSec),
+            TimeSpan.FromSeconds(retrySec));
+        return locks;
     }
-
-    public bool RenewLock(string key, string value, int sec = 10)
-    {
-        var database = GetConnectionDb();
-        var res=database.LockExtend(new RedisKey(key),new RedisValue(value),TimeSpan.FromSeconds(sec));
-        return res;
-    }
-
-    public string QueryLock(string lockKey)
-    {
-        var database = GetConnectionDb();
-        var res=database.LockQuery(new RedisKey(lockKey));
-        return res;
-    }
-
     /// <summary>
     /// 设置Key值不设置时间
     /// </summary>
@@ -181,7 +172,7 @@ public class RedisManager : IRedisManager
     /// <param name="value"></param>
     public bool Set<T>(string key, T t)
     {
-        
+
         var res = Do(database =>
         {
             var isSuccess = database.StringSet(key, ConvertJson(t));
@@ -729,7 +720,7 @@ public class RedisManager : IRedisManager
             return true;
         }, errorInfo =>
         {
-            var logObj = new { key = key, hashFields =  JsonConvert.SerializeObject(diclist) };
+            var logObj = new { key = key, hashFields = JsonConvert.SerializeObject(diclist) };
             WriteSqlErrorLog(JsonConvert.SerializeObject(logObj), errorInfo);
             return false;
         });
@@ -1067,7 +1058,11 @@ public class RedisManager : IRedisManager
     /// <param name="key">键</param>
     public bool Remove(string key)
     {
-        var res = Do(database => { return database.KeyDelete(key); }, errorInfo =>
+        var res = Do(database =>
+        {
+            return database.KeyDelete(key);
+            
+        }, errorInfo =>
         {
             var logObj = new { key = key };
             WriteSqlErrorLog(JsonConvert.SerializeObject(logObj), errorInfo);
@@ -1075,6 +1070,17 @@ public class RedisManager : IRedisManager
         });
 
         return res;
+    }
+    /// <summary>
+    /// 根据模糊匹配删除多个key
+    /// </summary>
+    /// <param name="pattern"></param>
+    /// <returns></returns>
+    public bool RemoveMultiKey(string pattern)
+    {
+        var server = GetServer();
+        var keys = server.Keys(0,  pattern); //StackExchange.Redis 会根据redis版本决定用keys还是scan(>2.8) 
+        return GetConnectionDb().KeyDelete(keys.ToArray())==keys.Count(); //删除一组key
     }
 
     /// <summary>
@@ -1171,6 +1177,8 @@ public class RedisManager : IRedisManager
     public void WriteSqlErrorLog(Exception ex)
     {
     }
+
+
 
     #endregion
 }

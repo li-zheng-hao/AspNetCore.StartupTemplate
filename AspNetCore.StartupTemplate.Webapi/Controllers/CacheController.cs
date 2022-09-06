@@ -1,17 +1,6 @@
-using System.ComponentModel;
-using AspNetCore.CacheOutput;
-using AspNetCore.StartUpTemplate.Auth;
-using AspNetCore.StartUpTemplate.Configuration;
-using AspNetCore.StartUpTemplate.Contract;
-using AspNetCore.StartUpTemplate.Core;
-using AspNetCore.StartUpTemplate.IRepository;
-using AspNetCore.StartUpTemplate.IService;
+﻿using AspNetCore.StartUpTemplate.IService;
 using AspNetCore.StartUpTemplate.Model;
-using AspNetCore.StartupTemplate.Snowflake.SnowFlake;
-using AspNetCore.StartUpTemplate.Webapi.Startup;
 using AutoMapper;
-using Dtmcli;
-using FreeSql;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AspNetCore.StartUpTemplate.Webapi.Controllers;
@@ -27,19 +16,36 @@ public class CacheController : ControllerBase
     private readonly IUserService _userService;
     private readonly IServiceProvider _serviceProvider;
 
-    public CacheController(ILogger<CacheController> logger, IMapper mapper, IUserService us,IServiceProvider serviceProvider)
+    public CacheController(ILogger<CacheController> logger, IMapper mapper, IUserService us, IServiceProvider serviceProvider)
     {
         _logger = logger;
         _userService = us;
         _serviceProvider = serviceProvider;
     }
-    
+
     /// <summary>
     /// 自定义的Cache缓存
     /// </summary>
     [HttpGet]
-    public Users BatchQuery(string key="用户A")
+    public Users BatchQuery(string key = "用户A")
     {
         return _userService.Query(key);
+    }
+    /// <summary>
+    /// 自定义的Cache缓存
+    /// </summary>
+    [HttpGet]
+    public dynamic PageQuery()
+    {
+        var res= _userService.PageQuery(10, 10);
+        return res;
+    }
+    /// <summary>
+    /// 清除自定义缓存
+    /// </summary>
+    [HttpGet]
+    public void ClearCache()
+    {
+        _userService.UpdateBatch();
     }
 }

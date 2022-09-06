@@ -1,24 +1,21 @@
-using System.Diagnostics;
+﻿using AspNetCore.StartupTemplate.Snowflake.SnowFlake;
 using AspNetCore.StartUpTemplate.Core;
 using AspNetCore.StartUpTemplate.Core.Cache;
-using AspNetCore.StartUpTemplate.IRepository;
 using AspNetCore.StartUpTemplate.IService;
 using AspNetCore.StartUpTemplate.Model;
-using AspNetCore.StartupTemplate.Redis;
-using AspNetCore.StartupTemplate.Snowflake.SnowFlake;
-using Autofac.Extras.DynamicProxy;
 using FreeSql;
 using Microsoft.Extensions.Logging;
+using System.Diagnostics;
 
 namespace AspNetCore.StartUpTemplate.Services;
-public class UserService:IUserService
+public class UserService : IUserService
 {
     private readonly ITestService _testService;
     private readonly ILogger<UserService> _logger;
     private readonly IBaseRepository<Users> _dal;
     private readonly ISnowflakeIdMaker _snowflakeIdMaker;
-    public UserService(ILogger<UserService> logger,IBaseRepository<Users> userRepository,ITestService testService
-    ,ISnowflakeIdMaker snowflakeIdMaker) 
+    public UserService(ILogger<UserService> logger, IBaseRepository<Users> userRepository, ITestService testService
+    , ISnowflakeIdMaker snowflakeIdMaker)
     {
         _logger = logger;
         _dal = userRepository;
@@ -42,25 +39,25 @@ public class UserService:IUserService
         }
     }
     [Transactional]
-    public void ChangeMoney(int userid,int number)
+    public void ChangeMoney(int userid, int number)
     {
-        var u=_dal.Where(it => it.Id == userid).ToOne();
+        var u = _dal.Where(it => it.Id == userid).ToOne();
         u.Money += number;
         _dal.Update(u);
     }
     [Transactional]
-    public void ChangeMoneyError(int userid,int number)
+    public void ChangeMoneyError(int userid, int number)
     {
-        var u=_dal.Where(it => it.Id == userid).ToOne();
+        var u = _dal.Where(it => it.Id == userid).ToOne();
         u.Money += number;
         _dal.Update(u);
         throw new Exception("抛出异常");
     }
-[Transactional]
+    [Transactional]
     public void InsertUserBatch()
     {
         List<Users> us = new List<Users>();
-        for(int i=0;i<10000;i++)
+        for (int i = 0; i < 10000; i++)
         {
             Users u = new Users();
             u.Id = _snowflakeIdMaker.NextId();
@@ -74,17 +71,17 @@ public class UserService:IUserService
 
         _dal.Insert(us);
     }
-
+    [ClearCache(typeof(UserService),clearByAtribute:true)]
     public void UpdateBatch()
     {
-        var res=_dal.Orm.Update<Users>().Where(it => true).Set(it =>it.Address, "modify address2").ExecuteAffrows();
+        var res = _dal.Orm.Update<Users>().Where(it => true).Set(it => it.Address, "modify address2").ExecuteAffrows();
         _logger.LogInformation($"修改了{res}行");
     }
     public List<Users> QueryAll()
     {
         var time = new Stopwatch();
         time.Restart();
-        var res = _dal.Where(it=>true).ToList();
+        var res = _dal.Where(it => true).ToList();
         time.Stop();
         _logger.LogInformation($"全表查询{res.Count}个结果,时间{time.Elapsed}");
         return res;
@@ -92,24 +89,27 @@ public class UserService:IUserService
     [NeedCache]
     public Users Query(string key)
     {
-        var res = _dal.Where(it=>it.UserName==key).First();
+        int i = 1; // add this line
+        var res = _dal.Where(it => it.UserName == key).First();
         return res;
     }
-
-    public void PageQuery(int number, int size)
+    [NeedClearCache]
+    [NeedCache]
+    public List<Users> PageQuery(int number, int size)
     {
         var time = new Stopwatch();
         time.Restart();
-        var res = _dal.Where(it=>true).Page(number,size).ToList();
+        var res = _dal.Where(it => true).Page(number, size).ToList();
         time.Stop();
         _logger.LogInformation($"分页查询{res.Count}个结果,时间{time.Elapsed}");
+        return res;
     }
 
     public void JoinQuery()
     {
-        var res=_dal.Orm.Select<Users, Orders>()
+        var res = _dal.Orm.Select<Users, Orders>()
             .InnerJoin((a, b) => a.Id == b.UserId)
-            .ToList((a,b)=>new{a,b});
+            .ToList((a, b) => new { a, b });
         Orders orders = new Orders();
         orders.Id = _snowflakeIdMaker.NextId();
         orders.UserId = 100;
@@ -129,5 +129,5 @@ public class UserService:IUserService
 
     }
 
- 
+
 }

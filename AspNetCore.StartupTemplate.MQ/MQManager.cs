@@ -1,9 +1,8 @@
-﻿using System.Text;
-using System.Text.Json.Serialization;
-using AspNetCore.StartUpTemplate.Configuration;
+﻿using AspNetCore.StartUpTemplate.Configuration;
 using Newtonsoft.Json;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
+using System.Text;
 
 
 namespace AspNetCore.StartupTemplate.MQ;
@@ -12,33 +11,33 @@ namespace AspNetCore.StartupTemplate.MQ;
 /// IOC单例使用,注意事项：
 /// 1. 发布如果需要确认要在连接字符串上设置*publisherConfirms=true*
 /// </summary>
-public class MQManager:IMQManager,IDisposable 
+public class MQManager : IMQManager, IDisposable
 {
     /// <summary>
     /// 生命周期与应用生命周期一致
     /// </summary>
     private readonly IConnection _conn;
-    public MQManager() {
-        // todo 通过AppSettings获取
+    public MQManager()
+    {
         ConnectionFactory factory = new ConnectionFactory()
         {
             HostName = AppSettingsConstVars.MQHostName,//RabbitMQ地址
             Port = AppSettingsConstVars.MQPort,//端口
-            VirtualHost =AppSettingsConstVars.MQVirtualHost,//RabbitMQ中要请求的VirtualHost名称
-            UserName =AppSettingsConstVars.MQUserName,//RabbitMQ用户
-            Password= AppSettingsConstVars.MQPassword//RabbitMQ用户密码
-             
+            VirtualHost = AppSettingsConstVars.MQVirtualHost,//RabbitMQ中要请求的VirtualHost名称
+            UserName = AppSettingsConstVars.MQUserName,//RabbitMQ用户
+            Password = AppSettingsConstVars.MQPassword//RabbitMQ用户密码
+
         };
         _conn = factory.CreateConnection();
         InitExchange();
         InitDurableQueue();
     }
-    
 
-    public void PushMessageDirect<T>(MessageModel<T> msg, string routingkey) 
+
+    public void PushMessageDirect<T>(MessageModel<T> msg, string routingkey)
     {
-        var channel=_conn.CreateModel();
-        var prop=channel.CreateBasicProperties();
+        var channel = _conn.CreateModel();
+        var prop = channel.CreateBasicProperties();
         channel.ConfirmSelect();
         channel.BasicPublish(exchange: AppSettingsConstVars.MQDirectExchangeName,
             routingKey: routingkey,
@@ -56,9 +55,9 @@ public class MQManager:IMQManager,IDisposable
     /// <param name="durable">队列是否为持久化的 默认false</param>
     /// <typeparam name="T"></typeparam>
     /// <exception cref="Exception"></exception>
-    public void SubscribleDirect<T>(string routingkey,Action<MessageModel<T>> onMessage,string queuename="",bool durable=false)
+    public void SubscribleDirect<T>(string routingkey, Action<MessageModel<T>> onMessage, string queuename = "", bool durable = false)
     {
-        var channel=_conn.CreateModel();
+        var channel = _conn.CreateModel();
         try
         {
             channel.QueueDeclare(queue: queuename,
@@ -74,12 +73,12 @@ public class MQManager:IMQManager,IDisposable
         {
             //异常以后2秒再次重新订阅
             Thread.Sleep(2000);
-            SubscribleDirect<T>(routingkey, onMessage,queuename);
+            SubscribleDirect<T>(routingkey, onMessage, queuename);
             return;
         }
 
         var consumer = new EventingBasicConsumer(channel);
-        consumer.Received += (sender,e)=> 
+        consumer.Received += (sender, e) =>
         {
             try
             {
@@ -92,7 +91,7 @@ public class MQManager:IMQManager,IDisposable
             {
                 // todo 重试N次并超过次数后再异常
                 channel.BasicNack(e.DeliveryTag, false, false);
-                throw ;
+                throw;
             }
         };
         // 需要手动ack保证消息不丢失
@@ -100,10 +99,10 @@ public class MQManager:IMQManager,IDisposable
             autoAck: false,
             consumer: consumer);
     }
-    public void PushMessageTopic<T>(MessageModel<T> msg, string routingkey) 
+    public void PushMessageTopic<T>(MessageModel<T> msg, string routingkey)
     {
-        var channel=_conn.CreateModel();
-        var prop=channel.CreateBasicProperties();
+        var channel = _conn.CreateModel();
+        var prop = channel.CreateBasicProperties();
         channel.ConfirmSelect();
         channel.BasicPublish(exchange: AppSettingsConstVars.MQTopicExchangeName,
             routingKey: routingkey,
@@ -120,9 +119,9 @@ public class MQManager:IMQManager,IDisposable
     /// <param name="queuename"></param>
     /// <param name="durable">队列是否为持久化的 默认为false</param>
     /// <typeparam name="T"></typeparam>
-    public void SubscribleTopic<T>(string routingkey,Action<MessageModel<T>> onMessage,string queuename="",bool durable=false)
+    public void SubscribleTopic<T>(string routingkey, Action<MessageModel<T>> onMessage, string queuename = "", bool durable = false)
     {
-        var channel=_conn.CreateModel();
+        var channel = _conn.CreateModel();
         try
         {
             channel.QueueDeclare(queue: queuename,
@@ -138,12 +137,12 @@ public class MQManager:IMQManager,IDisposable
         {
             //异常以后2秒再次重新订阅
             Thread.Sleep(2000);
-            SubscribleDirect<T>(routingkey, onMessage,queuename);
+            SubscribleDirect<T>(routingkey, onMessage, queuename);
             return;
         }
 
         var consumer = new EventingBasicConsumer(channel);
-        consumer.Received += (sender,e)=> 
+        consumer.Received += (sender, e) =>
         {
             try
             {
@@ -156,7 +155,7 @@ public class MQManager:IMQManager,IDisposable
             {
                 // todo 重试N次并超过次数后再异常
                 channel.BasicNack(e.DeliveryTag, false, false);
-                throw ;
+                throw;
             }
         };
         // 需要手动ack保证消息不丢失
@@ -182,13 +181,13 @@ public class MQManager:IMQManager,IDisposable
     /// </summary>
     private void InitExchange()
     {
-        var channel=_conn.CreateModel();
+        var channel = _conn.CreateModel();
         // todo 配置死信队列
-        var dic=new Dictionary<string, object>();
-        channel.ExchangeDeclare(AppSettingsConstVars.MQDirectExchangeName,"direct",true,false,dic);
-        channel.ExchangeDeclare(AppSettingsConstVars.MQTopicExchangeName,"topic",true,false,dic);
+        var dic = new Dictionary<string, object>();
+        channel.ExchangeDeclare(AppSettingsConstVars.MQDirectExchangeName, "direct", true, false, dic);
+        channel.ExchangeDeclare(AppSettingsConstVars.MQTopicExchangeName, "topic", true, false, dic);
     }
     #endregion
 
-    
+
 }
