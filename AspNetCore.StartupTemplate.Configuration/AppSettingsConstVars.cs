@@ -12,6 +12,9 @@ public class AppSettingsConstVars
 {
     #region 全局配置======================================================================
     public static readonly string EnvironmentMode = AppSettingsHelper.GetContent("Env");
+    
+    
+    public static readonly string ElasticSearchUrl = AppSettingsHelper.GetContent("ElasticSearchUrl");
 
     #endregion
 
@@ -24,13 +27,13 @@ public class AppSettingsConstVars
     #endregion
 
     #region RabbitMQ================================================================================
-    public static readonly string MQDirectExchangeName = AppSettingsHelper.GetContent("RabbitMQ:Direct:ExchangeName");
-    public static readonly string MQTopicExchangeName = AppSettingsHelper.GetContent("RabbitMQ:Topic:ExchangeName");
-    public static readonly string MQHostName = AppSettingsHelper.GetContent("RabbitMQ:HostName");
-    public static readonly int MQPort = AppSettingsHelper.GetContentInteger("RabbitMQ:Port");
-    public static readonly string MQVirtualHost = AppSettingsHelper.GetContent("RabbitMQ:VirtualHost");
-    public static readonly string MQUserName = AppSettingsHelper.GetContent("RabbitMQ:UserName");
-    public static readonly string MQPassword = AppSettingsHelper.GetContent("RabbitMQ:Password");
+    public static readonly string MQDirectExchangeName = AppSettingsHelper.GetContent("RabbitMQ","Direct","ExchangeName");
+    public static readonly string MQTopicExchangeName = AppSettingsHelper.GetContent("RabbitMQ","Topic","ExchangeName");
+    public static readonly string MQHostName = AppSettingsHelper.GetContent("RabbitMQ","HostName");
+    public static readonly int MQPort = AppSettingsHelper.GetContentInteger("RabbitMQ","Port");
+    public static readonly string MQVirtualHost = AppSettingsHelper.GetContent("RabbitMQ","VirtualHost");
+    public static readonly string MQUserName = AppSettingsHelper.GetContent("RabbitMQ","UserName");
+    public static readonly string MQPassword = AppSettingsHelper.GetContent("RabbitMQ","Password");
     #endregion
 
     #region redis================================================================================
@@ -57,9 +60,9 @@ public class AppSettingsConstVars
 
     #region DTM相关配置=========================================================================
 
-    public static readonly string DtmUrl = AppSettingsHelper.GetContent("Dtm:DtmUrl");
-    public static readonly string BusiUrl = AppSettingsHelper.GetContent("Dtm:BusiUrl");
-    public static readonly string DtmBarrierTableName = AppSettingsHelper.GetContent("Dtm:DtmBarrierTableName");
+    public static readonly string DtmUrl = AppSettingsHelper.GetContent("Dtm","DtmUrl");
+    public static readonly string BusiUrl = AppSettingsHelper.GetContent("Dtm","BusiUrl");
+    public static readonly string DtmBarrierTableName = AppSettingsHelper.GetContent("Dtm","DtmBarrierTableName");
 
     
 
