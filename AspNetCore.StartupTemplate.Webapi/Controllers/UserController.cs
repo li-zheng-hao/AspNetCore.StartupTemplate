@@ -113,6 +113,14 @@ public class UserController : ControllerBase
     public void BatchQuery()
     {
         _userService.QueryAll();
+        try
+        {
+            throw new Exception("测试自定义异常输出到elasticsearch");
+        }
+        catch (Exception e)
+        {
+            _logger.LogError(e,$"自定义异常{e}");
+        }
     }
     /// <summary>
     /// 分页查询
