@@ -22,8 +22,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore.StartupTemplate.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore.StartupTemplate.Configuration", "AspNetCore.StartupTemplate.Configuration\AspNetCore.StartupTemplate.Configuration.csproj", "{5C95C7D6-3609-43C8-B80D-135CAB80F4CF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore.StartupTemplate.Mapping", "AspNetCore.StartupTemplate.Mapping\AspNetCore.StartupTemplate.Mapping.csproj", "{DDA9565D-01E8-46B4-BC3B-33146064A310}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore.StartupTemplate.Filter", "AspNetCore.StartupTemplate.Filter\AspNetCore.StartupTemplate.Filter.csproj", "{3BC9BD9A-F2E7-467C-975B-A36143824FDA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore.StartupTemplate.Utility", "AspNetCore.StartupTemplate.Utility\AspNetCore.StartupTemplate.Utility.csproj", "{2E39D547-730C-4FA3-A53F-ADBE4CCFED8C}"
@@ -55,6 +53,18 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore.StartupTemplate.CutstomScheduler", "AspNetCore.StartupTemplate.CutstomScheduler\AspNetCore.StartupTemplate.CutstomScheduler.csproj", "{D6109C14-A965-4FE1-9381-7628A02770C9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore.StartupTemplate.CacheAsync", "AspNetCore.StartupTemplate.CacheAsync\AspNetCore.StartupTemplate.CacheAsync.csproj", "{DC78CB3F-6E1D-4287-B497-1BB7BBC5138C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Deployment", "Deployment", "{22DB2A26-EC5F-4947-B9C8-08C075E9AFF3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Redis-Sentinel", "Redis-Sentinel", "{9C71157D-8004-4635-A5D2-8F6E0309E872}"
+	ProjectSection(SolutionItems) = preProject
+		Deployment\Redis-Sentinel\redis\docker-compose.yml = Deployment\Redis-Sentinel\redis\docker-compose.yml
+		Deployment\Redis-Sentinel\sentinel\conf\sentinel1\sentinel1.conf = Deployment\Redis-Sentinel\sentinel\conf\sentinel1\sentinel1.conf
+		Deployment\Redis-Sentinel\sentinel\conf\sentinel2\sentinel2.conf = Deployment\Redis-Sentinel\sentinel\conf\sentinel2\sentinel2.conf
+		Deployment\Redis-Sentinel\sentinel\conf\sentinel3\sentinel3.conf = Deployment\Redis-Sentinel\sentinel\conf\sentinel3\sentinel3.conf
+		Deployment\Redis-Sentinel\sentinel\docker-compose.yml = Deployment\Redis-Sentinel\sentinel\docker-compose.yml
+		Deployment\Redis-Sentinel\sentinel\sentinel.conf = Deployment\Redis-Sentinel\sentinel\sentinel.conf
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -94,10 +104,6 @@ Global
 		{5C95C7D6-3609-43C8-B80D-135CAB80F4CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5C95C7D6-3609-43C8-B80D-135CAB80F4CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5C95C7D6-3609-43C8-B80D-135CAB80F4CF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DDA9565D-01E8-46B4-BC3B-33146064A310}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DDA9565D-01E8-46B4-BC3B-33146064A310}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DDA9565D-01E8-46B4-BC3B-33146064A310}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DDA9565D-01E8-46B4-BC3B-33146064A310}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3BC9BD9A-F2E7-467C-975B-A36143824FDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3BC9BD9A-F2E7-467C-975B-A36143824FDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3BC9BD9A-F2E7-467C-975B-A36143824FDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -156,7 +162,6 @@ Global
 		{3FD3757C-77A6-44A4-B04D-281819AC356A} = {CE6C0D3C-FE43-4009-9C17-EEADE54822EC}
 		{5C95C7D6-3609-43C8-B80D-135CAB80F4CF} = {CE6C0D3C-FE43-4009-9C17-EEADE54822EC}
 		{3BC9BD9A-F2E7-467C-975B-A36143824FDA} = {CE6C0D3C-FE43-4009-9C17-EEADE54822EC}
-		{DDA9565D-01E8-46B4-BC3B-33146064A310} = {CE6C0D3C-FE43-4009-9C17-EEADE54822EC}
 		{2E39D547-730C-4FA3-A53F-ADBE4CCFED8C} = {CE6C0D3C-FE43-4009-9C17-EEADE54822EC}
 		{AFA36BA0-54FE-4DD8-B62A-1B7EFEC83989} = {E1AC9CC0-74D5-4DBB-A399-1AF51EB45DCE}
 		{A8890829-5708-4F19-B1A0-85643B956B01} = {9B7E4906-8690-44D7-8B88-78158FBC84AC}
@@ -169,5 +174,6 @@ Global
 		{2CF58D72-F9DE-47B5-9CC0-DDF2AE2E5AF4} = {D6EF715A-2EA5-484D-98A1-CC3211F0779B}
 		{D6109C14-A965-4FE1-9381-7628A02770C9} = {D6EF715A-2EA5-484D-98A1-CC3211F0779B}
 		{DC78CB3F-6E1D-4287-B497-1BB7BBC5138C} = {D6EF715A-2EA5-484D-98A1-CC3211F0779B}
+		{9C71157D-8004-4635-A5D2-8F6E0309E872} = {22DB2A26-EC5F-4947-B9C8-08C075E9AFF3}
 	EndGlobalSection
 EndGlobal

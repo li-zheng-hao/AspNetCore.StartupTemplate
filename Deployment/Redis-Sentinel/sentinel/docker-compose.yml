@@ -1,0 +1,24 @@
+version: '3'
+services:
+  sentinel1:
+    image: redis
+    container_name: redis-sentinel-1 
+    command: redis-sentinel /usr/local/etc/redis/sentinel1.conf --port 26379
+    network_mode: host
+    volumes:
+      - ./conf/sentinel1:/usr/local/etc/redis
+  sentinel2:
+    image: redis
+    container_name: redis-sentinel-2
+    network_mode: host
+    command: redis-sentinel /usr/local/etc/redis/sentinel2.conf --port 26380
+    volumes:
+      - ./conf/sentinel2:/usr/local/etc/redis
+  sentinel3:
+    image: redis
+    network_mode: host
+    container_name: redis-sentinel-3
+    command: redis-sentinel /usr/local/etc/redis/sentinel3.conf --port 26381
+    volumes:
+      - ./conf/sentinel3:/usr/local/etc/redis
+

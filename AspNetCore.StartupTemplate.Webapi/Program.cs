@@ -7,7 +7,6 @@ using AspNetCore.StartupTemplate.CustomScheduler;
 using AspNetCore.StartupTemplate.DbMigration;
 using AspNetCore.StartUpTemplate.Filter;
 // using AspNetCore.StartupTemplate.Logging.Log;
-using AspNetCore.StartUpTemplate.Mapping;
 using AspNetCore.StartupTemplate.Redis;
 using AspNetCore.StartupTemplate.Snowflake.SnowFlake.Redis;
 using AspNetCore.StartUpTemplate.Webapi.Startup;
@@ -36,7 +35,7 @@ builder.Services
     .AddCustomSwaggerGen()
     .AddFreeSql()
     .AddCustomCors()
-    .AddAutoMapper()
+    .AddMapster()
     .AddRedisManager()
     .AddRedisCacheOutput(AppSettingsConstVars.RedisConn)
     .AddDtm()

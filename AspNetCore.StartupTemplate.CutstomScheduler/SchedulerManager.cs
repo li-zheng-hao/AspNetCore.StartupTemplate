@@ -27,10 +27,12 @@ public class SchedulerManager
     {
         _freeSql = freeSql;
         var tsk=new MyTaskHandler(freeSql,taskManager);
-        scheduler= new FreeScheduler.Scheduler(tsk);
+        _schedulerLazy = new Lazy<Scheduler>(()=>  new Scheduler(tsk));
     }
 
-    FreeScheduler.Scheduler scheduler;
+    private static Lazy<Scheduler> _schedulerLazy;
+    static Scheduler scheduler => _schedulerLazy.Value;
+    // FreeScheduler.Scheduler scheduler;
     private readonly IFreeSql _freeSql;
     private readonly ILogger<SchedulerManager> _logger;
 
@@ -40,7 +42,7 @@ public class SchedulerManager
     /// <param name="topic"></param>
     public (bool,string) AddTask(string topic,int intervalSecond=10)
     {
-        var result = _freeSql.Ado.QuerySingle<dynamic>("select * from freescheduler_task where topic = @topic", new { topic });
+        var result = _freeSql.Ado.QuerySingle<dynamic>("select * from FreeScheduler_task where topic = @topic", new { topic });
         if (result is null)
         {
             var id=scheduler.AddTask(topic, "", -1, intervalSecond);

@@ -3,12 +3,12 @@ using AspNetCore.CacheOutput;
 using AspNetCore.StartUpTemplate.Auth;
 using AspNetCore.StartUpTemplate.Configuration;
 using AspNetCore.StartUpTemplate.Contract;
+using AspNetCore.StartUpTemplate.Contract.DTOs;
 using AspNetCore.StartUpTemplate.Core;
 using AspNetCore.StartUpTemplate.IRepository;
 using AspNetCore.StartUpTemplate.IService;
 using AspNetCore.StartupTemplate.Snowflake.SnowFlake;
 using AspNetCore.StartUpTemplate.Webapi.Startup;
-using AutoMapper;
 using Dtmcli;
 using FreeSql;
 using Microsoft.AspNetCore.Mvc;
@@ -23,14 +23,12 @@ namespace AspNetCore.StartUpTemplate.Webapi.Controllers;
 public class UserController : ControllerBase
 {
     private readonly ILogger<UserController> _logger;
-    private readonly IMapper _mapper;
     private readonly IUserService _userService;
     private readonly IServiceProvider _serviceProvider;
 
-    public UserController(ILogger<UserController> logger, IMapper mapper, IUserService us,IServiceProvider serviceProvider)
+    public UserController(ILogger<UserController> logger, IUserService us,IServiceProvider serviceProvider)
     {
         _logger = logger;
-        _mapper = mapper;
         _userService = us;
         _serviceProvider = serviceProvider;
         
@@ -112,7 +110,7 @@ public class UserController : ControllerBase
     [HttpGet]
     public void PageQuery(int number=100,int size=100)
     {
-        _userService.PageQuery(number,size);
+        var users=_userService.PageQuery(number,size);
     }
     
     /// <summary>

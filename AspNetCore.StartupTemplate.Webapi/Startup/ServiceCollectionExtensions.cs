@@ -1,13 +1,14 @@
 ﻿using System.Diagnostics;
 using System.Reflection;
 using AspNetCore.StartUpTemplate.Configuration;
+using AspNetCore.StartUpTemplate.Contract.DTOs;
 using AspNetCore.StartUpTemplate.Core.Cache;
 using AspNetCore.StartupTemplate.DbMigration;
 using AspNetCore.StartUpTemplate.Filter;
-using AspNetCore.StartUpTemplate.Mapping;
 using Dtmcli;
 using FreeSql;
 using FreeSql.Internal;
+using Mapster;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc;
@@ -172,11 +173,13 @@ namespace AspNetCore.StartUpTemplate.Webapi.Startup
             return serviceCollection;
         }
         
-        public static IServiceCollection AddAutoMapper(this IServiceCollection serviceCollection)
+        public static IServiceCollection AddMapster(this IServiceCollection serviceCollection)
         {
-            serviceCollection.AddAutoMapper(typeof(AutoMapperConfig));
-            serviceCollection.AddTransient<NeedCacheAttribute>();
-
+            var typeAdapterConfig = TypeAdapterConfig.GlobalSettings;
+            // 全局忽略大小写
+            TypeAdapterConfig.GlobalSettings.Default.NameMatchingStrategy(NameMatchingStrategy.IgnoreCase);
+            Assembly applicationAssembly = typeof(BaseDto<,>).Assembly;
+            typeAdapterConfig.Scan(applicationAssembly);
             return serviceCollection;
         }
 

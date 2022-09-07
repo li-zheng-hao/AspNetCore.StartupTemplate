@@ -1,0 +1,18 @@
+version: '3'
+services:
+  master:
+    image: redis
+    container_name: redis-master
+    command: redis-server  --requirepass lzh123456  --masterauth lzh123456
+    network_mode: host
+  slave1:
+    image: redis
+    container_name: redis-slave-1
+    network_mode: host
+    command:  redis-server --slaveof 172.10.2.52 6379 --masterauth lzh123456  --requirepass lzh123456 --port 6380
+  slave2:
+    image: redis
+    container_name: redis-slave-2
+    network_mode: host
+    command: redis-server --slaveof 172.10.2.52 6379 --masterauth lzh123456 --requirepass lzh123456 --port 6381
+
