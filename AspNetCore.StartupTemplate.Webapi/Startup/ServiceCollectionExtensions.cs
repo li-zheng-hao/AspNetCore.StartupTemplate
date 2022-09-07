@@ -239,7 +239,6 @@ namespace AspNetCore.StartUpTemplate.Webapi.Startup
                 var ipPort = addr.Split(':');
                 options.EndPoints.Add(ipPort[0], Convert.ToInt32(ipPort[1]));
             }
-
             options.TieBreaker = ""; //这行在sentinel模式必须加上
             options.DefaultVersion = new Version(3, 0);
             options.AllowAdmin = true;
@@ -247,7 +246,8 @@ namespace AspNetCore.StartUpTemplate.Webapi.Startup
             {
                 CommandMap = CommandMap.Default,
                 ServiceName = AppSettingsConstVars.RedisServiceName,
-                Password = AppSettingsConstVars.RedisPassword
+                Password = AppSettingsConstVars.RedisPassword,
+                AllowAdmin = true
             };
             services.TryAdd(
                 ServiceDescriptor.Singleton<IConnectionMultiplexer>(

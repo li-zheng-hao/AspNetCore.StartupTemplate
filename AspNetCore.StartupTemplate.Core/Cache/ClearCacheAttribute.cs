@@ -68,9 +68,8 @@ public class ClearCacheAttribute : Rougamo.MoAttribute
                 .Where(it => it.GetCustomAttributes<NeedClearCacheAttribute>().FirstOrDefault() != null).ToList();
             methods.ForEach(it =>
             {
-                var keys = _redisClient.Keys($"{METHOD_CACHE_PREFIX}:{_classInfo.Name}:{it.Name}*");
-                if (keys != null && keys.Length > 0)
-                    _redisClient.Del(keys);
+                foreach (var keys in _redisClient.Scan($"{METHOD_CACHE_PREFIX}:{_classInfo.Name}:{it.Name}*", int.MaxValue, null)) 
+                    _redisClient.UnLink(keys);
             });
         }
         // 根据方法名称清除
@@ -79,18 +78,16 @@ public class ClearCacheAttribute : Rougamo.MoAttribute
             // 清除本类下所有的缓存
             if (_methodNames.Count == 0)
             {
-                var keys = _redisClient.Keys($"{METHOD_CACHE_PREFIX}:{_classInfo.Name}*");
-                if (keys != null && keys.Length > 0)
-                    _redisClient.Del(keys);
+                foreach (var keys in _redisClient.Scan($"{METHOD_CACHE_PREFIX}:{_classInfo.Name}*", int.MaxValue, null)) 
+                    _redisClient.UnLink(keys);
             }
             // 根据方法名清除
             else
             {
                 _methodNames.ForEach(methodName =>
                 {
-                    var keys = _redisClient.Keys($"{METHOD_CACHE_PREFIX}:{_classInfo.Name}:{methodName}*");
-                    if (keys != null && keys.Length > 0)
-                        _redisClient.Del(keys);
+                    foreach (var keys in _redisClient.Scan($"{METHOD_CACHE_PREFIX}:{_classInfo.Name}:{methodName}*", int.MaxValue, null)) 
+                        _redisClient.UnLink(keys);
                 });
             }
         }

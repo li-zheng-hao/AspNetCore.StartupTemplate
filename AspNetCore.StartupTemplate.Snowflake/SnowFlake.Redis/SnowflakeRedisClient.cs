@@ -32,7 +32,8 @@ namespace AspNetCore.StartupTemplate.Snowflake.SnowFlake.Redis
             {
                 CommandMap = CommandMap.Default,
                 ServiceName = AppSettingsConstVars.RedisServiceName,
-                Password = AppSettingsConstVars.RedisPassword
+                Password = AppSettingsConstVars.RedisPassword,
+                AllowAdmin = true
             };
             var _masterConnectionconn = _conn.GetSentinelMasterConnection(masterConfig, Console.Out);
             var _db=_masterConnectionconn.GetDatabase();
