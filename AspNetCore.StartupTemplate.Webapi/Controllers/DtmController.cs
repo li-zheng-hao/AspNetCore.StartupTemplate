@@ -9,7 +9,6 @@ using AspNetCore.StartUpTemplate.IRepository;
 using AspNetCore.StartUpTemplate.IService;
 using AspNetCore.StartUpTemplate.Model;
 using AspNetCore.StartupTemplate.Snowflake.SnowFlake;
-using AutoMapper;
 using Dtmcli;
 using FreeSql;
 using Microsoft.AspNetCore.Mvc;
@@ -24,7 +23,6 @@ namespace AspNetCore.StartUpTemplate.Webapi.Controllers;
 public class DtmController : ControllerBase
 {
     private readonly ILogger<UserController> _logger;
-    private readonly IMapper _mapper;
     private readonly IUserService _userService;
     private readonly IDtmClient _dtmClient;
     private readonly IDtmTransFactory _transFactory;
@@ -32,12 +30,11 @@ public class DtmController : ControllerBase
     private readonly UnitOfWorkManager _uowManager;
 
 
-    public DtmController(ILogger<UserController> logger, IMapper mapper, IUserService us
+    public DtmController(ILogger<UserController> logger, IUserService us
         , IDtmClient client, IDtmTransFactory transFactory, IBranchBarrierFactory barrierFactory,
         UnitOfWorkManager manager)
     {
         _logger = logger;
-        _mapper = mapper;
         _userService = us;
         _dtmClient = client;
         _transFactory = transFactory;

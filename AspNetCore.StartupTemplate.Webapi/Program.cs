@@ -7,7 +7,6 @@ using AspNetCore.StartupTemplate.CustomScheduler;
 using AspNetCore.StartupTemplate.DbMigration;
 using AspNetCore.StartUpTemplate.Filter;
 // using AspNetCore.StartupTemplate.Logging.Log;
-using AspNetCore.StartupTemplate.Redis;
 using AspNetCore.StartupTemplate.Snowflake.SnowFlake.Redis;
 using AspNetCore.StartUpTemplate.Webapi.Startup;
 using Autofac;

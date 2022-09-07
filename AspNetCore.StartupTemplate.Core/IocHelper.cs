@@ -15,7 +15,15 @@ public class IocHelper
         var scope= _globalLifetimeScope.BeginLifetimeScope();
         return scope;
     }
-
+    /// <summary>
+    /// 只能用于解析静态类，否则即内存泄漏
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <returns></returns>
+    public static T ResolveSingleton<T>()
+    {
+        return _globalLifetimeScope.Resolve<T>();
+    }
     public static void SetGlobalLifeTimeScope(ILifetimeScope scope)
     {
         _globalLifetimeScope = scope;

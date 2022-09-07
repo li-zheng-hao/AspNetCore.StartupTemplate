@@ -1,9 +1,9 @@
-﻿using AspNetCore.StartupTemplate.Redis;
-using AspNetCore.StartUpTemplate.Utility;
+﻿using AspNetCore.StartUpTemplate.Utility;
 using Autofac;
 using Newtonsoft.Json;
 using Rougamo.Context;
 using System.Reflection;
+using FreeRedis;
 
 namespace AspNetCore.StartUpTemplate.Core.Cache;
 
@@ -14,17 +14,11 @@ namespace AspNetCore.StartUpTemplate.Core.Cache;
 public class ClearCacheAttribute : Rougamo.MoAttribute
 {
     /// <summary>
-    /// 由于ClearCacheAttribute永远不会用using创建，因此无法通过IDisposable接口完成销毁，这里需要等待GC去清理这个对象
-    /// </summary>
-    ~ClearCacheAttribute()
-    {
-        _scope.Dispose();
-    }
-    /// <summary>
     /// 所有的接口缓存的前缀
     /// </summary>
     public const string METHOD_CACHE_PREFIX = "methodcache";
-    public IRedisManager _RedisManager { get; set; }
+
+    public IRedisClient _redisClient { get; set; }
     private ILifetimeScope _scope { get; set; }
 
     private Type? _classInfo { get; set; }
@@ -41,34 +35,42 @@ public class ClearCacheAttribute : Rougamo.MoAttribute
     {
         if (classInfo == null)
             throw new ArgumentException("参数有误");
-        _scope = IocHelper.GetNewILifeTimeScope();
-        _RedisManager = _scope.Resolve<IRedisManager>();
+        _redisClient = IocHelper.ResolveSingleton<IRedisClient>();
         _classInfo = classInfo;
         _methodNames.AddRange(methodNames);
     }
+
     /// <summary>
     /// 清除类中所有标记了NeedClearCache特性的方法
     /// </summary>
     /// <param name="classInfo"></param>
     /// <param name="clearByAttr"></param>
-    public ClearCacheAttribute(Type classInfo,bool clearByAtribute)
+    public ClearCacheAttribute(Type classInfo, bool clearByAtribute)
     {
         if (classInfo == null)
             throw new ArgumentException("参数有误");
-        _scope = IocHelper.GetNewILifeTimeScope();
-        _RedisManager = _scope.Resolve<IRedisManager>();
+        _redisClient = IocHelper.ResolveSingleton<IRedisClient>();
         _classInfo = classInfo;
         _clearByAtribute = clearByAtribute;
     }
+
     public override void OnEntry(MethodContext context)
+    {
+        // 换成在方法执行完后删除
+    }
+
+    public override void OnExit(MethodContext context)
     {
         // 根据特性清除
         if (_clearByAtribute)
         {
-            var methods = _classInfo.GetMethods().Where(it => it.GetCustomAttributes<NeedClearCacheAttribute>().FirstOrDefault() != null).ToList();
+            var methods = _classInfo.GetMethods()
+                .Where(it => it.GetCustomAttributes<NeedClearCacheAttribute>().FirstOrDefault() != null).ToList();
             methods.ForEach(it =>
             {
-                _RedisManager.RemoveMultiKey($"{METHOD_CACHE_PREFIX}:{_classInfo.Name}:{it.Name}*");
+                var keys = _redisClient.Keys($"{METHOD_CACHE_PREFIX}:{_classInfo.Name}:{it.Name}*");
+                if (keys != null && keys.Length > 0)
+                    _redisClient.Del(keys);
             });
         }
         // 根据方法名称清除
@@ -77,21 +79,20 @@ public class ClearCacheAttribute : Rougamo.MoAttribute
             // 清除本类下所有的缓存
             if (_methodNames.Count == 0)
             {
-                _RedisManager.RemoveMultiKey($"{METHOD_CACHE_PREFIX}:{_classInfo.Name}*");
+                var keys = _redisClient.Keys($"{METHOD_CACHE_PREFIX}:{_classInfo.Name}*");
+                if (keys != null && keys.Length > 0)
+                    _redisClient.Del(keys);
             }
             // 根据方法名清除
             else
             {
                 _methodNames.ForEach(methodName =>
                 {
-                    _RedisManager.RemoveMultiKey($"{METHOD_CACHE_PREFIX}:{_classInfo.Name}:{methodName}*");
+                    var keys = _redisClient.Keys($"{METHOD_CACHE_PREFIX}:{_classInfo.Name}:{methodName}*");
+                    if (keys != null && keys.Length > 0)
+                        _redisClient.Del(keys);
                 });
             }
-
         }
     }
-
-
 }
-
-

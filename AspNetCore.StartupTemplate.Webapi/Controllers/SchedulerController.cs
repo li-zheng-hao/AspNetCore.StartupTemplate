@@ -8,7 +8,6 @@ using AspNetCore.StartupTemplate.CustomScheduler;
 using AspNetCore.StartUpTemplate.IRepository;
 using AspNetCore.StartUpTemplate.IService;
 using AspNetCore.StartupTemplate.Snowflake.SnowFlake;
-using AutoMapper;
 using Dtmcli;
 using FreeSql;
 using Microsoft.AspNetCore.Mvc;
@@ -23,14 +22,12 @@ namespace AspNetCore.StartUpTemplate.Webapi.Controllers;
 public class SchedulerController : ControllerBase
 {
     private readonly ILogger<SchedulerController> _logger;
-    private readonly IMapper _mapper;
     private readonly IFreeSql _freesql;
     private readonly SchedulerManager _schedulerManager;
 
-    public SchedulerController(ILogger<SchedulerController> logger, IMapper mapper,IFreeSql freeSql,SchedulerManager schedulerManager)
+    public SchedulerController(ILogger<SchedulerController> logger,IFreeSql freeSql,SchedulerManager schedulerManager)
     {
         _logger = logger;
-        _mapper = mapper;
         _freesql = freeSql;
         _schedulerManager = schedulerManager;
     }

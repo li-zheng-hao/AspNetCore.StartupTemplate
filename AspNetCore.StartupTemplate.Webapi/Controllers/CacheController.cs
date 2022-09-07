@@ -1,6 +1,5 @@
 ﻿using AspNetCore.StartUpTemplate.IService;
 using AspNetCore.StartUpTemplate.Model;
-using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AspNetCore.StartUpTemplate.Webapi.Controllers;
@@ -16,7 +15,7 @@ public class CacheController : ControllerBase
     private readonly IUserService _userService;
     private readonly IServiceProvider _serviceProvider;
 
-    public CacheController(ILogger<CacheController> logger, IMapper mapper, IUserService us, IServiceProvider serviceProvider)
+    public CacheController(ILogger<CacheController> logger, IUserService us, IServiceProvider serviceProvider)
     {
         _logger = logger;
         _userService = us;

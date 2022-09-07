@@ -219,7 +219,7 @@ namespace AspNetCore.StartUpTemplate.Webapi.Startup
                 AppSettingsConstVars.RedisSentinelAdders.ToArray(),
                 true //是否读写分离
             );
-            serviceCollection.AddSingleton<RedisClient>(redisClient);
+            serviceCollection.AddSingleton<IRedisClient>(redisClient);
             return serviceCollection;
         }
 
@@ -243,16 +243,12 @@ namespace AspNetCore.StartUpTemplate.Webapi.Startup
             options.TieBreaker = ""; //这行在sentinel模式必须加上
             options.DefaultVersion = new Version(3, 0);
             options.AllowAdmin = true;
-            var conn = ConnectionMultiplexer.Connect(options);
             var masterConfig = new ConfigurationOptions
             {
                 CommandMap = CommandMap.Default,
                 ServiceName = AppSettingsConstVars.RedisServiceName,
                 Password = AppSettingsConstVars.RedisPassword
             };
-            var _conn = conn.GetSentinelMasterConnection(masterConfig, Console.Out);
-            var db=_conn.GetDatabase();
-            var res=db.StringGet("ss1");
             services.TryAdd(
                 ServiceDescriptor.Singleton<IConnectionMultiplexer>(
                     (IConnectionMultiplexer)ConnectionMultiplexer.Connect(options)));

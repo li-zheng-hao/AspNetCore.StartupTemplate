@@ -1,7 +1,6 @@
 ﻿using System.Reflection;
 using AspNetCore.StartUpTemplate.Core;
 using AspNetCore.StartUpTemplate.Core.Cache;
-using AspNetCore.StartupTemplate.Redis;
 using Autofac;
 using Autofac.Extras.DynamicProxy;
 
