@@ -43,6 +43,7 @@
       <ProjectReference Include="..\AspNetCore.StartupTemplate.CutstomScheduler\AspNetCore.StartupTemplate.CutstomScheduler.csproj" />
       <ProjectReference Include="..\AspNetCore.StartupTemplate.DbMigration\AspNetCore.StartupTemplate.DbMigration.csproj" />
       <ProjectReference Include="..\AspNetCore.StartupTemplate.Filter\AspNetCore.StartupTemplate.Filter.csproj" />
+      <ProjectReference Include="..\AspNetCore.StartupTemplate.FreeSchedulerDashboard\AspNetCore.StartupTemplate.FreeSchedulerDashboard.csproj" />
       <ProjectReference Include="..\AspNetCore.StartupTemplate.IRepository\AspNetCore.StartupTemplate.IRepository.csproj" />
       <ProjectReference Include="..\AspNetCore.StartupTemplate.IServices\AspNetCore.StartupTemplate.IServices.csproj" />
       <ProjectReference Include="..\AspNetCore.StartupTemplate.Model\AspNetCore.StartupTemplate.Model.csproj" />
