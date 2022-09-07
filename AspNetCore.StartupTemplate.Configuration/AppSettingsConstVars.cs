@@ -39,8 +39,11 @@ public class AppSettingsConstVars
     /// 获取redis连接字符串
     /// </summary>
     //public static readonly string RedisConfigConnectionString = AppSettingsHelper.GetContent("RedisConfig", "ConnectionString");
-    public static readonly string RedisConn = AppSettingsHelper.GetContent("Redis:RedisConn");
-    public static readonly int RedisExpireSec = AppSettingsHelper.GetContentInteger("Redis:RedisCacheExpireSec");
+    public static readonly string RedisConn = AppSettingsHelper.GetContent("Redis","RedisConn");
+    public static readonly string RedisServiceName = AppSettingsHelper.GetContent("Redis","ServiceName");
+    public static readonly string RedisPassword = AppSettingsHelper.GetContent("Redis","Password");
+    public static readonly int RedisExpireSec = AppSettingsHelper.GetContentInteger("Redis","RedisCacheExpireSec");
+    public static readonly List<string> RedisSentinelAdders = AppSettingsHelper.GetContentList<string>("Redis","SentinelAdders");
 
     #endregion
 

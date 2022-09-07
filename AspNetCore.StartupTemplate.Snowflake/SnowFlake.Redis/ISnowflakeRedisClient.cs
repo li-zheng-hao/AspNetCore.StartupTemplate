@@ -2,7 +2,7 @@
 
 namespace AspNetCore.StartupTemplate.Snowflake.SnowFlake.Redis
 {
-    public interface IRedisClient: IDisposable
+    public interface ISnowflakeRedisClient: IDisposable
     {
         Task<long> IncrementAsync(string key, long num = 1, int db = -1);
         string GetKeyForRedis(string key);

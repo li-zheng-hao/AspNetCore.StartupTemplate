@@ -15,6 +15,7 @@ using Autofac.Extensions.DependencyInjection;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Serilog;
+using StackExchange.Redis;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,6 +30,10 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 
+ConfigurationOptions options = ConfigurationOptions.Parse("172.10.2.52:26380,allowAdmin=true,serviceName=mymaster,password=lzh123456");
+options.CommandMap=CommandMap.Sentinel;
+options.TieBreaker = "";
+var str=options.ToString(true);
 builder.Services
     .AddConfigurationConfig(builder.Configuration)
     .AddSnowflakeWithRedis()
@@ -36,8 +41,9 @@ builder.Services
     .AddFreeSql()
     .AddCustomCors()
     .AddMapster()
-    .AddRedisManager()
-    .AddRedisCacheOutput(AppSettingsConstVars.RedisConn)
+    // .AddRedisManager()
+    .AddFreeRedis()
+    .AddCustomRedisCacheOutput()
     .AddDtm()
     .AddDbMigration()
     .AddScheduler()

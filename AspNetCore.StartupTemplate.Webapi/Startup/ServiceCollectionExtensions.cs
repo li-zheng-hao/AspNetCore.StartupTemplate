@@ -1,11 +1,14 @@
 ﻿using System.Diagnostics;
 using System.Reflection;
+using AspNetCore.CacheOutput;
+using AspNetCore.CacheOutput.Redis;
 using AspNetCore.StartUpTemplate.Configuration;
 using AspNetCore.StartUpTemplate.Contract.DTOs;
 using AspNetCore.StartUpTemplate.Core.Cache;
 using AspNetCore.StartupTemplate.DbMigration;
 using AspNetCore.StartUpTemplate.Filter;
 using Dtmcli;
+using FreeRedis;
 using FreeSql;
 using FreeSql.Internal;
 using Mapster;
@@ -13,17 +16,20 @@ using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Serilog;
 using Serilog.Core;
+using StackExchange.Redis;
 
 namespace AspNetCore.StartUpTemplate.Webapi.Startup
 {
     public static class ServiceCollectionExtensions
     {
         #region FreeSql
+
         /// <summary>
         /// FreeSql
         /// </summary>
@@ -34,26 +40,24 @@ namespace AspNetCore.StartUpTemplate.Webapi.Startup
             Func<IServiceProvider, IFreeSql> fsql = r =>
             {
                 IFreeSql fsql = new FreeSqlBuilder()
-                    .UseConnectionString(DataType.MySql,AppSettingsConstVars.DbConnection)
+                    .UseConnectionString(DataType.MySql, AppSettingsConstVars.DbConnection)
                     .UseNameConvert(NameConvertType.PascalCaseToUnderscoreWithLower)
 #if DEBUG
                     .UseAutoSyncStructure(true)
 #else
                     .UseAutoSyncStructure(false)
 #endif
-                    
+
                     .UseNoneCommandParameter(true)
-                    .UseMonitorCommand(cmd =>
-                        {
-                            Trace.WriteLine($"freesql监视命令 {cmd.CommandText}");
-                        }
+                    .UseMonitorCommand(cmd => { Trace.WriteLine($"freesql监视命令 {cmd.CommandText}"); }
                     )
                     .Build()
-                    .SetDbContextOptions(opt => opt.EnableCascadeSave = false);//联级保存功能开启
+                    .SetDbContextOptions(opt => opt.EnableCascadeSave = false); //联级保存功能开启
                 fsql.Aop.CurdAfter += (s, e) =>
                 {
-                    Log.Debug($"ManagedThreadId:{Thread.CurrentThread.ManagedThreadId}: FullName:{e.EntityType.FullName}" +
-                              $" ElapsedMilliseconds:{e.ElapsedMilliseconds}ms, {e.Sql}");
+                    Log.Debug(
+                        $"ManagedThreadId:{Thread.CurrentThread.ManagedThreadId}: FullName:{e.EntityType.FullName}" +
+                        $" ElapsedMilliseconds:{e.ElapsedMilliseconds}ms, {e.Sql}");
 
                     if (e.ElapsedMilliseconds > 200)
                     {
@@ -70,12 +74,14 @@ namespace AspNetCore.StartUpTemplate.Webapi.Startup
             services.AddSingleton(fsql);
             services.AddScoped<UnitOfWorkManager>();
             services.AddFreeRepository(null, typeof(Program).Assembly);
-            
+
             return services;
         }
+
         #endregion
 
         #region DTM
+
         /// <summary>
         /// 配置DTM
         /// </summary>
@@ -93,6 +99,7 @@ namespace AspNetCore.StartUpTemplate.Webapi.Startup
 
         #endregion
 
+        #region Json配置
 
         public static IMvcBuilder AddCustomJson(this IMvcBuilder mvcBuilder)
         {
@@ -116,6 +123,10 @@ namespace AspNetCore.StartUpTemplate.Webapi.Startup
             return mvcBuilder;
         }
 
+        #endregion
+
+        #region Swagger配置
+
         public static IServiceCollection AddCustomSwaggerGen(this IServiceCollection serviceCollection)
         {
             serviceCollection.AddSwaggerGen(c =>
@@ -134,7 +145,7 @@ namespace AspNetCore.StartUpTemplate.Webapi.Startup
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 //... and tell Swagger to use those XML comments.
-                c.IncludeXmlComments(xmlPath,true);
+                c.IncludeXmlComments(xmlPath, true);
                 c.AddSecurityRequirement(new OpenApiSecurityRequirement
                 {
                     {
@@ -152,11 +163,21 @@ namespace AspNetCore.StartUpTemplate.Webapi.Startup
             return serviceCollection;
         }
 
-        public static IServiceCollection AddConfigurationConfig(this IServiceCollection serviceCollection,IConfiguration config)
+        #endregion
+
+        #region 自定义配置
+
+        public static IServiceCollection AddConfigurationConfig(this IServiceCollection serviceCollection,
+            IConfiguration config)
         {
             serviceCollection.AddSingleton(new AppSettingsHelper(config));
             return serviceCollection;
         }
+
+        #endregion
+
+        #region 跨域
+
         public static IServiceCollection AddCustomCors(this IServiceCollection serviceCollection)
         {
             // 此处根据自己的需要配置可通过的域名或ip
@@ -172,7 +193,11 @@ namespace AspNetCore.StartUpTemplate.Webapi.Startup
             });
             return serviceCollection;
         }
-        
+
+        #endregion
+
+        #region Mapster映射
+
         public static IServiceCollection AddMapster(this IServiceCollection serviceCollection)
         {
             var typeAdapterConfig = TypeAdapterConfig.GlobalSettings;
@@ -183,9 +208,60 @@ namespace AspNetCore.StartUpTemplate.Webapi.Startup
             return serviceCollection;
         }
 
+        #endregion
+
+        #region FreeRedis配置
+
+        public static IServiceCollection AddFreeRedis(this IServiceCollection serviceCollection)
+        {
+            RedisClient redisClient = new RedisClient(
+                AppSettingsConstVars.RedisConn,
+                AppSettingsConstVars.RedisSentinelAdders.ToArray(),
+                true //是否读写分离
+            );
+            serviceCollection.AddSingleton<RedisClient>(redisClient);
+            return serviceCollection;
+        }
+
+        public static IServiceCollection AddCustomRedisCacheOutput(
+            this IServiceCollection services)
+        {
+            if (services == null)
+                throw new ArgumentNullException(nameof(services));
+            services.TryAdd(ServiceDescriptor.Singleton<CacheKeyGeneratorFactory, CacheKeyGeneratorFactory>());
+            services.TryAdd(ServiceDescriptor.Singleton<ICacheKeyGenerator, DefaultCacheKeyGenerator>());
+            services.TryAdd(ServiceDescriptor.Singleton<IApiCacheOutput, StackExchangeRedisCacheOutputProvider>());
+            ConfigurationOptions options = new ConfigurationOptions();
+            options.Password = AppSettingsConstVars.RedisPassword;
+            options.CommandMap = CommandMap.Sentinel;
+            foreach (var addr in AppSettingsConstVars.RedisSentinelAdders)
+            {
+                var ipPort = addr.Split(':');
+                options.EndPoints.Add(ipPort[0], Convert.ToInt32(ipPort[1]));
+            }
+
+            options.TieBreaker = ""; //这行在sentinel模式必须加上
+            options.DefaultVersion = new Version(3, 0);
+            options.AllowAdmin = true;
+            var conn = ConnectionMultiplexer.Connect(options);
+            var masterConfig = new ConfigurationOptions
+            {
+                CommandMap = CommandMap.Default,
+                ServiceName = AppSettingsConstVars.RedisServiceName,
+                Password = AppSettingsConstVars.RedisPassword
+            };
+            var _conn = conn.GetSentinelMasterConnection(masterConfig, Console.Out);
+            var db=_conn.GetDatabase();
+            var res=db.StringGet("ss1");
+            services.TryAdd(
+                ServiceDescriptor.Singleton<IConnectionMultiplexer>(
+                    (IConnectionMultiplexer)ConnectionMultiplexer.Connect(options)));
+            services.TryAdd(ServiceDescriptor.Transient<IDatabase>((Func<IServiceProvider, IDatabase>)(e =>
+                ((ConnectionMultiplexer)e.GetRequiredService<IConnectionMultiplexer>())
+                .GetSentinelMasterConnection(masterConfig).GetDatabase())));
+            return services;
+        }
+
+        #endregion
     }
-
- 
-
-   
 }

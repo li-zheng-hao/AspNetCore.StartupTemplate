@@ -36,15 +36,25 @@ public class UserController : ControllerBase
     
     
     /// <summary>
-    /// 缓存+权限验证示例
+    /// 缓存示例
     /// </summary>
     /// <param name="id">随机传入的ID</param>
     /// <returns></returns>
-    [Description("缓存+权限验证示例")]
+    [Description("缓存")]
     [CacheOutput(ClientTimeSpan = 100,ServerTimeSpan = 100)]
-    [NeedAuth]
     [HttpGet]
     public string  Get(string id)
+    {
+        return id;
+    }
+    /// <summary>
+    /// 权限验证示例
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    [NeedAuth]
+    [HttpGet]
+    public string  Get2(string id)
     {
         return id;
     }

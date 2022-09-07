@@ -12,7 +12,6 @@ namespace AspNetCore.StartupTemplate.Snowflake.SnowFlake.Redis
                 option = opt =>
                 {
                     opt.InstanceName = "snowflake:";
-                    opt.ConnectionString = AppSettingsConstVars.RedisConn;
                     opt.WorkIdLength = 9; // 9位支持512个工作节点
                     opt.RefreshAliveInterval = TimeSpan.FromMinutes(4);
                     opt.StartTimeStamp = DateTime.Parse("2000-01-01");
@@ -20,7 +19,7 @@ namespace AspNetCore.StartupTemplate.Snowflake.SnowFlake.Redis
             }
             service.Configure(option);
             service.AddSingleton<ISnowflakeIdMaker, SnowflakeIdMaker>();
-            service.AddSingleton<IRedisClient, RedisClient>();
+            service.AddSingleton<ISnowflakeRedisClient, SnowflakeRedisClient>();
             service.AddSingleton<IDistributedSupport, DistributedSupportWithRedis>();
             service.AddHostedService<SnowflakeBackgroundServices>();
             return service;

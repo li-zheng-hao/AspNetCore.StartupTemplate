@@ -5,7 +5,7 @@ namespace AspNetCore.StartupTemplate.Snowflake.SnowFlake.Redis
 {
     public class DistributedSupportWithRedis : IDistributedSupport
     {
-        private IRedisClient _redisClient;
+        private ISnowflakeRedisClient _snowflakeRedisClient;
         /// <summary>
         /// 当前生成的work节点
         /// </summary>
@@ -18,9 +18,9 @@ namespace AspNetCore.StartupTemplate.Snowflake.SnowFlake.Redis
         private readonly RedisOption _redisOption;
 
         private int _workId;
-        public DistributedSupportWithRedis(IRedisClient redisClient, IOptions<RedisOption> redisOption)
+        public DistributedSupportWithRedis(ISnowflakeRedisClient snowflakeRedisClient, IOptions<RedisOption> redisOption)
         {
-            _redisClient = redisClient;
+            _snowflakeRedisClient = snowflakeRedisClient;
             _redisOption = redisOption.Value;
             _currentWorkIndex = "current.work.index";
             _inUse = "in.use";
@@ -28,11 +28,11 @@ namespace AspNetCore.StartupTemplate.Snowflake.SnowFlake.Redis
 
         public async Task<int> GetNextWorkId()
         {
-            _workId = (int)(await _redisClient.IncrementAsync(_currentWorkIndex)) - 1;
+            _workId = (int)(await _snowflakeRedisClient.IncrementAsync(_currentWorkIndex)) - 1;
             if (_workId > 1 << _redisOption.WorkIdLength)
             {
                 //表示所有节点已全部被使用过，则从历史列表中，获取当前已回收的节点id
-                var newWorkdId = await _redisClient.SortedRangeByScoreWithScoresAsync(_inUse, 0,
+                var newWorkdId = await _snowflakeRedisClient.SortedRangeByScoreWithScoresAsync(_inUse, 0,
                     GetTimestamp(DateTime.Now.AddMinutes(-5)), 0, 1, Order.Ascending);
                 if (!newWorkdId.Any())
                 {
@@ -41,7 +41,7 @@ namespace AspNetCore.StartupTemplate.Snowflake.SnowFlake.Redis
                 _workId = int.Parse(newWorkdId.First().Key);
             }
             //将正在使用的workId写入到有序列表中
-            await _redisClient.SortedAddAsync(_inUse, _workId.ToString(), GetTimestamp());
+            await _snowflakeRedisClient.SortedAddAsync(_inUse, _workId.ToString(), GetTimestamp());
             return _workId;
         }
         private long GetTimestamp(DateTime? time = null)
@@ -55,7 +55,7 @@ namespace AspNetCore.StartupTemplate.Snowflake.SnowFlake.Redis
         }
         public async Task RefreshAlive()
         {
-            await _redisClient.SortedAddAsync(_inUse, _workId.ToString(), GetTimestamp());
+            await _snowflakeRedisClient.SortedAddAsync(_inUse, _workId.ToString(), GetTimestamp());
         }
     }
 }
