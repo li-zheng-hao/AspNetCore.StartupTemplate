@@ -14,10 +14,13 @@ public class UserService : IUserService
     private readonly ILogger<UserService> _logger;
     private readonly IBaseRepository<Users> _dal;
     private readonly ISnowflakeIdMaker _snowflakeIdMaker;
+    private readonly UnitOfWorkManager _uowm;
+
     public UserService(ILogger<UserService> logger, IBaseRepository<Users> userRepository, ITestService testService
-    , ISnowflakeIdMaker snowflakeIdMaker)
+    , ISnowflakeIdMaker snowflakeIdMaker,UnitOfWorkManager uowm)
     {
         _logger = logger;
+        _uowm = uowm;
         _dal = userRepository;
         _testService = testService;
         _snowflakeIdMaker = snowflakeIdMaker;
@@ -25,6 +28,8 @@ public class UserService : IUserService
     [Transactional]
     public void FuncA()
     {
+        var tt=_uowm.Current;
+        
         Users user = new Users();
         user.Id = _snowflakeIdMaker.NextId();
         user.UserName = "FuncA" + Path.GetRandomFileName().ToLower();

@@ -11,6 +11,7 @@ using AspNetCore.StartupTemplate.Snowflake.SnowFlake.Redis;
 using AspNetCore.StartUpTemplate.Webapi.Startup;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using FreeScheduler.Dashboard;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Serilog;
@@ -124,6 +125,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.Use(async(a, b) =>
+{
+    await b();
+});
 #region Spring事务管理器中间件
 
 app.Use(async (context, next) =>
@@ -135,21 +140,26 @@ app.Use(async (context, next) =>
 #endregion
 
 app.UseCors();
-
+app.UseFreeSchedulerDashboard(it =>
+{
+    // it.DashboardAuthorizationFilter = null;// 自定义权限校验
+    // it.TaskTableName // 表名
+    // it.TaskLogTableName // 日志表名
+});
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
-
-app.UseRouting().UseEndpoints(endpoints =>
-{
-    endpoints.MapControllers();
-
-    endpoints.MapHealthChecks("/health", new HealthCheckOptions
-    {
-        Predicate = s => true,
-        ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
-    });
-});
-// app.MapControllers();
+//
+// app.UseRouting().UseEndpoints(endpoints =>
+// {
+//     endpoints.MapControllers();
+//
+//     endpoints.MapHealthChecks("/health", new HealthCheckOptions
+//     {
+//         Predicate = s => true,
+//         ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+//     });
+// });
+app.MapControllers();
 
 app.Run();

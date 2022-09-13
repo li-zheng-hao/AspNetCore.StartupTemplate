@@ -186,9 +186,10 @@ namespace AspNetCore.StartUpTemplate.Webapi.Startup
                 options.AddDefaultPolicy(
                     policy =>
                     {
-                        policy.AllowAnyOrigin();
+                        policy.SetIsOriginAllowed(it=>true);
                         policy.AllowAnyHeader();
                         policy.AllowAnyMethod();
+                        policy.AllowCredentials();
                     });
             });
             return serviceCollection;

@@ -21,6 +21,7 @@
         <PackageReference Include="Dtmcli" Version="1.3.0" />
         <PackageReference Include="Flurl.Http" Version="3.2.4" />
         <PackageReference Include="FreeRedis" Version="0.6.6" />
+        <PackageReference Include="FreeScheduler.Dashboard" Version="1.0.3" />
         <PackageReference Include="FreeSql.Extensions.JsonMap" Version="3.2.666" />
         <PackageReference Include="FreeSql.Provider.MySqlConnector" Version="3.2.666" />
         <PackageReference Include="FreeSql.Repository" Version="3.2.666" />
