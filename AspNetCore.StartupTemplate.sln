@@ -64,7 +64,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Redis-Sentinel", "Redis-Sen
 		Deployment\Redis-Sentinel\sentinel\sentinel.conf = Deployment\Redis-Sentinel\sentinel\sentinel.conf
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore.StartupTemplate.CustomRbMQ", "AspNetCore.StartupTemplate.CustomRbMQ\AspNetCore.StartupTemplate.CustomRbMQ.csproj", "{557A339D-DEF3-4F3D-9A1C-7542C1849F69}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore.StartupTemplate.CustomCAP", "AspNetCore.StartupTemplate.CustomCAP\AspNetCore.StartupTemplate.CustomCAP.csproj", "{557A339D-DEF3-4F3D-9A1C-7542C1849F69}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore.StartupTemplate.CustomCAP.RabbitMQ", "AspNetCore.StartupTemplate.CustomCAP.RabbitMQ\AspNetCore.StartupTemplate.CustomCAP.RabbitMQ.csproj", "{20365C84-E010-4115-A664-FCD0042B7BCD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore.StartupTemplate.CustomCAP.Mysql", "AspNetCore.StartupTemplate.CustomCAP.Mysql\AspNetCore.StartupTemplate.CustomCAP.Mysql.csproj", "{EAC396E8-629F-4AA3-9B51-3881595436BF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -152,6 +156,14 @@ Global
 		{557A339D-DEF3-4F3D-9A1C-7542C1849F69}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{557A339D-DEF3-4F3D-9A1C-7542C1849F69}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{557A339D-DEF3-4F3D-9A1C-7542C1849F69}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20365C84-E010-4115-A664-FCD0042B7BCD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20365C84-E010-4115-A664-FCD0042B7BCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20365C84-E010-4115-A664-FCD0042B7BCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20365C84-E010-4115-A664-FCD0042B7BCD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EAC396E8-629F-4AA3-9B51-3881595436BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EAC396E8-629F-4AA3-9B51-3881595436BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EAC396E8-629F-4AA3-9B51-3881595436BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EAC396E8-629F-4AA3-9B51-3881595436BF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{0D71708E-C037-4B05-A12F-A6CF2DA2B98F} = {8BB20A97-2C3A-4E85-B74A-7BDB2BB70B46}
@@ -175,5 +187,7 @@ Global
 		{DC78CB3F-6E1D-4287-B497-1BB7BBC5138C} = {D6EF715A-2EA5-484D-98A1-CC3211F0779B}
 		{9C71157D-8004-4635-A5D2-8F6E0309E872} = {22DB2A26-EC5F-4947-B9C8-08C075E9AFF3}
 		{557A339D-DEF3-4F3D-9A1C-7542C1849F69} = {D6EF715A-2EA5-484D-98A1-CC3211F0779B}
+		{20365C84-E010-4115-A664-FCD0042B7BCD} = {D6EF715A-2EA5-484D-98A1-CC3211F0779B}
+		{EAC396E8-629F-4AA3-9B51-3881595436BF} = {D6EF715A-2EA5-484D-98A1-CC3211F0779B}
 	EndGlobalSection
 EndGlobal
