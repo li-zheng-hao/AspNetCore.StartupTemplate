@@ -7,4 +7,12 @@
         <RootNamespace>AspNetCore.StartupTemplate.CustomCAP.Mysql</RootNamespace>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\AspNetCore.StartupTemplate.CustomCAP\AspNetCore.StartupTemplate.CustomCAP.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="RabbitMQ.Client" Version="6.4.0" />
+    </ItemGroup>
+
 </Project>

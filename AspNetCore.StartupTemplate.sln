@@ -70,6 +70,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore.StartupTemplate.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore.StartupTemplate.CustomCAP.Mysql", "AspNetCore.StartupTemplate.CustomCAP.Mysql\AspNetCore.StartupTemplate.CustomCAP.Mysql.csproj", "{EAC396E8-629F-4AA3-9B51-3881595436BF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore.StartupTemplate.Sample.CAP.RabbitMQ.Mysql", "AspNetCore.StartupTemplate.Sample.CAP.RabbitMQ.Mysql\AspNetCore.StartupTemplate.Sample.CAP.RabbitMQ.Mysql.csproj", "{D4999F72-475A-4E57-BD48-F76E8C8F78B0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -164,6 +166,10 @@ Global
 		{EAC396E8-629F-4AA3-9B51-3881595436BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EAC396E8-629F-4AA3-9B51-3881595436BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EAC396E8-629F-4AA3-9B51-3881595436BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4999F72-475A-4E57-BD48-F76E8C8F78B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4999F72-475A-4E57-BD48-F76E8C8F78B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4999F72-475A-4E57-BD48-F76E8C8F78B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4999F72-475A-4E57-BD48-F76E8C8F78B0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{0D71708E-C037-4B05-A12F-A6CF2DA2B98F} = {8BB20A97-2C3A-4E85-B74A-7BDB2BB70B46}
@@ -189,5 +195,6 @@ Global
 		{557A339D-DEF3-4F3D-9A1C-7542C1849F69} = {D6EF715A-2EA5-484D-98A1-CC3211F0779B}
 		{20365C84-E010-4115-A664-FCD0042B7BCD} = {D6EF715A-2EA5-484D-98A1-CC3211F0779B}
 		{EAC396E8-629F-4AA3-9B51-3881595436BF} = {D6EF715A-2EA5-484D-98A1-CC3211F0779B}
+		{D4999F72-475A-4E57-BD48-F76E8C8F78B0} = {E1AC9CC0-74D5-4DBB-A399-1AF51EB45DCE}
 	EndGlobalSection
 EndGlobal
