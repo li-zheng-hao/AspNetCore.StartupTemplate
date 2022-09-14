@@ -144,17 +144,17 @@ app.UseFreeSchedulerDashboard(it =>
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
-//
-// app.UseRouting().UseEndpoints(endpoints =>
-// {
-//     endpoints.MapControllers();
-//
-//     endpoints.MapHealthChecks("/health", new HealthCheckOptions
-//     {
-//         Predicate = s => true,
-//         ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
-//     });
-// });
-app.MapControllers();
+
+app.UseRouting().UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers();
+
+    endpoints.MapHealthChecks("/health", new HealthCheckOptions
+    {
+        Predicate = s => true,
+        ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+    });
+});
+// app.MapControllers();
 
 app.Run();
