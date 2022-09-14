@@ -54,9 +54,10 @@ dotnet new aspnetcorestartuptemplate -n XXX   //  XXX为项目名
 - `Repository`,`IRepository`:仓储层
 - `IServices`,`Services`:服务层
 - `Webapi`: Webapi层
-- `MQ`:rabbitmq官方库封装
-- `Redis`:redis库封装
 - `Snowflake`:支持workid自动获取回收的雪花id库
+- `DbMigration`:数据库版本迁移库
+- `CustomScheduler`：定制化FreeScheduler库
+- `CodeGeneratorConsole`:代码生成器
 
 # 技术栈
 
@@ -66,6 +67,8 @@ dotnet new aspnetcorestartuptemplate -n XXX   //  XXX为项目名
 - 接口缓存：`CacheOutput`
 - 实体映射：`AutoMapper`
 - 消息队列：`RabbitMQ`
+- 可靠性消息传输：`CAP`
+- 分布式事务：`DTM`+`CAP`
 - 数据迁移：`Evolve`
 - 缓存:`StackExchange.Redis`
 - 编译时AOP：`Rougamo`
@@ -73,6 +76,8 @@ dotnet new aspnetcorestartuptemplate -n XXX   //  XXX为项目名
 - 模板生成：`DotLiquid`
 - Http库：`Flurl.Http`
 - Mock库：`Moq`
+- 定时任务：`FreeScheduler`
+- Redis库：`FreeRedis`
 
 # 致谢
 
