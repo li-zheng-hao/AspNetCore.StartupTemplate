@@ -1,4 +1,6 @@
 using System.Data;
+using System.Reflection;
+using DotNetCore.CAP;
 using FreeSql;
 using Microsoft.Extensions.DependencyInjection;
 using Rougamo.Context;
@@ -19,11 +21,26 @@ public class TransactionalAttribute : Rougamo.MoAttribute
     public static void SetServiceProvider(IServiceProvider serviceProvider) => m_ServiceProvider.Value = serviceProvider;
 
     IUnitOfWork _uow;
+    private ICapPublisher _capPublisher;
+    private MySqlCapTransaction _capTransaction;
+
     public override void OnEntry(MethodContext context)
     {
         Log.Debug("进入 Transactional事务切面");
         var uowManager = m_ServiceProvider.Value.GetService<UnitOfWorkManager>();
         _uow = uowManager.Begin(this.Propagation, this.m_IsolationLevel);
+        var trans=_uow.GetOrBeginTransaction();
+
+        #region CAP相关
+        // 这里接入cap的事务 并且设置cap的自动提交为false
+        _capPublisher = m_ServiceProvider.Value.GetService<ICapPublisher>();
+        _capTransaction = ActivatorUtilities.CreateInstance<MySqlCapTransaction>(m_ServiceProvider.Value);;
+        _capTransaction.AutoCommit = false;
+        _capTransaction.DbTransaction = trans;
+        _capPublisher.Transaction.Value = _capTransaction;
+
+        #endregion
+       
         Log.Debug($"当前事务的guid为{_uow.Orm.Ado.Identifier}");
         // todo 获取一个mqtransaction并标记开启了事务
     }
@@ -39,8 +56,11 @@ public class TransactionalAttribute : Rougamo.MoAttribute
         {
             try
             {
-                if (context.Exception == null) 
+                if (context.Exception == null)
+                {
                     _uow.Commit();
+                    _capTransaction?.GetType().GetMethod("Flush", BindingFlags.Instance | BindingFlags.NonPublic)?.Invoke(_capTransaction, null);
+                }
                 else
                 {
                     Log.Error("UnitofWorkManager 切面 回滚 ");

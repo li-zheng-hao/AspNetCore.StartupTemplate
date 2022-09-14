@@ -105,7 +105,7 @@ public static class DtmDbUtilsExtension
         var _specialDelegate = scope.Resolve<DbSpecialDelegate>();
         try
         {
-            var str = string.Concat(AppSettingsConstVars.DtmBarrierTableName,
+            var str = string.Concat(IocHelper.ResolveSingleton<GlobalConfig>().Dtm.DtmBarrierTableName,
                 "(trans_type, gid, branch_id, op, barrier_id, reason) values(@trans_type,@gid,@branch_id,@op,@barrier_id,@reason)");
             var sql = _specialDelegate.GetDbSpecial().GetInsertIgnoreTemplate(str, Constant.Barrier.PG_CONSTRAINT);
 

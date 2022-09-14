@@ -14,6 +14,8 @@ namespace AspNetCore.StartUpTemplate.Core.Cache;
 [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
 public class NeedCacheAttribute : Rougamo.MoAttribute
 {
+    private readonly GlobalConfig _config;
+
     /// <summary>
     /// 所有的接口缓存的前缀
     /// </summary>
@@ -25,6 +27,7 @@ public class NeedCacheAttribute : Rougamo.MoAttribute
     {
         CacheKey = customKey;
         _redisClient = IocHelper.ResolveSingleton<IRedisClient>();
+        _config = IocHelper.ResolveSingleton<GlobalConfig>();
     }
     public override void OnEntry(MethodContext context)
     {
@@ -58,15 +61,15 @@ public class NeedCacheAttribute : Rougamo.MoAttribute
         if (string.IsNullOrWhiteSpace(returnVal) || context.ReturnValue == null)
         {
             // 防止缓存穿透
-            _redisClient.Set(CacheKey, "", TimeSpan.FromSeconds(new Random().Next((int)Math.Floor(AppSettingsConstVars.RedisExpireSec * 0.8)
-                , (int)Math.Ceiling(AppSettingsConstVars.RedisExpireSec * 1.2))));
+            _redisClient.Set(CacheKey, "", TimeSpan.FromSeconds(new Random().Next((int)Math.Floor(_config.Redis.RedisCacheExpireSec * 0.8)
+                , (int)Math.Ceiling(_config.Redis.RedisCacheExpireSec * 1.2))));
         }
         else
         {
             // 默认过期时间 加随机范围 防止雪崩
             _redisClient.Set(CacheKey, returnVal
-                , TimeSpan.FromSeconds(new Random().Next((int)Math.Floor(AppSettingsConstVars.RedisExpireSec * 0.8)
-                    , (int)Math.Ceiling(AppSettingsConstVars.RedisExpireSec * 1.2))));
+                , TimeSpan.FromSeconds(new Random().Next((int)Math.Floor(_config.Redis.RedisCacheExpireSec * 0.8)
+                    , (int)Math.Ceiling(_config.Redis.RedisCacheExpireSec * 1.2))));
         }
         _lockController?.Dispose();
 

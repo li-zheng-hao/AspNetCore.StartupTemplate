@@ -18,4 +18,7 @@ public interface IUserService
 
  List<Users> PageQuery(int number, int size);
  void JoinQuery();
+
+ public  Task CapWithFreeSqlTrans();
+ public Task CapWithFreeSqlTransRollBack();
 }

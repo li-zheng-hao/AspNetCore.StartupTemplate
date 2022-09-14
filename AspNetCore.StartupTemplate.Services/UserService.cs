@@ -6,6 +6,8 @@ using AspNetCore.StartUpTemplate.Model;
 using FreeSql;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
+using AspNetCore.StartUpTemplate.Configuration;
+using DotNetCore.CAP;
 
 namespace AspNetCore.StartUpTemplate.Services;
 public class UserService : IUserService
@@ -15,10 +17,12 @@ public class UserService : IUserService
     private readonly IBaseRepository<Users> _dal;
     private readonly ISnowflakeIdMaker _snowflakeIdMaker;
     private readonly UnitOfWorkManager _uowm;
+    private readonly ICapPublisher _capPublisher;
 
     public UserService(ILogger<UserService> logger, IBaseRepository<Users> userRepository, ITestService testService
-    , ISnowflakeIdMaker snowflakeIdMaker,UnitOfWorkManager uowm)
+    , ISnowflakeIdMaker snowflakeIdMaker,UnitOfWorkManager uowm,ICapPublisher capPublisher)
     {
+        _capPublisher = capPublisher;
         _logger = logger;
         _uowm = uowm;
         _dal = userRepository;
@@ -134,5 +138,21 @@ public class UserService : IUserService
 
     }
 
-
+    /// <summary>
+    /// 测试CAP与FreeSql事务集成的示例
+    /// </summary>
+    [Transactional]
+    public async Task CapWithFreeSqlTrans()
+    {
+        await _capPublisher.PublishAsync(MqTopicConfig.CAP_DEFAULT_TOPIC, DateTime.Now);
+    }
+    /// <summary>
+    /// 测试CAP与FreeSql事务集成的示例
+    /// </summary>
+    [Transactional]
+    public async Task CapWithFreeSqlTransRollBack()
+    {
+        await _capPublisher.PublishAsync(MqTopicConfig.CAP_DEFAULT_TOPIC, DateTime.Now);
+        throw new Exception("随机抛出异常");
+    }
 }

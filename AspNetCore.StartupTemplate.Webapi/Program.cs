@@ -30,10 +30,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 
-ConfigurationOptions options = ConfigurationOptions.Parse("172.10.2.52:26380,allowAdmin=true,serviceName=mymaster,password=lzh123456");
-options.CommandMap=CommandMap.Sentinel;
-options.TieBreaker = "";
-var str=options.ToString(true);
+
 builder.Services
     .AddConfigurationConfig(builder.Configuration)
     .AddSnowflakeWithRedis()
@@ -41,11 +38,11 @@ builder.Services
     .AddFreeSql()
     .AddCustomCors()
     .AddMapster()
-    // .AddRedisManager()
     .AddFreeRedis()
     .AddCustomRedisCacheOutput()
     .AddDtm()
     .AddDbMigration()
+    .AddCustomCAP()
     .AddScheduler()
     .AddMvc(options =>
     {
@@ -93,8 +90,6 @@ builder.Services.AddHealthChecks(); //健康检查
 
 
 var app = builder.Build();
-
-
 #region IOC工具类===============================
 // 全局的生命周期
 var globalLifetimeScope = app.Services.GetAutofacRoot();

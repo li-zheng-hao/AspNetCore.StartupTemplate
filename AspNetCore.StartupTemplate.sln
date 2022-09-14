@@ -36,8 +36,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore.StartupTemplate.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore.StartupTemplate.CodeGeneratorConsole", "AspNetCore.StartupTemplate.CodeGeneratorConsole\AspNetCore.StartupTemplate.CodeGeneratorConsole.csproj", "{2CF58D72-F9DE-47B5-9CC0-DDF2AE2E5AF4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore.StartupTemplate.MQ", "AspNetCore.StartupTemplate.MQ\AspNetCore.StartupTemplate.MQ.csproj", "{D54E1FE1-78F8-4C8C-BB8A-EA1DCFC702E6}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore.StartupTemplate.Snowflake", "AspNetCore.StartupTemplate.Snowflake\AspNetCore.StartupTemplate.Snowflake.csproj", "{66E2C97D-21C4-428A-A551-C1D80CBEC1AD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore.StartupTemplate.UnitTest", "AspNetCore.StartupTemplate.UnitTest\AspNetCore.StartupTemplate.UnitTest.csproj", "{47ED8BED-D27D-46E7-ACA5-B08C4F456259}"
@@ -63,14 +61,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Redis-Sentinel", "Redis-Sen
 		Deployment\Redis-Sentinel\sentinel\docker-compose.yml = Deployment\Redis-Sentinel\sentinel\docker-compose.yml
 		Deployment\Redis-Sentinel\sentinel\sentinel.conf = Deployment\Redis-Sentinel\sentinel\sentinel.conf
 	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore.StartupTemplate.CustomCAP", "AspNetCore.StartupTemplate.CustomCAP\AspNetCore.StartupTemplate.CustomCAP.csproj", "{557A339D-DEF3-4F3D-9A1C-7542C1849F69}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore.StartupTemplate.CustomCAP.RabbitMQ", "AspNetCore.StartupTemplate.CustomCAP.RabbitMQ\AspNetCore.StartupTemplate.CustomCAP.RabbitMQ.csproj", "{20365C84-E010-4115-A664-FCD0042B7BCD}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore.StartupTemplate.CustomCAP.Mysql", "AspNetCore.StartupTemplate.CustomCAP.Mysql\AspNetCore.StartupTemplate.CustomCAP.Mysql.csproj", "{EAC396E8-629F-4AA3-9B51-3881595436BF}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore.StartupTemplate.Sample.CAP.RabbitMQ.Mysql", "AspNetCore.StartupTemplate.Sample.CAP.RabbitMQ.Mysql\AspNetCore.StartupTemplate.Sample.CAP.RabbitMQ.Mysql.csproj", "{D4999F72-475A-4E57-BD48-F76E8C8F78B0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -130,10 +120,6 @@ Global
 		{2CF58D72-F9DE-47B5-9CC0-DDF2AE2E5AF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2CF58D72-F9DE-47B5-9CC0-DDF2AE2E5AF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2CF58D72-F9DE-47B5-9CC0-DDF2AE2E5AF4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D54E1FE1-78F8-4C8C-BB8A-EA1DCFC702E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D54E1FE1-78F8-4C8C-BB8A-EA1DCFC702E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D54E1FE1-78F8-4C8C-BB8A-EA1DCFC702E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D54E1FE1-78F8-4C8C-BB8A-EA1DCFC702E6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{66E2C97D-21C4-428A-A551-C1D80CBEC1AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{66E2C97D-21C4-428A-A551-C1D80CBEC1AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{66E2C97D-21C4-428A-A551-C1D80CBEC1AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -154,22 +140,6 @@ Global
 		{DC78CB3F-6E1D-4287-B497-1BB7BBC5138C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DC78CB3F-6E1D-4287-B497-1BB7BBC5138C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DC78CB3F-6E1D-4287-B497-1BB7BBC5138C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{557A339D-DEF3-4F3D-9A1C-7542C1849F69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{557A339D-DEF3-4F3D-9A1C-7542C1849F69}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{557A339D-DEF3-4F3D-9A1C-7542C1849F69}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{557A339D-DEF3-4F3D-9A1C-7542C1849F69}.Release|Any CPU.Build.0 = Release|Any CPU
-		{20365C84-E010-4115-A664-FCD0042B7BCD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{20365C84-E010-4115-A664-FCD0042B7BCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{20365C84-E010-4115-A664-FCD0042B7BCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{20365C84-E010-4115-A664-FCD0042B7BCD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EAC396E8-629F-4AA3-9B51-3881595436BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EAC396E8-629F-4AA3-9B51-3881595436BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EAC396E8-629F-4AA3-9B51-3881595436BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EAC396E8-629F-4AA3-9B51-3881595436BF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D4999F72-475A-4E57-BD48-F76E8C8F78B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D4999F72-475A-4E57-BD48-F76E8C8F78B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D4999F72-475A-4E57-BD48-F76E8C8F78B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D4999F72-475A-4E57-BD48-F76E8C8F78B0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{0D71708E-C037-4B05-A12F-A6CF2DA2B98F} = {8BB20A97-2C3A-4E85-B74A-7BDB2BB70B46}
@@ -186,15 +156,10 @@ Global
 		{6A2C4D47-6E8A-47A7-A68A-97EA86E9DA19} = {CE6C0D3C-FE43-4009-9C17-EEADE54822EC}
 		{47ED8BED-D27D-46E7-ACA5-B08C4F456259} = {7A70A536-224C-4010-BBC5-E9085F633F75}
 		{66E2C97D-21C4-428A-A551-C1D80CBEC1AD} = {D6EF715A-2EA5-484D-98A1-CC3211F0779B}
-		{D54E1FE1-78F8-4C8C-BB8A-EA1DCFC702E6} = {D6EF715A-2EA5-484D-98A1-CC3211F0779B}
 		{A117C59E-A54F-41A0-89C3-414E58F59DB2} = {D6EF715A-2EA5-484D-98A1-CC3211F0779B}
 		{2CF58D72-F9DE-47B5-9CC0-DDF2AE2E5AF4} = {D6EF715A-2EA5-484D-98A1-CC3211F0779B}
 		{D6109C14-A965-4FE1-9381-7628A02770C9} = {D6EF715A-2EA5-484D-98A1-CC3211F0779B}
 		{DC78CB3F-6E1D-4287-B497-1BB7BBC5138C} = {D6EF715A-2EA5-484D-98A1-CC3211F0779B}
 		{9C71157D-8004-4635-A5D2-8F6E0309E872} = {22DB2A26-EC5F-4947-B9C8-08C075E9AFF3}
-		{557A339D-DEF3-4F3D-9A1C-7542C1849F69} = {D6EF715A-2EA5-484D-98A1-CC3211F0779B}
-		{20365C84-E010-4115-A664-FCD0042B7BCD} = {D6EF715A-2EA5-484D-98A1-CC3211F0779B}
-		{EAC396E8-629F-4AA3-9B51-3881595436BF} = {D6EF715A-2EA5-484D-98A1-CC3211F0779B}
-		{D4999F72-475A-4E57-BD48-F76E8C8F78B0} = {E1AC9CC0-74D5-4DBB-A399-1AF51EB45DCE}
 	EndGlobalSection
 EndGlobal

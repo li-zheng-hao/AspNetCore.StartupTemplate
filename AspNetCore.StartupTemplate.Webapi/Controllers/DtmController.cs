@@ -28,13 +28,15 @@ public class DtmController : ControllerBase
     private readonly IDtmTransFactory _transFactory;
     private IBranchBarrierFactory _barrierFactory;
     private readonly UnitOfWorkManager _uowManager;
+    private readonly GlobalConfig _config;
 
 
     public DtmController(ILogger<UserController> logger, IUserService us
         , IDtmClient client, IDtmTransFactory transFactory, IBranchBarrierFactory barrierFactory,
-        UnitOfWorkManager manager)
+        UnitOfWorkManager manager,GlobalConfig config)
     {
         _logger = logger;
+        _config = config;
         _userService = us;
         _dtmClient = client;
         _transFactory = transFactory;
@@ -50,7 +52,7 @@ public class DtmController : ControllerBase
     {
         try
         {
-            var test = AppSettingsConstVars.BusiUrl + "Dtm/SagaIn";
+            var test = _config.Dtm.BusiUrl + "Dtm/SagaIn";
             _logger.LogWarning("==========开始测试Saga失败直接回滚的示例代码===========");
             var gid = await _dtmClient.GenGid(cancellationToken);
             var saga = _transFactory.NewSaga(gid)

@@ -1,5 +1,6 @@
 ﻿using System.Security.Cryptography;
 using AspNetCore.StartUpTemplate.Configuration;
+using AspNetCore.StartUpTemplate.Core;
 using JWT.Algorithms;
 using JWT.Builder;
 using Newtonsoft.Json;
@@ -16,11 +17,12 @@ public class TokenHelper
     /// <returns></returns>
     public static string CreateToken(UserData? model=null,int expireSeconds=60*15)
     {
+        var config=IocHelper.ResolveSingleton<GlobalConfig>();
         var token = JwtBuilder.Create()
                  .WithAlgorithm(new HMACSHA256Algorithm())
                  .AddClaim("expireTime", DateTime.Now.AddSeconds(expireSeconds))
                  .AddClaim("userData", model)
-                 .WithSecret(AppSettingsConstVars.JwtConfigSecretKey)
+                 .WithSecret(config.Jwt.Key)
                  .Encode();
         return token;
     }
@@ -29,10 +31,11 @@ public class TokenHelper
     /// </summary>
     public static TokenModel ResolveToken(string token)
     {
+        var config=IocHelper.ResolveSingleton<GlobalConfig>();
         var json = JwtBuilder.Create()
                 .WithAlgorithm(new HMACSHA256Algorithm())
                 .MustVerifySignature()
-                .WithSecret(AppSettingsConstVars.JwtConfigSecretKey)// 这个secret是关键，要和上面加密的secret一致
+                .WithSecret(config.Jwt.Key)// 这个secret是关键，要和上面加密的secret一致
                 .Decode(token);
         var res= JsonConvert.DeserializeObject<TokenModel>(json);
         return res;

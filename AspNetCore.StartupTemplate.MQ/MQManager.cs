@@ -17,15 +17,19 @@ public class MQManager : IMQManager, IDisposable
     /// 生命周期与应用生命周期一致
     /// </summary>
     private readonly IConnection _conn;
-    public MQManager()
+
+    private readonly GlobalConfig _config;
+
+    public MQManager(GlobalConfig config)
     {
+        _config = config;
         ConnectionFactory factory = new ConnectionFactory()
         {
-            HostName = AppSettingsConstVars.MQHostName,//RabbitMQ地址
-            Port = AppSettingsConstVars.MQPort,//端口
-            VirtualHost = AppSettingsConstVars.MQVirtualHost,//RabbitMQ中要请求的VirtualHost名称
-            UserName = AppSettingsConstVars.MQUserName,//RabbitMQ用户
-            Password = AppSettingsConstVars.MQPassword//RabbitMQ用户密码
+            HostName = config.RabbitMQ.HostName,//RabbitMQ地址
+            Port = config.RabbitMQ.Port,//端口
+            VirtualHost = config.RabbitMQ.VirtualHost,//RabbitMQ中要请求的VirtualHost名称
+            UserName = config.RabbitMQ.UserName,//RabbitMQ用户
+            Password = config.RabbitMQ.Password//RabbitMQ用户密码
 
         };
         _conn = factory.CreateConnection();

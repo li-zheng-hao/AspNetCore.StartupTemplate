@@ -4,24 +4,18 @@ using AspNetCore.CacheOutput;
 using AspNetCore.CacheOutput.Redis;
 using AspNetCore.StartUpTemplate.Configuration;
 using AspNetCore.StartUpTemplate.Contract.DTOs;
-using AspNetCore.StartUpTemplate.Core.Cache;
-using AspNetCore.StartupTemplate.DbMigration;
 using AspNetCore.StartUpTemplate.Filter;
+using DotNetCore.CAP.Messages;
 using Dtmcli;
 using FreeRedis;
 using FreeSql;
 using FreeSql.Internal;
 using Mapster;
-using Microsoft.AspNetCore.Http.Features;
-using Microsoft.AspNetCore.HttpOverrides;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Serilog;
-using Serilog.Core;
 using StackExchange.Redis;
 
 namespace AspNetCore.StartUpTemplate.Webapi.Startup
@@ -40,7 +34,7 @@ namespace AspNetCore.StartUpTemplate.Webapi.Startup
             Func<IServiceProvider, IFreeSql> fsql = r =>
             {
                 IFreeSql fsql = new FreeSqlBuilder()
-                    .UseConnectionString(DataType.MySql, AppSettingsConstVars.DbConnection)
+                    .UseConnectionString(DataType.MySql, GlobalConfig.Instance.Mysql.ConnectionString)
                     .UseNameConvert(NameConvertType.PascalCaseToUnderscoreWithLower)
 #if DEBUG
                     .UseAutoSyncStructure(true)
@@ -91,7 +85,8 @@ namespace AspNetCore.StartUpTemplate.Webapi.Startup
         {
             services.AddDtmcli(dtm =>
             {
-                dtm.DtmUrl = AppSettingsConstVars.DtmUrl;
+                
+                dtm.DtmUrl = GlobalConfig.Instance.Dtm.DtmUrl;
                 dtm.BarrierTableName = "barrier";
             });
             return services;
@@ -170,7 +165,10 @@ namespace AspNetCore.StartUpTemplate.Webapi.Startup
         public static IServiceCollection AddConfigurationConfig(this IServiceCollection serviceCollection,
             IConfiguration config)
         {
-            serviceCollection.AddSingleton(new AppSettingsHelper(config));
+            var globalConfig=config.Get<GlobalConfig>();
+            GlobalConfig.Instance = globalConfig;
+            serviceCollection.AddSingleton(globalConfig);
+
             return serviceCollection;
         }
 
@@ -216,8 +214,8 @@ namespace AspNetCore.StartUpTemplate.Webapi.Startup
         public static IServiceCollection AddFreeRedis(this IServiceCollection serviceCollection)
         {
             RedisClient redisClient = new RedisClient(
-                AppSettingsConstVars.RedisConn,
-                AppSettingsConstVars.RedisSentinelAdders.ToArray(),
+                GlobalConfig.Instance.Redis.RedisConn,
+                GlobalConfig.Instance.Redis.SentinelAdders.ToArray(),
                 true //是否读写分离
             );
             serviceCollection.AddSingleton<IRedisClient>(redisClient);
@@ -233,9 +231,9 @@ namespace AspNetCore.StartUpTemplate.Webapi.Startup
             services.TryAdd(ServiceDescriptor.Singleton<ICacheKeyGenerator, DefaultCacheKeyGenerator>());
             services.TryAdd(ServiceDescriptor.Singleton<IApiCacheOutput, StackExchangeRedisCacheOutputProvider>());
             ConfigurationOptions options = new ConfigurationOptions();
-            options.Password = AppSettingsConstVars.RedisPassword;
+            options.Password = GlobalConfig.Instance.Redis.Password;
             options.CommandMap = CommandMap.Sentinel;
-            foreach (var addr in AppSettingsConstVars.RedisSentinelAdders)
+            foreach (var addr in GlobalConfig.Instance.Redis.SentinelAdders)
             {
                 var ipPort = addr.Split(':');
                 options.EndPoints.Add(ipPort[0], Convert.ToInt32(ipPort[1]));
@@ -246,8 +244,8 @@ namespace AspNetCore.StartUpTemplate.Webapi.Startup
             var masterConfig = new ConfigurationOptions
             {
                 CommandMap = CommandMap.Default,
-                ServiceName = AppSettingsConstVars.RedisServiceName,
-                Password = AppSettingsConstVars.RedisPassword,
+                ServiceName = GlobalConfig.Instance.Redis.ServiceName,
+                Password = GlobalConfig.Instance.Redis.Password,
                 AllowAdmin = true
             };
             services.TryAdd(
@@ -257,6 +255,37 @@ namespace AspNetCore.StartUpTemplate.Webapi.Startup
                 ((ConnectionMultiplexer)e.GetRequiredService<IConnectionMultiplexer>())
                 .GetSentinelMasterConnection(masterConfig).GetDatabase())));
             return services;
+        }
+
+        #endregion
+
+
+        #region CAP配置
+
+        public static IServiceCollection AddCustomCAP(this IServiceCollection serviceCollection)
+        {
+            serviceCollection.AddCap(x =>
+            {
+                x.UseDashboard();
+                x.UseMySql(GlobalConfig.Instance.Mysql.ConnectionString);
+                x.UseRabbitMQ(it =>
+                {
+                    it.HostName = GlobalConfig.Instance.RabbitMQ.HostName;
+                    it.Port =GlobalConfig.Instance.RabbitMQ.Port ;
+                    it.UserName = GlobalConfig.Instance.RabbitMQ.UserName;
+                    it.Password = GlobalConfig.Instance.RabbitMQ.Password;
+                    it.VirtualHost = GlobalConfig.Instance.RabbitMQ.VirtualHost;
+                });
+                x.FailedRetryCount = 5;
+                x.FailedThresholdCallback = failed =>
+                {
+                    var logger = failed.ServiceProvider.GetService<ILogger<Program>>();
+                    logger.LogError($@"A message of type {failed.MessageType} failed after executing {x.FailedRetryCount} several times, 
+                        requiring manual troubleshooting. Message name: {failed.Message.GetName()}");
+                    // todo 短信/邮件通知异常
+                };
+            });
+            return serviceCollection;
         }
 
         #endregion
