@@ -7,6 +7,7 @@ using AspNetCore.StartUpTemplate.Contract.DTOs;
 using AspNetCore.StartUpTemplate.Core;
 using AspNetCore.StartUpTemplate.IRepository;
 using AspNetCore.StartUpTemplate.IService;
+using AspNetCore.StartupTemplate.Snowflake;
 using AspNetCore.StartupTemplate.Snowflake.SnowFlake;
 using AspNetCore.StartUpTemplate.Webapi.Startup;
 using Dtmcli;
@@ -79,7 +80,7 @@ public class UserController : ControllerBase
     [HttpGet]
     public string GetSnowFlake()
     {
-        return _serviceProvider.GetService<ISnowflakeIdMaker>().NextId().ToString();
+        return _serviceProvider.GetService<SnowflakeGenerator>().NextId().ToString();
     }
     /// <summary>
     /// 注解式事务示例

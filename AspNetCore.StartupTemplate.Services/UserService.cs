@@ -7,6 +7,7 @@ using FreeSql;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
 using AspNetCore.StartUpTemplate.Configuration;
+using AspNetCore.StartupTemplate.Snowflake;
 using DotNetCore.CAP;
 
 namespace AspNetCore.StartUpTemplate.Services;
@@ -15,19 +16,19 @@ public class UserService : IUserService
     private readonly ITestService _testService;
     private readonly ILogger<UserService> _logger;
     private readonly IBaseRepository<Users> _dal;
-    private readonly ISnowflakeIdMaker _snowflakeIdMaker;
+    private readonly SnowflakeGenerator _snowflakeGenerator;
     private readonly UnitOfWorkManager _uowm;
     private readonly ICapPublisher _capPublisher;
 
     public UserService(ILogger<UserService> logger, IBaseRepository<Users> userRepository, ITestService testService
-    , ISnowflakeIdMaker snowflakeIdMaker,UnitOfWorkManager uowm,ICapPublisher capPublisher)
+    , SnowflakeGenerator snowflakeGenerator,UnitOfWorkManager uowm,ICapPublisher capPublisher)
     {
         _capPublisher = capPublisher;
         _logger = logger;
         _uowm = uowm;
         _dal = userRepository;
         _testService = testService;
-        _snowflakeIdMaker = snowflakeIdMaker;
+        _snowflakeGenerator = snowflakeGenerator;
     }
     [Transactional]
     public void FuncA()
@@ -35,7 +36,7 @@ public class UserService : IUserService
         var tt=_uowm.Current;
         
         Users user = new Users();
-        user.Id = _snowflakeIdMaker.NextId();
+        user.Id = _snowflakeGenerator.NextId();
         user.UserName = "FuncA" + Path.GetRandomFileName().ToLower();
         _dal.Insert(user);
         try
@@ -69,7 +70,7 @@ public class UserService : IUserService
         for (int i = 0; i < 10000; i++)
         {
             Users u = new Users();
-            u.Id = _snowflakeIdMaker.NextId();
+            u.Id = _snowflakeGenerator.NextId();
             u.UserName = "Path.GetRandomFileName()";
             u.Password = Path.GetRandomFileName();
             u.Address = Path.GetRandomFileName();
@@ -120,7 +121,7 @@ public class UserService : IUserService
             .InnerJoin((a, b) => a.Id == b.UserId)
             .ToList((a, b) => new { a, b });
         Orders orders = new Orders();
-        orders.Id = _snowflakeIdMaker.NextId();
+        orders.Id = _snowflakeGenerator.NextId();
         orders.UserId = 100;
         _dal.Orm.Insert(orders).ExecuteAffrows();
         _logger.LogInformation($"查询到了{res.Count}");
@@ -131,7 +132,7 @@ public class UserService : IUserService
     public void FuncB()
     {
         Users user = new Users();
-        user.Id = _snowflakeIdMaker.NextId();
+        user.Id = _snowflakeGenerator.NextId();
         user.UserName = "FuncB" + Path.GetRandomFileName().ToLower();
         _dal.Orm.Insert(user);
         throw new Exception("1");

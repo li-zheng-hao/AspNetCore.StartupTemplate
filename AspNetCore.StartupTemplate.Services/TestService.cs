@@ -1,6 +1,7 @@
 using AspNetCore.StartUpTemplate.Core;
 using AspNetCore.StartUpTemplate.IService;
 using AspNetCore.StartUpTemplate.Model;
+using AspNetCore.StartupTemplate.Snowflake;
 using AspNetCore.StartupTemplate.Snowflake.SnowFlake;
 using FreeSql;
 using Microsoft.Extensions.DependencyInjection;
@@ -24,7 +25,7 @@ public class TestService:ITestService
     public void TestNestedTransError()
     {
         Test test = new Test();
-        test.Id = _serviceProvider.GetService<ISnowflakeIdMaker>().NextId();
+        test.Id = _serviceProvider.GetService<SnowflakeGenerator>().NextId();
         test.UserName = "FuncB" + Path.GetRandomFileName().ToLower();
         _dal.Insert(test);
         throw new Exception("11");
@@ -38,7 +39,7 @@ public class TestService:ITestService
     public void TestNestedTransOk()
     {
         Users user = new Users();
-        user.Id = _serviceProvider.GetService<ISnowflakeIdMaker>().NextId();
+        user.Id = _serviceProvider.GetService<SnowflakeGenerator>().NextId();
         user.UserName = "FuncB" + Path.GetRandomFileName().ToLower();
         _dal.Orm.Insert(user);
     }

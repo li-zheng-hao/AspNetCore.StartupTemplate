@@ -7,9 +7,11 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="FreeRedis" Version="0.6.6" />
       <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="2.2.0" />
       <PackageReference Include="Microsoft.Extensions.Options" Version="2.2.0" />
       <PackageReference Include="StackExchange.Redis" Version="2.2.4" />
+      <PackageReference Include="Yitter.IdGenerator" Version="1.0.14" />
     </ItemGroup>
 
     <ItemGroup>

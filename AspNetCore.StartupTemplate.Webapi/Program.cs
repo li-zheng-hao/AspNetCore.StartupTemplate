@@ -6,11 +6,12 @@ using AspNetCore.StartUpTemplate.Core;
 using AspNetCore.StartupTemplate.CustomScheduler;
 using AspNetCore.StartupTemplate.DbMigration;
 using AspNetCore.StartUpTemplate.Filter;
+using AspNetCore.StartupTemplate.Snowflake;
 // using AspNetCore.StartupTemplate.Logging.Log;
-using AspNetCore.StartupTemplate.Snowflake.SnowFlake.Redis;
 using AspNetCore.StartUpTemplate.Webapi.Startup;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using FreeRedis;
 using FreeScheduler.Dashboard;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
@@ -33,7 +34,7 @@ builder.Services.AddEndpointsApiExplorer();
 
 builder.Services
     .AddConfigurationConfig(builder.Configuration)
-    .AddSnowflakeWithRedis()
+    .AddSnowflakeGenerator()
     .AddCustomSwaggerGen()
     .AddFreeSql()
     .AddCustomCors()
@@ -132,6 +133,15 @@ app.Use(async (context, next) =>
     await next();
 });
 
+#endregion
+
+#region 程序正常退出取消注册的雪花ID
+
+app.Lifetime.ApplicationStopping.Register(it =>
+{
+    var sp = it as IServiceProvider;
+    sp.GetService<SnowflakeWorkIdManager>()?.UnRegisterWorkId();
+},app.Services);
 #endregion
 
 app.UseCors();
