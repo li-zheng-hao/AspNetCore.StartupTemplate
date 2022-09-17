@@ -23,7 +23,7 @@ public class SnowflakeOption
     /// <summary>
     /// 未设置的情况下从redis中读取
     /// </summary>
-    public ushort? WorkId { get; set; }
+    public byte? WorkId { get; set; }
     /// <summary>
     /// 默认值10 1024个节点
     /// </summary>
@@ -31,5 +31,5 @@ public class SnowflakeOption
     /// <summary>
     /// 默认值6 序列位长度
     /// </summary>
-    public byte SeqBitLength { get; set; } = 6;
+    public byte SeqBitLength { get; set; } = 7;
 }

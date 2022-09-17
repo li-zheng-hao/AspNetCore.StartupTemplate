@@ -121,10 +121,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.Use(async(a, b) =>
-{
-    await b();
-});
 #region Spring事务管理器中间件
 
 app.Use(async (context, next) =>

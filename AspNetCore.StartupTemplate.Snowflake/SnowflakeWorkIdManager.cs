@@ -12,7 +12,7 @@ public class SnowflakeWorkIdManager
     private int CUR_WORK_ID { get; set; } = default!;
     public const string WORKID_COLLECTION_KEY = "snowflake_workid_set";
     public const string WORKID_CUR_INDEX = "snowflake_workid_cur_index";
-    public static ushort WorkId { get;  set; }
+    public static byte WorkId { get;  set; }
     public SnowflakeWorkIdManager(SnowflakeOption opt,IRedisClient redisClient,ILogger<SnowflakeWorkIdManager> logger)
     {
         _option = opt;
@@ -29,7 +29,7 @@ public class SnowflakeWorkIdManager
     {
         if (_option.WorkId != null)
         {
-            WorkId = (ushort)_option.WorkId;
+            WorkId = _option.WorkId.Value;
             RefreshWorkId();
         }
         else
@@ -47,7 +47,7 @@ public class SnowflakeWorkIdManager
             }
             else
             {
-                WorkId = (ushort)curWorkId;
+                WorkId = (byte)curWorkId;
                 RefreshWorkId();
             }
         }
