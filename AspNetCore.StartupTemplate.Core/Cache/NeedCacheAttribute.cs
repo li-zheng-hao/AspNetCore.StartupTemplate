@@ -1,5 +1,6 @@
 ﻿using AspNetCore.StartUpTemplate.Configuration;
 using AspNetCore.StartUpTemplate.Utility;
+using AspNetCore.StartUpTemplate.Utility.Utils;
 using Autofac;
 using FreeRedis;
 using Newtonsoft.Json;

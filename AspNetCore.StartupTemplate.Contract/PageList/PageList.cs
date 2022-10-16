@@ -1,18 +1,4 @@
-﻿/***********************************************************************
- *            Project: CoreCms
- *        ProjectName: 核心内容管理系统                                
- *                Web: https://www.corecms.net                      
- *             Author: 大灰灰                                          
- *              Email: jianweie@163.com                                
- *         CreateTime: 2021/1/31 21:45:10
- *        Description: 暂无
- ***********************************************************************/
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace CoreCms.Net.Model.ViewModels.Basics
+﻿namespace AspNetCore.StartUpTemplate.Contract.PageList
 {
     /// <summary>
     ///     分页组件实体类

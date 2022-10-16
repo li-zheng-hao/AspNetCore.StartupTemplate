@@ -1,7 +1,7 @@
 using System.Security.Cryptography;
 using System.Text;
 
-namespace AspNetCore.StartUpTemplate.Utility;
+namespace AspNetCore.StartUpTemplate.Utility.Utils;
 
 public class EncryptUtil
 {

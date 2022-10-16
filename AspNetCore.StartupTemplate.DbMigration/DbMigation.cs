@@ -2,6 +2,7 @@
 using System.Data.Common;
 using AspNetCore.StartUpTemplate.Model;
 using AspNetCore.StartUpTemplate.Utility;
+using AspNetCore.StartUpTemplate.Utility.Utils;
 using EvolveDb;
 using FreeSql.Internal.ObjectPool;
 using Microsoft.Extensions.Logging;

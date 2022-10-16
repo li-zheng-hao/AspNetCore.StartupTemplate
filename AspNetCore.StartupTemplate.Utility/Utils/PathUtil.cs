@@ -1,4 +1,4 @@
-namespace AspNetCore.StartUpTemplate.Utility;
+namespace AspNetCore.StartUpTemplate.Utility.Utils;
 
 public static class PathUtil
 {

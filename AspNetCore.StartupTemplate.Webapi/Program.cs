@@ -140,6 +140,12 @@ app.Lifetime.ApplicationStopping.Register(it =>
 },app.Services);
 #endregion
 
+app.Use(async (req,req2) =>
+{
+    Console.WriteLine("a");
+    await req2();
+});
+
 app.UseCors();
 app.UseFreeSchedulerDashboard(it =>
 {

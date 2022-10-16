@@ -1,7 +1,7 @@
 ﻿using System.Net;
 using System.Net.Sockets;
 
-namespace AspNetCore.StartUpTemplate.Utility;
+namespace AspNetCore.StartUpTemplate.Utility.Utils;
 
 public static class NetworkUtil
 {

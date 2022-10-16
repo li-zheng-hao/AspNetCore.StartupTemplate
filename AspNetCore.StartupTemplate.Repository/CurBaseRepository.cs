@@ -1,7 +1,6 @@
 ﻿using System.Linq.Expressions;
 using AspNetCore.StartUpTemplate.Core;
 using AspNetCore.StartUpTemplate.IRepository;
-using CoreCms.Net.Model.ViewModels.Basics;
 using FreeSql;
 
 namespace AspNetCore.StartUpTemplate.Repository;
