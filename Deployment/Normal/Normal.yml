@@ -1,0 +1,20 @@
+version: '3'
+services:
+  rabbitmq:
+    image: rabbitmq:3.10-management
+    ports:
+      - "15673:15672"
+      - "5673:5672"
+    restart: always
+  mysql:
+    image: mysql
+    ports:
+      - "3306:3306"
+    restart: always
+  dtm:
+    image: yedf/dtm
+    ports:
+      - '36789:36789'
+      - '36790:36790'
+
+

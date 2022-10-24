@@ -48,7 +48,7 @@
       <ProjectReference Include="..\AspNetCore.StartupTemplate.Auth\AspNetCore.StartupTemplate.Auth.csproj" />
       <ProjectReference Include="..\AspNetCore.StartupTemplate.Configuration\AspNetCore.StartupTemplate.Configuration.csproj" />
       <ProjectReference Include="..\AspNetCore.StartupTemplate.Core\AspNetCore.StartupTemplate.Core.csproj" />
-      <ProjectReference Include="..\AspNetCore.StartupTemplate.CutstomScheduler\AspNetCore.StartupTemplate.CutstomScheduler.csproj" />
+      <ProjectReference Include="..\AspNetCore.StartupTemplate.CustomScheduler\AspNetCore.StartupTemplate.CutstomScheduler.csproj" />
       <ProjectReference Include="..\AspNetCore.StartupTemplate.DbMigration\AspNetCore.StartupTemplate.DbMigration.csproj" />
       <ProjectReference Include="..\AspNetCore.StartupTemplate.Filter\AspNetCore.StartupTemplate.Filter.csproj" />
       <ProjectReference Include="..\AspNetCore.StartupTemplate.IRepository\AspNetCore.StartupTemplate.IRepository.csproj" />
@@ -58,6 +58,10 @@
       <ProjectReference Include="..\AspNetCore.StartupTemplate.Services\AspNetCore.StartupTemplate.Services.csproj" />
       <ProjectReference Include="..\AspNetCore.StartupTemplate.Snowflake\AspNetCore.StartupTemplate.Snowflake.csproj" />
       <ProjectReference Include="..\AspNetCore.StartupTemplate.Utility\AspNetCore.StartupTemplate.Utility.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="logs" />
     </ItemGroup>
 
 </Project>

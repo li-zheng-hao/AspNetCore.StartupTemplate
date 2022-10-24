@@ -45,18 +45,18 @@ public class TokenHelper
     /// </summary>
     /// <param name="token"></param>
     /// <returns>0 通过 1超时 2其他错误</returns>
-    public static int ValidateToken(string token)
+    public static (int,TokenModel?) ValidateToken(string token)
     {
         try
         {
             var model=ResolveToken(token);
             if (model.ExpireTime < DateTime.Now)
-                return 1;
-            return 0;
+                return (1,model);
+            return (0,model);
         }
         catch (Exception)
         {
-            return 2;
+            return (2,null);
         }
         
     }

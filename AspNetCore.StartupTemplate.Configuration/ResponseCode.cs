@@ -14,6 +14,10 @@ public static class ResponseCode
     /// </summary>
     public const int AUTH_OUT_OF_DATE_ERROR = 402;
     /// <summary>
+    /// 权限不足
+    /// </summary>
+    public const int AUTH_FORBID = 403;
+    /// <summary>
     /// 参数错误
     /// </summary>
     public const int PARAM_ERROR = 408;
