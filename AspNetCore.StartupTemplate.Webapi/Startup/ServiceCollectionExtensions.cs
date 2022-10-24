@@ -2,6 +2,7 @@
 using System.Reflection;
 using AspNetCore.CacheOutput;
 using AspNetCore.CacheOutput.Redis;
+using AspNetCore.StartUpTemplate.Auth.HttpContextUser;
 using AspNetCore.StartUpTemplate.Configuration;
 using AspNetCore.StartUpTemplate.Contract.DTOs;
 using AspNetCore.StartUpTemplate.Filter;
@@ -49,10 +50,6 @@ namespace AspNetCore.StartUpTemplate.Webapi.Startup
                     .SetDbContextOptions(opt => opt.EnableCascadeSave = false); //联级保存功能开启
                 fsql.Aop.CurdAfter += (s, e) =>
                 {
-                    Log.Debug(
-                        $"ManagedThreadId:{Thread.CurrentThread.ManagedThreadId}: FullName:{e.EntityType.FullName}" +
-                        $" ElapsedMilliseconds:{e.ElapsedMilliseconds}ms, {e.Sql}");
-
                     if (e.ElapsedMilliseconds > 200)
                     {
                         //记录日志
@@ -290,6 +287,33 @@ namespace AspNetCore.StartUpTemplate.Webapi.Startup
 
         #endregion
 
+        #region NewtonSoftJson配置自定义
+        /// <summary>
+        /// TODO 自定义json配置
+        /// </summary>
+        /// <param name="serviceCollection"></param>
+        /// <returns></returns>
+        public static IServiceCollection AddCustomJson(this IServiceCollection serviceCollection)
+        {
+            
+            return serviceCollection;
+        }
+
+        #endregion
+        
+        #region HttpContextUser注入
+        /// <summary>
+        /// TODO 自定义json配置
+        /// </summary>
+        /// <param name="serviceCollection"></param>
+        /// <returns></returns>
+        public static IServiceCollection AddHttpContextUser(this IServiceCollection serviceCollection)
+        {
+            serviceCollection.AddScoped<IHttpContextUser, HttpContextUser>();
+            return serviceCollection;
+        }
+
+        #endregion
         
     }
 }

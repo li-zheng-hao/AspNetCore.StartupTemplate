@@ -42,10 +42,10 @@ public class LogSetup
                         NumberOfShards = 2,
                         // BufferBaseFilename = "logs/buffer",
                         // RegisterTemplateFailure = RegisterTemplateRecovery.FailSink,
-                        FailureCallback = e => Console.WriteLine("Unable to submit event " + e.MessageTemplate),
-                        EmitEventFailure = EmitEventFailureHandling.WriteToSelfLog |
-                                           EmitEventFailureHandling.WriteToFailureSink |
-                                           EmitEventFailureHandling.RaiseCallback,
+                        // FailureCallback = e => Console.WriteLine("Unable to submit event " + e.MessageTemplate),
+                        // EmitEventFailure = EmitEventFailureHandling.WriteToSelfLog |
+                                           // EmitEventFailureHandling.WriteToFailureSink |
+                                           // EmitEventFailureHandling.RaiseCallback,
                         FailureSink = new FileSink("logs/fail-{Date}.txt", new JsonFormatter(), null, null)
                     });
 

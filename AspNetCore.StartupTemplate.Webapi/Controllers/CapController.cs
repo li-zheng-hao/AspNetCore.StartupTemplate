@@ -8,8 +8,9 @@ using MySqlConnector;
 
 namespace AspNetCore.StartUpTemplate.Webapi.Controllers
 {
+    [ApiController]
     [Route("api/[controller]/[action]")]
-    public class CapController : Controller
+    public class CapController : ControllerBase
     {
         private readonly ICapPublisher _capBus;
         private readonly IUserService _userService;

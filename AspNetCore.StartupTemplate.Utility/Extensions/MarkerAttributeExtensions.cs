@@ -75,8 +75,8 @@ public static class MarkerAttributeExtensions
             // Check if the attribute exists on the action method
             if (controllerActionDescriptor.MethodInfo?.GetCustomAttributes(inherit: true)?.Any(a => a.GetType().Equals(typeof(T))) ?? false)
                 return true;
-            // Check if the attribute exists on the action method
-            if (controllerActionDescriptor.MethodInfo?.GetCustomAttributes(inherit: true)?.Any(a => a.GetType().Equals(typeof(T))) ?? false)
+            // Check if the attribute exists on controller 
+            if (controllerActionDescriptor.ControllerTypeInfo?.GetCustomAttributes(inherit: true)?.Any(a => a.GetType().Equals(typeof(T))) ?? false)
                 return true;
         }
         return false;

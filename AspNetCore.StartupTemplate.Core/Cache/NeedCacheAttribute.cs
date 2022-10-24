@@ -88,7 +88,7 @@ public class NeedCacheAttribute : Rougamo.MoAttribute
             {
                 DefaultValueHandling = DefaultValueHandling.Ignore
             });
-            param = ":" + EncryptUtil.Encrypt(serializeString);
+            param = ":" + EncryptHelper.Encrypt(serializeString);
         }
         return string.Concat($"{METHOD_CACHE_PREFIX}:{className}:{methodName}", param);
     }

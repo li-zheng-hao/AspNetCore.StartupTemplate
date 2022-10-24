@@ -44,11 +44,13 @@ builder.Services
     .AddDtm()
     .AddDbMigration()
     .AddCustomCAP()
+    .AddHttpContextAccessor()
+    .AddHttpContextUser()
     .AddScheduler()
     .AddMvc(options =>
     {
         // //实体验证
-        options.Filters.Add<ModelValidator>();
+        options.Filters.Add<ModelValidatorFilter>();
         //异常处理
         options.Filters.Add<GlobalExceptionsFilter>();
     })
@@ -140,24 +142,16 @@ app.Lifetime.ApplicationStopping.Register(it =>
 },app.Services);
 #endregion
 
-app.Use(async (req,req2) =>
-{
-    Console.WriteLine("a");
-    await req2();
-});
 
 app.UseCors();
 app.UseFreeSchedulerDashboard(it =>
 {
-    // it.DashboardAuthorizationFilter = null;// 自定义权限校验
-    // it.TaskTableName // 表名
-    // it.TaskLogTableName // 日志表名
 });
-app.UseHttpsRedirection();
 
-app.UseAuthorization();
+app.UseRouting();
 
-app.UseRouting().UseEndpoints(endpoints =>
+
+app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllers();
 

@@ -12,6 +12,7 @@ using AspNetCore.StartupTemplate.Snowflake.SnowFlake;
 using AspNetCore.StartUpTemplate.Webapi.Startup;
 using Dtmcli;
 using FreeSql;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AspNetCore.StartUpTemplate.Webapi.Controllers;
@@ -21,6 +22,7 @@ namespace AspNetCore.StartUpTemplate.Webapi.Controllers;
 /// </summary>
 [ApiController]
 [Route("[controller]/[action]")]
+[NeedAuth]
 public class UserController : ControllerBase
 {
     private readonly ILogger<UserController> _logger;
@@ -53,9 +55,14 @@ public class UserController : ControllerBase
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
-    [NeedAuth]
     [HttpGet]
-    public string  Get2(string id)
+    public string  AuthTest(string id)
+    {
+        return id;
+    }
+    [AllowAnonymous]
+    [HttpGet]
+    public string  WithoutAuthTest(string id)
     {
         return id;
     }
