@@ -1,4 +1,5 @@
 ﻿using AspNetCore.StartUpTemplate.Configuration;
+using AspNetCore.StartUpTemplate.Configuration.GlobalConfig;
 
 namespace AspNetCore.StartUpTemplate.Contract;
 

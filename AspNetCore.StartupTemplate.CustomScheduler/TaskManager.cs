@@ -1,6 +1,8 @@
 using System.Reflection;
 using AspNetCore.StartUpTemplate.Core;
+using AspNetCore.StartUpTemplate.Core.Transaction;
 using AspNetCore.StartUpTemplate.Utility;
+using AspNetCore.StartUpTemplate.Utility.Extensions;
 using FreeScheduler;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;

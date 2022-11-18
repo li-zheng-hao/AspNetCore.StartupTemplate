@@ -1,17 +1,8 @@
 using System.ComponentModel;
 using AspNetCore.CacheOutput;
-using AspNetCore.StartUpTemplate.Auth;
-using AspNetCore.StartUpTemplate.Configuration;
-using AspNetCore.StartUpTemplate.Contract;
-using AspNetCore.StartUpTemplate.Contract.DTOs;
-using AspNetCore.StartUpTemplate.Core;
-using AspNetCore.StartUpTemplate.IRepository;
+using AspNetCore.StartUpTemplate.Core.Jwt;
 using AspNetCore.StartUpTemplate.IService;
 using AspNetCore.StartupTemplate.Snowflake;
-using AspNetCore.StartupTemplate.Snowflake.SnowFlake;
-using AspNetCore.StartUpTemplate.Webapi.Startup;
-using Dtmcli;
-using FreeSql;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -73,10 +64,7 @@ public class UserController : ControllerBase
     [HttpGet]
     public string TokenTest()
     {
-        var tm = new UserData() { Id = "123", UserName = "lizhenghao" };
-        var token = TokenHelper.CreateToken(tm);
-        var res = TokenHelper.ResolveToken(token);
-        return token;
+        return "123";
     }
 
     /// <summary>

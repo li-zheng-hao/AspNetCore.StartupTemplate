@@ -1,4 +1,4 @@
-﻿namespace AspNetCore.StartUpTemplate.Configuration;
+﻿namespace AspNetCore.StartUpTemplate.Configuration.GlobalConfig;
 public static class ResponseCode
 {
     /// <summary>

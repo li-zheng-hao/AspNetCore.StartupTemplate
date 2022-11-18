@@ -16,33 +16,22 @@
         <PackageReference Include="AspNetCore.CacheOutput" Version="2.1.0" />
         <PackageReference Include="AspNetCore.CacheOutput.Redis" Version="2.1.0" />
         <PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="6.0.5" />
-        <PackageReference Include="DotNetCore.CAP" Version="6.1.0" />
-        <PackageReference Include="DotNetCore.CAP.Dashboard" Version="6.1.0" />
-        <PackageReference Include="DotNetCore.CAP.MySql" Version="6.1.0" />
-        <PackageReference Include="DotNetCore.CAP.RabbitMQ" Version="6.1.0" />
         <PackageReference Include="Dtmcli" Version="1.3.0" />
         <PackageReference Include="Flurl.Http" Version="3.2.4" />
-        <PackageReference Include="FreeRedis" Version="0.6.6" />
         <PackageReference Include="FreeScheduler.Dashboard" Version="1.0.3" />
         <PackageReference Include="FreeSql.Extensions.JsonMap" Version="3.2.666" />
         <PackageReference Include="FreeSql.Provider.MySqlConnector" Version="3.2.666" />
         <PackageReference Include="FreeSql.Repository" Version="3.2.666" />
         <PackageReference Include="JWT" Version="9.0.3" />
-        <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.8" />
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.11" />
         <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-        <PackageReference Include="Serilog" Version="2.11.0" />
-        <PackageReference Include="Serilog.AspNetCore" Version="6.0.1" />
-        <PackageReference Include="Serilog.Enrichers.Environment" Version="2.2.0" />
-        <PackageReference Include="Serilog.Enrichers.Thread" Version="3.1.0" />
-        <PackageReference Include="Serilog.Exceptions" Version="8.4.0" />
+        <PackageReference Include="Serilog.Extensions.Hosting" Version="5.0.1" />
         <PackageReference Include="Serilog.Extensions.Logging" Version="3.1.0" />
-        <PackageReference Include="Serilog.Sinks.Console" Version="4.0.1" />
-        <PackageReference Include="Serilog.Sinks.Elasticsearch" Version="8.4.1" />
-        <PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\AspNetCore.StartupTemplate.Caching\AspNetCore.StartupTemplate.Caching.csproj" />
       <ProjectReference Include="..\AspNetCore.StartupTemplate.Configuration\AspNetCore.StartupTemplate.Configuration.csproj" />
       <ProjectReference Include="..\AspNetCore.StartupTemplate.Core\AspNetCore.StartupTemplate.Core.csproj" />
       <ProjectReference Include="..\AspNetCore.StartupTemplate.CustomScheduler\AspNetCore.StartupTemplate.CustomScheduler.csproj" />
@@ -55,10 +44,6 @@
       <ProjectReference Include="..\AspNetCore.StartupTemplate.Services\AspNetCore.StartupTemplate.Services.csproj" />
       <ProjectReference Include="..\AspNetCore.StartupTemplate.Snowflake\AspNetCore.StartupTemplate.Snowflake.csproj" />
       <ProjectReference Include="..\AspNetCore.StartupTemplate.Utility\AspNetCore.StartupTemplate.Utility.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="logs" />
     </ItemGroup>
 
 </Project>

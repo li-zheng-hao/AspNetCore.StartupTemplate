@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using AspNetCore.StartUpTemplate.Configuration;
+using AspNetCore.StartUpTemplate.Configuration.GlobalConfig;
 using AspNetCore.StartUpTemplate.Contract;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;

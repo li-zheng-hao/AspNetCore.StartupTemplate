@@ -1,9 +1,10 @@
 ﻿using System.Data;
 using System.Data.Common;
 using AspNetCore.StartUpTemplate.Configuration;
-using Autofac;
+using AspNetCore.StartUpTemplate.Configuration.Option;
 using Dapper;
 using DtmCommon;
+using Microsoft.Extensions.DependencyInjection;
 using Serilog;
 
 namespace AspNetCore.StartUpTemplate.Core.Transaction;
@@ -17,8 +18,8 @@ public static class DtmBarrierExtension
     {
         barrier.BarrierID = barrier.BarrierID + 1;
         var bid = barrier.BarrierID.ToString().PadLeft(2, '0');
-        using var scope = ServiceProviderLocator.GetNewILifeTimeScope();
-        var dbutils = scope.Resolve<DbUtils>();
+        using var scope = ServiceProviderLocator.RootServiceProvider.CreateScope();
+        var dbutils = scope.ServiceProvider.GetService<DbUtils>();
         try
         {
             var originOp = Constant.Barrier.OpDict.TryGetValue(barrier.Op, out var ot) ? ot : string.Empty;
@@ -100,11 +101,11 @@ public static class DtmDbUtilsExtension
         string gid, string branchID, string op, string barrierID, string reason)
     {
         if (string.IsNullOrWhiteSpace(op)) return (0, null);
-        using var scope = ServiceProviderLocator.GetNewILifeTimeScope();
-        var _specialDelegate = scope.Resolve<DbSpecialDelegate>();
+        using var scope = ServiceProviderLocator.RootServiceProvider.CreateScope();
+        var _specialDelegate = scope.ServiceProvider.GetService<DbSpecialDelegate>();
         try
         {
-            var str = string.Concat(ServiceProviderLocator.ResolveSingleton<GlobalConfig>().Dtm.DtmBarrierTableName,
+            var str = string.Concat(ServiceProviderLocator.GetService<DtmOption>().DtmBarrierTableName,
                 "(trans_type, gid, branch_id, op, barrier_id, reason) values(@trans_type,@gid,@branch_id,@op,@barrier_id,@reason)");
             var sql = _specialDelegate.GetDbSpecial().GetInsertIgnoreTemplate(str, Constant.Barrier.PG_CONSTRAINT);
 

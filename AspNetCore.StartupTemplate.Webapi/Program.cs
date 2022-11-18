@@ -1,13 +1,17 @@
+using AspNetCore.StartupTemplate.CacheAsync.Extensions;
 using AspNetCore.StartUpTemplate.Core;
+using AspNetCore.StartUpTemplate.Core.Serilog;
+using AspNetCore.StartUpTemplate.Core.ServiceRegister;
 using AspNetCore.StartUpTemplate.Core.Transaction;
+using AspNetCore.StartupTemplate.CustomScheduler;
 using AspNetCore.StartupTemplate.DbMigration;
 using AspNetCore.StartUpTemplate.Filter;
-using AspNetCore.StartUpTemplate.Webapi.Startup;
+using AspNetCore.StartUpTemplate.Repository;
+using AspNetCore.StartupTemplate.Snowflake;
 using FreeScheduler.Dashboard;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
-
 #region Serilog配置===========================
 var logger = LogSetup.InitSeialog(builder.Configuration);
 builder.Host.UseSerilog(logger, dispose: true);
@@ -18,24 +22,23 @@ builder.Services.AddControllers().AddControllersAsServices();
 builder.Services.AddEndpointsApiExplorer();
 
 builder.Services
-    .AddConfigurationConfig(builder.Configuration)
-    // .AddSnowflakeGenerator()
+    .AddSnowflakeGenerator()
     .AddCustomSwaggerGen()
-    .AddFreeSql()
+    .AddFreeSql(typeof(Program).Assembly)
     .AddCustomCors()
     .AddMapster()
-    // .AddFreeRedis()
-    // .AddCustomRedisCacheOutput()
-    // .AddDtm()
-    // .AddDbMigration()
-    // .AddCustomCAP()
+    .AddFreeRedis(builder.Configuration)
+    .AddCustomRedisCacheOutput(builder.Configuration)
+    // .AddDtm(builder.Configuration)
+    .AddDbMigration()
+    .AddCustomCAP(builder.Configuration)
     .AddHttpContextAccessor()
-    .AddHttpContextUser()
-    // .AddScheduler()
+    .AddScheduler()
+    .AddRedisCaching()
     .AddMvc(options =>
     {
-        // //实体验证
-        options.Filters.Add<ModelValidatorFilter>();
+        // 实体验证
+        // options.Filters.Add<ModelValidatorFilter>();
         //异常处理
         options.Filters.Add<GlobalExceptionsFilter>();
     })
@@ -66,8 +69,6 @@ if(app.Environment.IsDevelopment()==false){
     }
 }
 
-
-
 #endregion
 
 
@@ -78,20 +79,19 @@ if (app.Environment.IsDevelopment()||app.Environment.IsStaging())
     app.UseSwaggerUI();
 }
 
-#region 特性事务管理器中间件
+#region 自定义中间件
 
 app.Use(async (context, next) =>
 {
     TransactionalAttribute.SetServiceProvider(context.RequestServices);
     await next();
 });
-
+app.UseMiddleware<CachingMiddleware>();
+app.UseFreeSchedulerDashboard();
 #endregion
 
 
 app.UseCors();
-
-app.UseFreeSchedulerDashboard();
 
 app.UseRouting();
 
