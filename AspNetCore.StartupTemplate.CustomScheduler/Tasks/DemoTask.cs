@@ -1,4 +1,5 @@
-using AspNetCore.StartUpTemplate.Core;
+using AspNetCore.StartUpTemplate.Core.Transaction;
+using AspNetCore.StartupTemplate.CustomScheduler;
 using AspNetCore.StartUpTemplate.Model;
 using FreeScheduler;
 using Serilog;

@@ -45,6 +45,7 @@ namespace AspNetCore.StartupTemplate.Snowflake.SnowFlake
         
         public Task StopAsync(CancellationToken cancellationToken)
         {
+            _snowflakeWorkIdManager.UnRegisterWorkId();
             return Task.CompletedTask;
         }
 

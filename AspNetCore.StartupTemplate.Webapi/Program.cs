@@ -1,52 +1,37 @@
-using System.Reflection;
-using AspNetCore.CacheOutput.Redis.Extensions;
-using AspNetCore.StartUpTemplate.Auth;
-using AspNetCore.StartUpTemplate.Configuration;
 using AspNetCore.StartUpTemplate.Core;
-using AspNetCore.StartupTemplate.CustomScheduler;
+using AspNetCore.StartUpTemplate.Core.Transaction;
 using AspNetCore.StartupTemplate.DbMigration;
 using AspNetCore.StartUpTemplate.Filter;
-using AspNetCore.StartupTemplate.Snowflake;
-// using AspNetCore.StartupTemplate.Logging.Log;
 using AspNetCore.StartUpTemplate.Webapi.Startup;
-using Autofac;
-using Autofac.Extensions.DependencyInjection;
-using FreeRedis;
 using FreeScheduler.Dashboard;
-using HealthChecks.UI.Client;
-using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Serilog;
-using StackExchange.Redis;
 
 var builder = WebApplication.CreateBuilder(args);
 
 #region Serilog配置===========================
-
 var logger = LogSetup.InitSeialog(builder.Configuration);
 builder.Host.UseSerilog(logger, dispose: true);
-
 #endregion
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddControllersAsServices();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 
-
 builder.Services
     .AddConfigurationConfig(builder.Configuration)
-    .AddSnowflakeGenerator()
+    // .AddSnowflakeGenerator()
     .AddCustomSwaggerGen()
     .AddFreeSql()
     .AddCustomCors()
     .AddMapster()
-    .AddFreeRedis()
-    .AddCustomRedisCacheOutput()
-    .AddDtm()
-    .AddDbMigration()
-    .AddCustomCAP()
+    // .AddFreeRedis()
+    // .AddCustomRedisCacheOutput()
+    // .AddDtm()
+    // .AddDbMigration()
+    // .AddCustomCAP()
     .AddHttpContextAccessor()
     .AddHttpContextUser()
-    .AddScheduler()
+    // .AddScheduler()
     .AddMvc(options =>
     {
         // //实体验证
@@ -57,48 +42,18 @@ builder.Services
     .AddCustomJson();
 
 
-builder.Services.AddControllers();
 
 
 #region IOC配置============================
 
-builder.Host
-    .UseServiceProviderFactory(new AutofacServiceProviderFactory())
-    .ConfigureContainer<ContainerBuilder>((c) =>
-    { 
-        c.RegisterModule(new AutofacModuleRegister());
-    });
-
-// builder.Host.UseDefaultServiceProvider(options =>
-    // options.ValidateScopes = true);
+builder.Host.UseDefaultServiceProvider(options =>
+    options.ValidateScopes = true);
 
 #endregion
-
-#region Kestrel服务器配置===================
-
-builder.WebHost.ConfigureKestrel((context, options) =>
-{
-    //设置应用服务器Kestrel请求体最大为50MB，默认为28.6MB
-    options.Limits.MaxRequestBodySize = 1024 * 1024 * 50;
-});
-
-#endregion
-
-#region 健康检查=========================
-
-builder.Services.AddHealthChecks(); //健康检查
-
-#endregion
-
-
 
 var app = builder.Build();
-#region IOC工具类===============================
-// 全局的生命周期
-var globalLifetimeScope = app.Services.GetAutofacRoot();
-IocHelper.SetGlobalLifeTimeScope( globalLifetimeScope);
 
-#endregion
+ServiceProviderLocator.RootServiceProvider=app.Services;
 
 #region 启动项目时执行数据库迁移
 
@@ -116,14 +71,14 @@ if(app.Environment.IsDevelopment()==false){
 #endregion
 
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+// 开发和测试环境都开启Swagger
+if (app.Environment.IsDevelopment()||app.Environment.IsStaging())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
-#region Spring事务管理器中间件
+#region 特性事务管理器中间件
 
 app.Use(async (context, next) =>
 {
@@ -133,20 +88,10 @@ app.Use(async (context, next) =>
 
 #endregion
 
-#region 程序正常退出取消注册的雪花ID
-
-app.Lifetime.ApplicationStopping.Register(it =>
-{
-    var sp = it as IServiceProvider;
-    sp.GetService<SnowflakeWorkIdManager>()?.UnRegisterWorkId();
-},app.Services);
-#endregion
-
 
 app.UseCors();
-app.UseFreeSchedulerDashboard(it =>
-{
-});
+
+app.UseFreeSchedulerDashboard();
 
 app.UseRouting();
 
@@ -154,13 +99,6 @@ app.UseRouting();
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllers();
-
-    endpoints.MapHealthChecks("/health", new HealthCheckOptions
-    {
-        Predicate = s => true,
-        ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
-    });
 });
-// app.MapControllers();
 
 app.Run();

@@ -1,6 +1,6 @@
 using Microsoft.Extensions.Hosting;
 
-namespace AspNetCore.StartupTemplate.CutstomScheduler;
+namespace AspNetCore.StartupTemplate.CustomScheduler;
 /// <summary>
 /// TODO 定时任务服务 
 /// </summary>

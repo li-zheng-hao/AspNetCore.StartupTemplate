@@ -1,6 +1,5 @@
 using System.Reflection;
 using AspNetCore.StartUpTemplate.Core;
-using AspNetCore.StartupTemplate.CustomScheduler.Tasks;
 using AspNetCore.StartUpTemplate.Utility;
 using FreeScheduler;
 using Microsoft.Extensions.DependencyInjection;

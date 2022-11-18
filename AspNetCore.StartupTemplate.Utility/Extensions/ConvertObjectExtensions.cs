@@ -1,6 +1,7 @@
-﻿using Newtonsoft.Json;
-using System.Reflection;
-namespace AspNetCore.StartUpTemplate.Utility;
+﻿using System.Reflection;
+using Newtonsoft.Json;
+
+namespace AspNetCore.StartUpTemplate.Utility.Extensions;
 
 public class ConvertObjectExtensions
 {

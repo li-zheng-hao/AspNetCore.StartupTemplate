@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <RootNamespace>AspNetCore.StartupTemplate.CacheAsync</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="FreeRedis" Version="1.0.3" />
+      <PackageReference Include="LZH.Quickwire" Version="1.0.0" />
+      <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+      <PackageReference Include="Rougamo.Fody" Version="1.2.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\AspNetCore.StartupTemplate.Utility\AspNetCore.StartupTemplate.Utility.csproj" />
+    </ItemGroup>
+
+</Project>

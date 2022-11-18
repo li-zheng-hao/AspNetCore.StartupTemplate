@@ -22,7 +22,6 @@ namespace AspNetCore.StartUpTemplate.Webapi.Controllers;
 /// </summary>
 [ApiController]
 [Route("[controller]/[action]")]
-[NeedAuth]
 public class UserController : ControllerBase
 {
     private readonly ILogger<UserController> _logger;

@@ -16,8 +16,6 @@
         <PackageReference Include="AspNetCore.CacheOutput" Version="2.1.0" />
         <PackageReference Include="AspNetCore.CacheOutput.Redis" Version="2.1.0" />
         <PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="6.0.5" />
-        <PackageReference Include="Autofac" Version="6.4.0" />
-        <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="8.0.0" />
         <PackageReference Include="DotNetCore.CAP" Version="6.1.0" />
         <PackageReference Include="DotNetCore.CAP.Dashboard" Version="6.1.0" />
         <PackageReference Include="DotNetCore.CAP.MySql" Version="6.1.0" />
@@ -45,10 +43,9 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\AspNetCore.StartupTemplate.Auth\AspNetCore.StartupTemplate.Auth.csproj" />
       <ProjectReference Include="..\AspNetCore.StartupTemplate.Configuration\AspNetCore.StartupTemplate.Configuration.csproj" />
       <ProjectReference Include="..\AspNetCore.StartupTemplate.Core\AspNetCore.StartupTemplate.Core.csproj" />
-      <ProjectReference Include="..\AspNetCore.StartupTemplate.CustomScheduler\AspNetCore.StartupTemplate.CutstomScheduler.csproj" />
+      <ProjectReference Include="..\AspNetCore.StartupTemplate.CustomScheduler\AspNetCore.StartupTemplate.CustomScheduler.csproj" />
       <ProjectReference Include="..\AspNetCore.StartupTemplate.DbMigration\AspNetCore.StartupTemplate.DbMigration.csproj" />
       <ProjectReference Include="..\AspNetCore.StartupTemplate.Filter\AspNetCore.StartupTemplate.Filter.csproj" />
       <ProjectReference Include="..\AspNetCore.StartupTemplate.IRepository\AspNetCore.StartupTemplate.IRepository.csproj" />

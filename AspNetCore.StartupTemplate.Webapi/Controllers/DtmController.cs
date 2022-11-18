@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel;
 using AspNetCore.CacheOutput;
-using AspNetCore.StartUpTemplate.Auth;
 using AspNetCore.StartUpTemplate.Configuration;
 using AspNetCore.StartUpTemplate.Contract;
 using AspNetCore.StartUpTemplate.Core;
+using AspNetCore.StartUpTemplate.Core.Transaction;
 using AspNetCore.StartUpTemplate.Filter;
 using AspNetCore.StartUpTemplate.IRepository;
 using AspNetCore.StartUpTemplate.IService;

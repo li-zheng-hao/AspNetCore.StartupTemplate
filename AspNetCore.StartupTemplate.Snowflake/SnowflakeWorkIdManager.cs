@@ -70,13 +70,14 @@ public class SnowflakeWorkIdManager
     public void UnRegisterWorkId()
     {
         // 这里必须新建一个才能在程序退出时删除，否则会提示连接池已经释放
-        using RedisClient redisClient = new RedisClient(
-            GlobalConfig.Instance.Redis.RedisConn+",poolsize=1",
-            GlobalConfig.Instance.Redis.SentinelAdders.ToArray(),
-            true //是否读写分离
-            
-        );
-        redisClient.ZRem(WORKID_COLLECTION_KEY, WorkId.ToString());
+        // using RedisClient redisClient = new RedisClient(
+        //     GlobalConfig.Instance.Redis.RedisConn+",poolsize=1",
+        //     GlobalConfig.Instance.Redis.SentinelAdders.ToArray(),
+        //     true //是否读写分离
+        //     
+        // );
+        // redisClient.ZRem(WORKID_COLLECTION_KEY, WorkId.ToString());
+        _redisClient.ZRem(WORKID_COLLECTION_KEY, WorkId.ToString());
         
     }
    

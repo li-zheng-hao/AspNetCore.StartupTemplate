@@ -56,6 +56,7 @@ public class AuthController : ControllerBase
     [HttpGet]
     public string  GetToken(string role)
     {
+        // 正常开发时Role应该从数据库中获取,存在一个问题,当用户角色更新时,需要重新登录才行
         return TokenHelper.CreateToken(new UserData() { Role = role, Id = "123", UserName = "123" });
     }
     /// <summary>

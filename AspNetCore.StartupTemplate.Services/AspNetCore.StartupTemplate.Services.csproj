@@ -15,7 +15,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="Autofac.Extras.DynamicProxy" Version="6.0.1" />
       <PackageReference Include="DotNetCore.CAP" Version="6.1.0" />
       <PackageReference Include="DotNetCore.CAP.MySql" Version="6.1.0" />
       <PackageReference Include="DotNetCore.CAP.RabbitMQ" Version="6.1.0" />

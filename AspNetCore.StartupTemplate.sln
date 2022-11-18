@@ -32,8 +32,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Webapi", "Webapi", "{E1AC9C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore.StartupTemplate.Contract", "AspNetCore.StartupTemplate.Contract\AspNetCore.StartupTemplate.Contract.csproj", "{A8890829-5708-4F19-B1A0-85643B956B01}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore.StartupTemplate.Auth", "AspNetCore.StartupTemplate.Auth\AspNetCore.StartupTemplate.Auth.csproj", "{6A2C4D47-6E8A-47A7-A68A-97EA86E9DA19}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore.StartupTemplate.CodeGeneratorConsole", "AspNetCore.StartupTemplate.CodeGeneratorConsole\AspNetCore.StartupTemplate.CodeGeneratorConsole.csproj", "{2CF58D72-F9DE-47B5-9CC0-DDF2AE2E5AF4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore.StartupTemplate.Snowflake", "AspNetCore.StartupTemplate.Snowflake\AspNetCore.StartupTemplate.Snowflake.csproj", "{66E2C97D-21C4-428A-A551-C1D80CBEC1AD}"
@@ -46,7 +44,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTest", "UnitTest", "{7A
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plugins", "Plugins", "{D6EF715A-2EA5-484D-98A1-CC3211F0779B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore.StartupTemplate.CacheAsync", "AspNetCore.StartupTemplate.CacheAsync\AspNetCore.StartupTemplate.CacheAsync.csproj", "{DC78CB3F-6E1D-4287-B497-1BB7BBC5138C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore.StartupTemplate.Caching", "AspNetCore.StartupTemplate.Caching\AspNetCore.StartupTemplate.Caching.csproj", "{DC78CB3F-6E1D-4287-B497-1BB7BBC5138C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Deployment", "Deployment", "{22DB2A26-EC5F-4947-B9C8-08C075E9AFF3}"
 EndProject
@@ -65,7 +63,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Normal", "Normal", "{E9352C
 		Deployment\Normal\Normal.yml = Deployment\Normal\Normal.yml
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore.StartupTemplate.CutstomScheduler", "AspNetCore.StartupTemplate.CustomScheduler\AspNetCore.StartupTemplate.CutstomScheduler.csproj", "{D816714A-C7E5-44E1-8663-7DA0738DF958}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore.StartupTemplate.CustomScheduler", "AspNetCore.StartupTemplate.CustomScheduler\AspNetCore.StartupTemplate.CustomScheduler.csproj", "{D816714A-C7E5-44E1-8663-7DA0738DF958}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -117,10 +115,6 @@ Global
 		{A8890829-5708-4F19-B1A0-85643B956B01}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A8890829-5708-4F19-B1A0-85643B956B01}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A8890829-5708-4F19-B1A0-85643B956B01}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6A2C4D47-6E8A-47A7-A68A-97EA86E9DA19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6A2C4D47-6E8A-47A7-A68A-97EA86E9DA19}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6A2C4D47-6E8A-47A7-A68A-97EA86E9DA19}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6A2C4D47-6E8A-47A7-A68A-97EA86E9DA19}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2CF58D72-F9DE-47B5-9CC0-DDF2AE2E5AF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2CF58D72-F9DE-47B5-9CC0-DDF2AE2E5AF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2CF58D72-F9DE-47B5-9CC0-DDF2AE2E5AF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -158,7 +152,6 @@ Global
 		{2E39D547-730C-4FA3-A53F-ADBE4CCFED8C} = {CE6C0D3C-FE43-4009-9C17-EEADE54822EC}
 		{AFA36BA0-54FE-4DD8-B62A-1B7EFEC83989} = {E1AC9CC0-74D5-4DBB-A399-1AF51EB45DCE}
 		{A8890829-5708-4F19-B1A0-85643B956B01} = {9B7E4906-8690-44D7-8B88-78158FBC84AC}
-		{6A2C4D47-6E8A-47A7-A68A-97EA86E9DA19} = {CE6C0D3C-FE43-4009-9C17-EEADE54822EC}
 		{47ED8BED-D27D-46E7-ACA5-B08C4F456259} = {7A70A536-224C-4010-BBC5-E9085F633F75}
 		{66E2C97D-21C4-428A-A551-C1D80CBEC1AD} = {D6EF715A-2EA5-484D-98A1-CC3211F0779B}
 		{A117C59E-A54F-41A0-89C3-414E58F59DB2} = {D6EF715A-2EA5-484D-98A1-CC3211F0779B}

@@ -1,4 +1,5 @@
 using AspNetCore.StartUpTemplate.Core;
+using AspNetCore.StartUpTemplate.Core.Transaction;
 using AspNetCore.StartUpTemplate.IService;
 using AspNetCore.StartUpTemplate.Model;
 using AspNetCore.StartupTemplate.Snowflake;

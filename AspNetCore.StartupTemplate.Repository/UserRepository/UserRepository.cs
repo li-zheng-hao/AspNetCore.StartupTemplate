@@ -14,6 +14,7 @@ namespace AspNetCore.StartUpTemplate.Repository
     {
         public UserRepository(IFreeSql fsql) : base(fsql)
         {
+        
         }
     }
 }
