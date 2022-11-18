@@ -1,7 +1,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Quickwire.Attributes;
 
-namespace AspNetCore.StartUpTemplate.Configuration;
+namespace AspNetCore.StartUpTemplate.Configuration.Option;
 
 [RegisterService(ServiceLifetime.Singleton)]
 public class JwtOption
@@ -21,6 +21,6 @@ public class JwtOption
     /// <summary>
     /// Token的过期时间 单位: 秒
     /// </summary>
-    [InjectConfiguration("Jwt:ExpireSeconds")]
+    // [InjectConfiguration("Jwt:ExpireSeconds")]
     public int ExpireSeconds { get; set; } = 60 * 60;
 }

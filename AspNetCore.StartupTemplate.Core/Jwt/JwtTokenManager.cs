@@ -2,6 +2,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using AspNetCore.StartUpTemplate.Configuration;
+using AspNetCore.StartUpTemplate.Configuration.Option;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Quickwire.Attributes;
@@ -13,6 +14,11 @@ namespace AspNetCore.StartUpTemplate.Core.Jwt;
 public class JwtTokenManager
 {
     public JwtOption _jwtOption { get; init; }
+
+    public JwtTokenManager()
+    {
+        
+    }
     /// <summary>
     /// 生成token
     /// </summary>

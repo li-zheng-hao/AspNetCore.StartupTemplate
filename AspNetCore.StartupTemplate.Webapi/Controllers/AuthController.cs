@@ -1,5 +1,8 @@
+using System.Security.Claims;
 using AspNetCore.StartUpTemplate.Core.Jwt;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Quickwire.Attributes;
 
 namespace AspNetCore.StartUpTemplate.Webapi.Controllers;
 
@@ -8,30 +11,28 @@ namespace AspNetCore.StartUpTemplate.Webapi.Controllers;
 /// </summary>
 [ApiController]
 [Route("[controller]/[action]")]
+[RegisterService(ServiceLifetime.Scoped)]
+[InjectAllInitOnlyProperties]
 public class AuthController : ControllerBase
 {
-    private readonly ILogger<AuthController> _logger;
-    private readonly IServiceProvider _serviceProvider;
-    private readonly IHttpContextAccessor _accessor;
+    public ILogger<AuthController> _logger { get; init; }
+    public IServiceProvider _serviceProvider { get; init; }
+    public IHttpContextAccessor _accessor { get; init; }
+    public JwtTokenManager _jwtTokenManager { get; init; }
 
-    public AuthController(ILogger<AuthController> logger,IHttpContextAccessor accessor,IServiceProvider serviceProvider)
-    {
-        _accessor = accessor;
-        _logger = logger;
-        _serviceProvider = serviceProvider;
-    }
-    
+   
     /// <summary>
     /// 根据参数生成不同角色的Token
     /// </summary>
     /// <param name="role"></param>
     /// <returns></returns>
     [HttpGet]
-    public string  GetToken(string role)
+    public string GetToken(string role) => _jwtTokenManager.GenerateToken(new Claim[]
     {
-        // 正常开发时Role应该从数据库中获取,存在一个问题,当用户角色更新时,需要重新登录才行
-        return "123";
-    }
+        new Claim(ClaimTypes.Name, "test"),
+        new Claim(ClaimTypes.Role, role)
+    });
+
     /// <summary>
     /// 未登录的情况下允许访问
     /// </summary>
@@ -41,6 +42,17 @@ public class AuthController : ControllerBase
     {
         return true;
     }
+
+    /// <summary>
+    /// 测试需要权限的接口
+    /// </summary>
+    /// <returns></returns>
+    [HttpGet, Authorize]
+    public string AuthTest()
+    {
+        return "OK";
+    }
+
     /// <summary>
     /// 该接口需要为admin角色才能访问
     /// </summary>
@@ -50,5 +62,4 @@ public class AuthController : ControllerBase
     {
         return true;
     }
-   
 }

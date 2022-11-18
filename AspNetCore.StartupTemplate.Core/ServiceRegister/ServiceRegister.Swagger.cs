@@ -22,10 +22,15 @@ public static partial  class ServiceRegister
                 BearerFormat = "JWT"
             });
             // 接口文档抓取
-            var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-            var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-            //... and tell Swagger to use those XML comments.
-            c.IncludeXmlComments(xmlPath, true);
+            var webapi = $"{Assembly.GetEntryAssembly().GetName().Name}.xml";
+            var webapiPath = Path.Combine(AppContext.BaseDirectory, webapi);
+            if(File.Exists(webapiPath))
+                c.IncludeXmlComments(webapiPath, true);
+            var contract = $"{Assembly.GetEntryAssembly().GetReferencedAssemblies().Where(it=>it.Name.Contains("Contract")).FirstOrDefault()?.Name}.xml";
+            var contractPath = Path.Combine(AppContext.BaseDirectory, contract);
+            if(File.Exists(contractPath))
+                c.IncludeXmlComments(contractPath, false);
+            
             c.AddSecurityRequirement(new OpenApiSecurityRequirement
             {
                 {

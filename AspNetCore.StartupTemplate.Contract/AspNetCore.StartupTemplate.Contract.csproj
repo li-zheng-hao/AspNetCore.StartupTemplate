@@ -7,12 +7,17 @@
         <RootNamespace>AspNetCore.StartUpTemplate.Contract</RootNamespace>
     </PropertyGroup>
 
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+      <DocumentationFile>bin\Debug\AspNetCore.StartupTemplate.Contract.xml</DocumentationFile>
+    </PropertyGroup>
+
     <ItemGroup>
       <ProjectReference Include="..\AspNetCore.StartupTemplate.Configuration\AspNetCore.StartupTemplate.Configuration.csproj" />
       <ProjectReference Include="..\AspNetCore.StartupTemplate.Model\AspNetCore.StartupTemplate.Model.csproj" />
     </ItemGroup>
 
     <ItemGroup>
+      <PackageReference Include="LZH.Quickwire" Version="1.0.0" />
       <PackageReference Include="Mapster" Version="7.3.0" />
     </ItemGroup>
 

@@ -6,7 +6,6 @@ using AspNetCore.StartUpTemplate.Core.Transaction;
 using AspNetCore.StartupTemplate.CustomScheduler;
 using AspNetCore.StartupTemplate.DbMigration;
 using AspNetCore.StartUpTemplate.Filter;
-using AspNetCore.StartUpTemplate.Repository;
 using AspNetCore.StartupTemplate.Snowflake;
 using FreeScheduler.Dashboard;
 using Serilog;
@@ -22,6 +21,7 @@ builder.Services.AddControllers().AddControllersAsServices();
 builder.Services.AddEndpointsApiExplorer();
 
 builder.Services
+    .AddConfiguration()
     .AddSnowflakeGenerator()
     .AddCustomSwaggerGen()
     .AddFreeSql(typeof(Program).Assembly)
@@ -35,6 +35,7 @@ builder.Services
     .AddHttpContextAccessor()
     .AddScheduler()
     .AddRedisCaching()
+    .AddCustomAuthentication(builder.Configuration)
     .AddMvc(options =>
     {
         // 实体验证
@@ -93,8 +94,10 @@ app.UseFreeSchedulerDashboard();
 
 app.UseCors();
 
+
 app.UseRouting();
 
+app.UseAuthorization();
 
 app.UseEndpoints(endpoints =>
 {

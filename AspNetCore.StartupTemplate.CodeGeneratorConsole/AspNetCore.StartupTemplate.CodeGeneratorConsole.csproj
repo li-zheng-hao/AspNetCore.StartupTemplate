@@ -10,6 +10,7 @@
 
     <ItemGroup>
       <PackageReference Include="DotLiquid" Version="2.2.656" />
+      <PackageReference Include="LZH.Quickwire" Version="1.0.0" />
     </ItemGroup>
 
     <ItemGroup>

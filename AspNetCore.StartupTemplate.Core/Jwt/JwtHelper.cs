@@ -1,5 +1,6 @@
 using System.Text;
 using AspNetCore.StartUpTemplate.Configuration;
+using AspNetCore.StartUpTemplate.Configuration.Option;
 using Microsoft.IdentityModel.Tokens;
 
 namespace AspNetCore.StartUpTemplate.Core.Jwt;
