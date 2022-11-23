@@ -17,8 +17,8 @@ public class UserDto : BaseDto<UserDto,Users>
         SetCustomMappings()
             .Map(dest => dest.UserName,
                 src => src.UserName)
-            .Map(dest => dest.Password, src => src.Password);
-        SetCustomMappingsInverse()
-            .Map(dest => dest.UserName, src => src.UserName);
+            .Map(dest => dest.Password, src => src.Password).TwoWays();
+        // SetCustomMappingsInverse()
+            // .Map(dest => dest.UserName, src => src.UserName);
     }
 }

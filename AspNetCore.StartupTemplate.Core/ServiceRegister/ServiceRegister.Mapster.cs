@@ -1,4 +1,5 @@
 using System.Reflection;
+using AspNetCore.StartUpTemplate.Contract;
 using AspNetCore.StartUpTemplate.Contract.DTOs;
 using Mapster;
 using Microsoft.Extensions.DependencyInjection;

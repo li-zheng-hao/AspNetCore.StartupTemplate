@@ -1,6 +1,6 @@
 using Mapster;
 
-namespace AspNetCore.StartUpTemplate.Contract.DTOs;
+namespace AspNetCore.StartUpTemplate.Contract;
 
 public abstract class BaseDto<TDto, TEntity> : IRegister
     where TDto : class, new()

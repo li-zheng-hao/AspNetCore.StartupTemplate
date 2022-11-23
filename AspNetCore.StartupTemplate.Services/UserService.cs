@@ -4,8 +4,11 @@ using FreeSql;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
 using AspNetCore.StartUpTemplate.Core.Transaction;
+using Microsoft.Extensions.DependencyInjection;
+using Quickwire.Attributes;
 
 namespace AspNetCore.StartUpTemplate.Services;
+[RegisterService(ServiceLifetime.Scoped,AsImplementedInterfaces = true)]
 public class UserService : IUserService
 {
     private readonly ITestService _testService;

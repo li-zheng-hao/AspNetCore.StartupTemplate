@@ -9,7 +9,7 @@
     <ItemGroup>
       <PackageReference Include="FreeRedis" Version="0.6.6" />
       <PackageReference Include="IdGen" Version="3.0.2" />
-      <PackageReference Include="LZH.Quickwire" Version="1.0.0" />
+      <PackageReference Include="LZH.Quickwire" Version="1.1.0" />
       <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="3.1.31" />
       <PackageReference Include="Microsoft.Extensions.Options" Version="2.2.0" />
       <PackageReference Include="StackExchange.Redis" Version="2.2.4" />

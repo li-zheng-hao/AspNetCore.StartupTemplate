@@ -7,8 +7,10 @@ using AspNetCore.StartupTemplate.Snowflake.SnowFlake;
 using FreeSql;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Quickwire.Attributes;
 
 namespace AspNetCore.StartUpTemplate.Services;
+[RegisterService(ServiceLifetime.Scoped,AsImplementedInterfaces = true)]
 public class TestService:ITestService
 {
     private readonly IBaseRepository<Test> _dal;

@@ -1,7 +1,11 @@
 using System.ComponentModel;
 using AspNetCore.CacheOutput;
+using AspNetCore.StartUpTemplate.Configuration.Option;
+using AspNetCore.StartUpTemplate.Contract;
+using AspNetCore.StartUpTemplate.Contract.DTOs;
 using AspNetCore.StartUpTemplate.Core.Jwt;
 using AspNetCore.StartUpTemplate.IService;
+using AspNetCore.StartUpTemplate.Model;
 using AspNetCore.StartupTemplate.Snowflake;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -13,14 +17,17 @@ namespace AspNetCore.StartUpTemplate.Webapi.Controllers;
 /// </summary>
 [ApiController]
 [Route("[controller]/[action]")]
+
 public class UserController : ControllerBase
 {
     private readonly ILogger<UserController> _logger;
     private readonly IUserService _userService;
     private readonly IServiceProvider _serviceProvider;
+    private readonly RedisOption _redisOption;
 
-    public UserController(ILogger<UserController> logger, IUserService us,IServiceProvider serviceProvider)
+    public UserController(RedisOption redisOption,ILogger<UserController> logger, IUserService us,IServiceProvider serviceProvider)
     {
+        _redisOption = redisOption;
         _logger = logger;
         _userService = us;
         _serviceProvider = serviceProvider;
@@ -134,4 +141,7 @@ public class UserController : ControllerBase
     {
         _userService.JoinQuery();
     }
+
+
+
 }

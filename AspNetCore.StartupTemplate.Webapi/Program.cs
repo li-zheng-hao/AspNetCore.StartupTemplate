@@ -88,12 +88,11 @@ app.Use(async (context, next) =>
     await next();
 });
 app.UseMiddleware<CachingMiddleware>();
-app.UseFreeSchedulerDashboard();
+// app.UseFreeSchedulerDashboard();
 #endregion
 
 
 app.UseCors();
-
 
 app.UseRouting();
 
@@ -105,3 +104,5 @@ app.UseEndpoints(endpoints =>
 });
 
 app.Run();
+
+public partial class Program{}

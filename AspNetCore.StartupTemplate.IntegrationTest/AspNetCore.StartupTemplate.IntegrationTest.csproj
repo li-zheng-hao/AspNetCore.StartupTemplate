@@ -9,10 +9,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="LZH.Quickwire" Version="1.1.0" />
-        <PackageReference Include="Mapster" Version="7.3.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="6.0.11" />
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
-        <PackageReference Include="Moq" Version="4.18.2" />
         <PackageReference Include="xunit" Version="2.4.1" />
         <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -25,7 +23,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\AspNetCore.StartupTemplate.Contract\AspNetCore.StartupTemplate.Contract.csproj" />
+      <ProjectReference Include="..\AspNetCore.StartupTemplate.Webapi\AspNetCore.StartupTemplate.Webapi.csproj" />
     </ItemGroup>
 
 </Project>

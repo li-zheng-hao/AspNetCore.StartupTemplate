@@ -65,6 +65,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Normal", "Normal", "{E9352C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore.StartupTemplate.CustomScheduler", "AspNetCore.StartupTemplate.CustomScheduler\AspNetCore.StartupTemplate.CustomScheduler.csproj", "{D816714A-C7E5-44E1-8663-7DA0738DF958}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore.StartupTemplate.IntegrationTest", "AspNetCore.StartupTemplate.IntegrationTest\AspNetCore.StartupTemplate.IntegrationTest.csproj", "{6AE8BB33-5FB2-4902-A4F7-80E16FD7D469}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -139,6 +141,10 @@ Global
 		{D816714A-C7E5-44E1-8663-7DA0738DF958}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D816714A-C7E5-44E1-8663-7DA0738DF958}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D816714A-C7E5-44E1-8663-7DA0738DF958}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6AE8BB33-5FB2-4902-A4F7-80E16FD7D469}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6AE8BB33-5FB2-4902-A4F7-80E16FD7D469}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6AE8BB33-5FB2-4902-A4F7-80E16FD7D469}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6AE8BB33-5FB2-4902-A4F7-80E16FD7D469}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{0D71708E-C037-4B05-A12F-A6CF2DA2B98F} = {8BB20A97-2C3A-4E85-B74A-7BDB2BB70B46}
@@ -160,5 +166,6 @@ Global
 		{9C71157D-8004-4635-A5D2-8F6E0309E872} = {22DB2A26-EC5F-4947-B9C8-08C075E9AFF3}
 		{E9352C63-1374-4F7F-A02D-955877F19264} = {22DB2A26-EC5F-4947-B9C8-08C075E9AFF3}
 		{D816714A-C7E5-44E1-8663-7DA0738DF958} = {D6EF715A-2EA5-484D-98A1-CC3211F0779B}
+		{6AE8BB33-5FB2-4902-A4F7-80E16FD7D469} = {7A70A536-224C-4010-BBC5-E9085F633F75}
 	EndGlobalSection
 EndGlobal

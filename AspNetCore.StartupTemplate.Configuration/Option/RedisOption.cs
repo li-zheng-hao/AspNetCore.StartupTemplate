@@ -6,19 +6,19 @@ namespace AspNetCore.StartUpTemplate.Configuration.Option;
 [RegisterService(ServiceLifetime.Singleton)]
 public class RedisOption
 {
-    [InjectConfiguration("RedisOption:ServiceName")]
+    [InjectConfiguration("Redis:ServiceName")]
     public string ServiceName { get; set; }
 
-    [InjectConfiguration("RedisOption:Password")]
+    [InjectConfiguration("Redis:Password")]
     public string Password { get; set; }
 
-    [InjectConfiguration("RedisOption:RedisConn")]
+    [InjectConfiguration("Redis:RedisConn")]
     public string RedisConn { get; set; }
 
-    [InjectConfiguration("RedisOption:SentinelAdders")]
-    public List<string> SentinelAdders { get; set; }
+    [InjectConfiguration("Redis:SentinelAdders")]
+    public string[] SentinelAdders { get; set; }
 
 
-    [InjectConfiguration("RedisOption:RedisCacheExpireSec")]
+    [InjectConfiguration("Redis:RedisCacheExpireSec")]
     public int RedisCacheExpireSec { get; set; } = 300;
 }
