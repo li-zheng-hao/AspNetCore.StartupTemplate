@@ -3,15 +3,16 @@ using AspNetCore.StartUpTemplate.Core;
 using AspNetCore.StartUpTemplate.Core.Serilog;
 using AspNetCore.StartUpTemplate.Core.ServiceRegister;
 using AspNetCore.StartUpTemplate.Core.Transaction;
-using AspNetCore.StartupTemplate.CustomScheduler;
 using AspNetCore.StartupTemplate.DbMigration;
 using AspNetCore.StartUpTemplate.Filter;
+using AspNetCore.StartupTemplate.Job;
 using AspNetCore.StartupTemplate.Snowflake;
-using FreeScheduler.Dashboard;
+using Hangfire;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
-#region Serilog配置===========================
+
+#region Serilog
 var logger = LogSetup.InitSeialog(builder.Configuration);
 builder.Host.UseSerilog(logger, dispose: true);
 #endregion
@@ -30,10 +31,10 @@ builder.Services
     .AddFreeRedis(builder.Configuration)
     .AddCustomRedisCacheOutput(builder.Configuration)
     // .AddDtm(builder.Configuration)
+    .AddCustomHangfireService()
     .AddDbMigration()
     .AddCustomCAP(builder.Configuration)
     .AddHttpContextAccessor()
-    .AddScheduler()
     .AddRedisCaching()
     .AddCustomAuthentication(builder.Configuration)
     .AddMvc(options =>
@@ -48,7 +49,8 @@ builder.Services
 
 
 
-#region IOC配置============================
+
+#region IOC配置
 
 builder.Host.UseDefaultServiceProvider(options =>
     options.ValidateScopes = true);
@@ -56,7 +58,6 @@ builder.Host.UseDefaultServiceProvider(options =>
 #endregion
 
 var app = builder.Build();
-
 ServiceProviderLocator.RootServiceProvider=app.Services;
 
 #region 启动项目时执行数据库迁移
@@ -80,16 +81,20 @@ if (app.Environment.IsDevelopment()||app.Environment.IsStaging())
     app.UseSwaggerUI();
 }
 
-#region 自定义中间件
-
+#region 中间件
 app.Use(async (context, next) =>
 {
     TransactionalAttribute.SetServiceProvider(context.RequestServices);
     await next();
 });
 app.UseMiddleware<CachingMiddleware>();
-// app.UseFreeSchedulerDashboard();
+app.UseJobMiddleware();
+// app.UseHangfireDashboard();
 #endregion
+
+// #region  HangfireJob
+// HangfireJobService.Start();
+// #endregion
 
 
 app.UseCors();
@@ -105,4 +110,5 @@ app.UseEndpoints(endpoints =>
 
 app.Run();
 
+// 用于集成测试
 public partial class Program{}

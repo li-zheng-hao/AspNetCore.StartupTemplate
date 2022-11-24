@@ -22,6 +22,7 @@
         <PackageReference Include="FreeSql.Extensions.JsonMap" Version="3.2.666" />
         <PackageReference Include="FreeSql.Provider.MySqlConnector" Version="3.2.666" />
         <PackageReference Include="FreeSql.Repository" Version="3.2.666" />
+        <PackageReference Include="Hangfire" Version="1.7.32" />
         <PackageReference Include="JWT" Version="9.0.3" />
         <PackageReference Include="LZH.Quickwire" Version="1.1.0" />
         <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.11" />
@@ -35,7 +36,7 @@
       <ProjectReference Include="..\AspNetCore.StartupTemplate.Caching\AspNetCore.StartupTemplate.Caching.csproj" />
       <ProjectReference Include="..\AspNetCore.StartupTemplate.Configuration\AspNetCore.StartupTemplate.Configuration.csproj" />
       <ProjectReference Include="..\AspNetCore.StartupTemplate.Core\AspNetCore.StartupTemplate.Core.csproj" />
-      <ProjectReference Include="..\AspNetCore.StartupTemplate.CustomScheduler\AspNetCore.StartupTemplate.CustomScheduler.csproj" />
+      <ProjectReference Include="..\AspNetCore.StartupTemplate.Job\AspNetCore.StartupTemplate.Job.csproj" />
       <ProjectReference Include="..\AspNetCore.StartupTemplate.DbMigration\AspNetCore.StartupTemplate.DbMigration.csproj" />
       <ProjectReference Include="..\AspNetCore.StartupTemplate.Filter\AspNetCore.StartupTemplate.Filter.csproj" />
       <ProjectReference Include="..\AspNetCore.StartupTemplate.IRepository\AspNetCore.StartupTemplate.IRepository.csproj" />

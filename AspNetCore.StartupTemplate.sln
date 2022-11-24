@@ -63,7 +63,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Normal", "Normal", "{E9352C
 		Deployment\Normal\Normal.yml = Deployment\Normal\Normal.yml
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore.StartupTemplate.CustomScheduler", "AspNetCore.StartupTemplate.CustomScheduler\AspNetCore.StartupTemplate.CustomScheduler.csproj", "{D816714A-C7E5-44E1-8663-7DA0738DF958}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore.StartupTemplate.Job", "AspNetCore.StartupTemplate.Job\AspNetCore.StartupTemplate.Job.csproj", "{D816714A-C7E5-44E1-8663-7DA0738DF958}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore.StartupTemplate.IntegrationTest", "AspNetCore.StartupTemplate.IntegrationTest\AspNetCore.StartupTemplate.IntegrationTest.csproj", "{6AE8BB33-5FB2-4902-A4F7-80E16FD7D469}"
 EndProject
