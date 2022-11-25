@@ -37,6 +37,7 @@ builder.Services
     .AddHttpContextAccessor()
     .AddRedisCaching()
     .AddCustomAuthentication(builder.Configuration)
+    .AddCustomMiniProfiler()
     .AddMvc(options =>
     {
         // 实体验证
@@ -89,6 +90,7 @@ app.Use(async (context, next) =>
 });
 app.UseMiddleware<CachingMiddleware>();
 app.UseJobMiddleware();
+app.UseMiniProfilerMiddleware();
 // app.UseHangfireDashboard();
 #endregion
 
