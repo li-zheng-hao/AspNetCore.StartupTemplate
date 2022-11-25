@@ -27,11 +27,6 @@ Asp.Net Core快速启动项目模板,支持微服务/单体应用,以下功能�
 
 欢迎任何star、issue、pr~⭐
 
-# 开发环境
-
-- Rider 2022 + Visual Studio Community 2022
-- .NET 6
-
 # 快速开始
 
 ```sh
