@@ -5,31 +5,27 @@
 
 # 介绍
 
-  Asp.Net Core快速启动项目模板,支持微服务/单体应用,以下功能开箱即用：
+Asp.Net Core快速启动项目模板,支持微服务/单体应用,以下功能开箱即用：
 
 1. Spring式注解事务
-2. 工作单元+仓储
-3. 消息队列
-4. API接口缓存
-5. 代码模板生成器
-6. 数据库迁移版本管理
-7. 分布式雪花id
-8. 服务注册发现
-9. 分布式事务
-10. 身份认证
-11. 定时任务
-12. 更多...
+2. Spring式依赖注入
+3. 工作单元+仓储
+4. 消息队列
+5. API接口缓存
+6. 代码模板生成器
+7. 数据库迁移版本管理
+8. 分布式雪花id
+9. 服务注册发现
+10. 分布式事务
+11. 身份认证
+12. 定时任务
+13. 更多...
 
-详细使用文档在Github上查看：[https://github.com/li-zheng-hao/AspNetCore.StartupTemplate/wiki](https://github.com/li-zheng-hao/AspNetCore.StartupTemplate/wiki)
+详细文档后续待发布...
 
 各个部分都有示例代码，根据模板新建项目后可根据相关功能的示例代码参考开发
 
 欢迎任何star、issue、pr~⭐
-
-#  开发环境
-
-- Rider 2022 + Visual Studio Community 2022
-- .NET 6
 
 # 快速开始
 
@@ -42,7 +38,7 @@ dotnet new aspnetcorestartuptemplate -n XXX   //  XXX为项目名
 | -------------------------- | ------------------------------------------------------------ |
 | AspNetCore.StartupTemplate | [![Nuget](https://img.shields.io/nuget/dt/AspNetCore.StartupTemplate)](https://www.nuget.org/packages/AspNetCore.StartupTemplate) |
 
-更详细的文档：[Wiki](https://github.com/li-zheng-hao/AspNetCore.StartupTemplate/wiki)
+> 也可以直接新建项目，然后把这个项目当做一个素材库，用到什么就复制什么
 
 # 项目结构
 
@@ -50,34 +46,36 @@ dotnet new aspnetcorestartuptemplate -n XXX   //  XXX为项目名
 - `Core`:核心公共基础库
 - `Utility`:工具类库
 - `Filter`:过滤器库
+- `Caching`:缓存库
 - `Models`:实体层
 - `Repository`,`IRepository`:仓储层
 - `IServices`,`Services`:服务层
 - `Webapi`: Webapi层
 - `Snowflake`:支持workid自动获取回收的雪花id库
 - `DbMigration`:数据库版本迁移库
-- `CustomScheduler`：定制化FreeScheduler库
+- `Job`：定时任务
 - `CodeGeneratorConsole`:代码生成器
+- `UnitTest`:单元测试
+- `IntergrationTest`:集成测试
 
 # 技术栈
 
 - 序列化：`Newtonsoft.Json`
 - 身份验证：`Jwt.Net`
 - 数据库ORM：`FreeSql`
-- 接口缓存：`CacheOutput`
-- 实体映射：`AutoMapper`
+- 接口缓存：`CacheOutput`,自己简单封装的库
+- 实体映射：`Mapster`
 - 消息队列：`RabbitMQ`
-- 可靠性消息传输：`CAP`
+- 事件总线: `CAP`
 - 分布式事务：`DTM`+`CAP`
 - 数据迁移：`Evolve`
-- 缓存:`StackExchange.Redis`
+- Redis:`FreeRedis`
 - 编译时AOP：`Rougamo`
 - 单元测试：`XUnit`
 - 模板生成：`DotLiquid`
 - Http库：`Flurl.Http`
 - Mock库：`Moq`
-- 定时任务：`FreeScheduler`
-- Redis库：`FreeRedis`
+- 定时任务：`Hangfire`
 
 # 致谢
 
@@ -89,6 +87,7 @@ dotnet new aspnetcorestartuptemplate -n XXX   //  XXX为项目名
 6. [https://freesql.net/guide/](https://freesql.net/guide/) FreeSql 非常好用的ORM
 7. [https://github.com/lecaillon/Evolve](https://github.com/lecaillon/Evolve) 数据库版本控制库
 8. [https://github.com/inversionhourglass/Rougamo](https://github.com/inversionhourglass/Rougamo) 编译时AOP框架
+9. 其它...
 
 # 开源协议
 
