@@ -3,7 +3,6 @@ using AspNetCore.StartUpTemplate.Core.Transaction;
 using AspNetCore.StartUpTemplate.IService;
 using AspNetCore.StartUpTemplate.Model;
 using AspNetCore.StartupTemplate.Snowflake;
-using AspNetCore.StartupTemplate.Snowflake.SnowFlake;
 using FreeSql;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;

@@ -8,7 +8,6 @@ using AspNetCore.StartUpTemplate.Filter;
 using AspNetCore.StartUpTemplate.IRepository;
 using AspNetCore.StartUpTemplate.IService;
 using AspNetCore.StartUpTemplate.Model;
-using AspNetCore.StartupTemplate.Snowflake.SnowFlake;
 using Dtmcli;
 using FreeSql;
 using Microsoft.AspNetCore.Mvc;

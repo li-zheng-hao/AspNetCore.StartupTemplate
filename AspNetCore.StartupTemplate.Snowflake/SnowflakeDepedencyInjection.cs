@@ -1,4 +1,3 @@
-using AspNetCore.StartupTemplate.Snowflake.SnowFlake;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace AspNetCore.StartupTemplate.Snowflake;

@@ -1,11 +1,9 @@
-﻿using FreeRedis;
-using Microsoft.Extensions.Hosting;
+﻿using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 
-namespace AspNetCore.StartupTemplate.Snowflake.SnowFlake
+namespace AspNetCore.StartupTemplate.Snowflake
 {
-    public class SnowflakeBackgroundServices : IHostedService
+    public class SnowflakeBackgroundServices : IHostedService,IDisposable
     {
         private readonly SnowflakeGenerator _snowflakeGenerator;
         private readonly SnowflakeWorkIdManager _snowflakeWorkIdManager;
@@ -49,5 +47,9 @@ namespace AspNetCore.StartupTemplate.Snowflake.SnowFlake
             return Task.CompletedTask;
         }
 
+        public void Dispose()
+        {
+            _snowflakeWorkIdManager.Dispose();
+        }
     }
 }
