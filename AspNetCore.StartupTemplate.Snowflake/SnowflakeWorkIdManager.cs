@@ -5,7 +5,7 @@ using Microsoft.Extensions.Logging;
 
 namespace AspNetCore.StartupTemplate.Snowflake;
 
-public class SnowflakeWorkIdManager
+public class SnowflakeWorkIdManager:IDisposable
 {
     private readonly IRedisClient _redisClient;
     private readonly ILogger<SnowflakeWorkIdManager> _logger;
@@ -82,8 +82,11 @@ public class SnowflakeWorkIdManager
         // _redisClient.ZRem(WORKID_COLLECTION_KEY, WorkId.ToString());
         
     }
-   
-    
-    
+
+
+    public void Dispose()
+    {
+        _redisClient.Dispose();
+    }
 }
 
