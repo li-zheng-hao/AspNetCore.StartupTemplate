@@ -1,9 +1,7 @@
-﻿using FreeRedis;
-using Microsoft.Extensions.Hosting;
+﻿using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 
-namespace AspNetCore.StartupTemplate.Snowflake.SnowFlake
+namespace AspNetCore.StartupTemplate.Snowflake
 {
     public class SnowflakeBackgroundServices : IHostedService
     {
@@ -49,5 +47,6 @@ namespace AspNetCore.StartupTemplate.Snowflake.SnowFlake
             return Task.CompletedTask;
         }
 
+       
     }
 }

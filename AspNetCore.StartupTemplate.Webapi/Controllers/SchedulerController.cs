@@ -5,7 +5,6 @@ using AspNetCore.StartUpTemplate.Contract;
 using AspNetCore.StartUpTemplate.Core;
 using AspNetCore.StartUpTemplate.IRepository;
 using AspNetCore.StartUpTemplate.IService;
-using AspNetCore.StartupTemplate.Snowflake.SnowFlake;
 using Dtmcli;
 using FreeSql;
 using Microsoft.AspNetCore.Mvc;
