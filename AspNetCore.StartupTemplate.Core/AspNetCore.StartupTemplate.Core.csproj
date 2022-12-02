@@ -45,4 +45,8 @@
       <ProjectReference Include="..\AspNetCore.StartupTemplate.Utility\AspNetCore.StartupTemplate.Utility.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Remove="FodyWeavers.xml" />
+    </ItemGroup>
+
 </Project>
